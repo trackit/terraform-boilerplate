@@ -17,6 +17,10 @@ module "vpc" {
 
   create_igw    = true
 
+  # propagate_intra_route_tables_vgw = true
+  # propagate_private_route_tables_vgw = true
+  # propagate_public_route_tables_vgw = true
+  # vpn_gateway_id = ""
 
 #   enable_flow_log           = true
 #   flow_log_destination_type = "s3"
