@@ -1,3 +1,5 @@
+# https://github.com/cloudposse/terraform-aws-elasticsearch
+
 module "elasticsearch" {
   source                         = "git::https://github.com/cloudposse/terraform-aws-elasticsearch.git?ref=0.17.0"
 
