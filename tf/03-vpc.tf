@@ -1,36 +1,36 @@
 module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "2.44.0"
-  name = var.vpc_name
-  cidr = var.vpc_cidr
-  azs             = var.vpc_azs
-  private_subnets = var.vpc_private_cidrs
-  public_subnets  = var.vpc_public_cidrs
-  database_subnets    = var.database_subnets_cidrs
+  source           = "terraform-aws-modules/vpc/aws"
+  version          = "2.44.0"
+  name             = var.vpc_name
+  cidr             = var.vpc_cidr
+  azs              = var.vpc_azs
+  private_subnets  = var.vpc_private_cidrs
+  public_subnets   = var.vpc_public_cidrs
+  database_subnets = var.database_subnets_cidrs
 
-  enable_nat_gateway = true
-  single_nat_gateway  = false
+  enable_nat_gateway     = true
+  single_nat_gateway     = false
   one_nat_gateway_per_az = true
 
   enable_dns_hostnames = true
   enable_dns_support   = true
 
-  create_igw    = true
+  create_igw = true
 
   # propagate_intra_route_tables_vgw = true
   # propagate_private_route_tables_vgw = true
   # propagate_public_route_tables_vgw = true
   # vpn_gateway_id = ""
 
-#   enable_flow_log           = true
-#   flow_log_destination_type = "s3"
-#   flow_log_destination_arn  = module.s3_bucket_vpc_flow_logs.this_s3_bucket_arn
-#   vpc_flow_log_tags = {
-#     Name = local.s3_bucket_name
-#     Terraform          = "true"
-#     Environnment       = var.env
-#     TerraformWorkspace = terraform.workspace
-#   }
+  #   enable_flow_log           = true
+  #   flow_log_destination_type = "s3"
+  #   flow_log_destination_arn  = module.s3_bucket_vpc_flow_logs.this_s3_bucket_arn
+  #   vpc_flow_log_tags = {
+  #     Name = local.s3_bucket_name
+  #     Terraform          = "true"
+  #     Environnment       = var.env
+  #     TerraformWorkspace = terraform.workspace
+  #   }
 
   tags = {
     Terraform          = "true"
