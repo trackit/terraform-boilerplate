@@ -1,12 +1,14 @@
+# https://github.com/terraform-aws-modules/terraform-aws-lambda
+
 module "lambda_function" {
-  source = "terraform-aws-modules/lambda/aws"
+  source  = "terraform-aws-modules/lambda/aws"
   version = "1.17.0"
 
-  function_name = var.lambda_name
-  description   = var.lambda_desc
-  handler       = var.lambda_handler
-  runtime       = var.lambda_runtime
-  publish       = var.lambda_publish
+  function_name  = var.lambda_name
+  description    = var.lambda_desc
+  handler        = var.lambda_handler
+  runtime        = var.lambda_runtime
+  publish        = var.lambda_publish
   lambda_at_edge = var.lambda_at_edge
 
   source_path = var.lambda_source
