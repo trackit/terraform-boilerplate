@@ -1,3 +1,7 @@
+#
+# https://github.com/terraform-aws-modules/terraform-aws-eks
+#
+
 data "aws_eks_cluster" "cluster" {
   name = module.eks.cluster_id
 }
@@ -22,12 +26,13 @@ module "eks" {
   subnets         = module.vpc.private_subnets
   vpc_id          = module.vpc.vpc_id
   manage_aws_auth = true
-  config_output_path	  = "kubeconfig_${var.project_name}-${var.env}"
+  config_output_path	  = "kubeconfig_${var.eks_cluster_name}-${var.env}"
 
   worker_groups = [
     {
-      instance_type = "m5.large"
-      asg_max_size  = 3
+      instance_type = var.eks_instance_type
+      asg_max_size  = var.eks_asg_max_size
+      asg_min_size  = var.eks_asg_min_size
     }
   ]
 
