@@ -1,3 +1,5 @@
+# https://github.com/cloudposse/terraform-aws-ecr
+
 # IAM Role to be granted ECR permissions
 data "aws_iam_role" "ecr" {
   name = var.ecr_role_name
