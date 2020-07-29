@@ -1,3 +1,7 @@
+#
+# https://github.com/terraform-aws-modules/terraform-aws-vpc
+#
+
 module "vpc" {
   source           = "terraform-aws-modules/vpc/aws"
   version          = "2.44.0"
@@ -6,7 +10,7 @@ module "vpc" {
   azs              = var.vpc_azs
   private_subnets  = var.vpc_private_cidrs
   public_subnets   = var.vpc_public_cidrs
-  database_subnets = var.database_subnets_cidrs
+  database_subnets = var.vpc_database_cidrs
 
   enable_nat_gateway     = true
   single_nat_gateway     = false
