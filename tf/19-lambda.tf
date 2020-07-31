@@ -13,9 +13,9 @@ module "lambda_function" {
 
   source_path = var.lambda_source
 
-  tags = {
-    Name = var.lambda_tag
-  }
+  #tags = {
+  #
+  #}
 
   ##### Store Packages on S3 w/ Lambda Layer #####
   #store_on_s3 = var.lambda_s3_store
