@@ -5,7 +5,8 @@ resource "local_file" "public_ssh_key" {
 }
 
 module "runner" {
-  source = "npalm/gitlab-runner/aws"
+  source  = "npalm/gitlab-runner/aws"
+  version = "4.19.0"
 
   aws_region  = var.gitlab_aws_region
   aws_zone    = var.gitlab_aws_zone
@@ -59,4 +60,6 @@ module "runner" {
   ami_owners                             = var.gitlab_ami_owners
 
   arn_format = var.gitlab_arn_format
+
+  tags = var.gitlab_tags
 }

@@ -363,3 +363,8 @@ variable "gitlab_arn_format" {
   type        = string
   description = "ARN format to be used. May be changed to support deployment in GovCloud/China regions."
 }
+
+variable "gitlab_tags" {
+  type        = map(string)
+  description = "Map of tags that will be added to created resources. By default resources will be tagged with name and environment."
+}
