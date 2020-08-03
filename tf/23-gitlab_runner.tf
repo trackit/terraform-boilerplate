@@ -59,6 +59,4 @@ module "runner" {
   ami_owners                             = var.gitlab_ami_owners
 
   arn_format = var.gitlab_arn_format
-
-
 }
