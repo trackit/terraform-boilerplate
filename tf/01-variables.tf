@@ -123,3 +123,124 @@ variable "env" {
 /*
 // Backup variables
 */
+
+
+
+/*
+// Elasticache variables
+*/
+
+variable "redis_availability_zones" {
+  type        = list(string)
+  description = "Availability zone IDs"
+}
+
+variable "redis_namespace" {
+  type        = string
+  description = "Namespace (e.g. eg or cp)"
+}
+
+variable "redis_stage" {
+  type        = string
+  description = "Stage (e.g. prod, dev, staging)"
+}
+
+variable "redis_name" {
+  type        = string
+  description = "Name of the application"
+}
+
+variable "redis_zone_id" {
+  type        = string
+  description = "Route53 DNS Zone ID"
+}
+
+variable "redis_cluster_size" {
+  type        = number
+  description = "Number of nodes in cluster. *Ignored when cluster_mode_enabled == true*"
+}
+
+variable "redis_cluster_mode_enabled" {
+  type        = bool
+  description = "Flag to enable/disable creation of a native redis cluster. automatic_failover_enabled must be set to true. Only 1 cluster_mode block is allowed"
+}
+
+variable "redis_cluster_mode_num_node_groups" {
+  type        = number
+  description = "Number of node groups (shards) for this Redis replication group. Changing this number will trigger an online resizing operation before other settings modifications"
+}
+
+variable "redis_cluster_mode_replicas_per_node_group" {
+  type        = number
+  description = "Number of replica nodes in each node group. Valid values are 0 to 5. Changing this number will force a new resource"
+}
+
+variable "redis_instance_type" {
+  type        = string
+  description = "Elastic cache instance type"
+}
+
+variable "redis_engine_version" {
+  type        = string
+  description = "Redis engine version"
+}
+
+variable "redis_family" {
+  type        = string
+  description = "Redis family	"
+}
+
+variable "redis_at_rest_encryption_enabled" {
+  type        = bool
+  description = "Enable encryption at rest"
+}
+
+variable "redis_transit_encryption_enabled" {
+  type        = bool
+  description = "Enable TLS"
+}
+
+variable "redis_allowed_cidr_blocks" {
+  type        = list(string)
+  description = "List of CIDR blocks that are allowed ingress to the cluster's Security Group created in the module"
+}
+
+variable "redis_attributes" {
+  type        = list(string)
+  description = "Additional attributes (_e.g._ '1')"
+}
+
+variable "redis_auth_token" {
+  type        = string
+  description = "Auth token for password protecting redis, transit_encryption_enabled must be set to true. Password must be longer than 16 chars"
+}
+
+variable "redis_dns_subdomain" {
+  type        = string
+  description = "The subdomain to use for the CNAME record. If not provided then the CNAME record will use var.name."
+}
+
+variable "elasticache_subnet_group_name" {
+  type        = string
+  description = "Subnet group name for the ElastiCache instance"
+}
+
+variable "redis_enabled" {
+  type        = bool
+  description = "Set to false to prevent the module from creating any resources"
+}
+
+variable "redis_port" {
+  type        = number
+  description = "Redis port"
+}
+
+variable "redis_replication_group_id" {
+  type        = string
+  description = "Replication group ID with the following constraints: A name must contain from 1 to 20 alphanumeric characters or hyphens. The first character must be a letter. A name cannot end with a hyphen or contain two consecutive hyphens."
+}
+
+variable "redis_use_existing_security_groups" {
+  type        = bool
+  description = "Flag to enable/disable creation of Security Group in the module. Set to true to disable Security Group creation and provide a list of existing security Group IDs in existing_security_groups to place the cluster into"
+}

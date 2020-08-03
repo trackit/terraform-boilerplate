@@ -3,7 +3,7 @@
 module "redis" {
   source = "git::https://github.com/cloudposse/terraform-aws-elasticache-redis.git?ref=master"
 
-  availability_zones = var.availability_zones
+  availability_zones = var.redis_availability_zones
 
   namespace = var.redis_namespace
   stage     = var.redis_stage
