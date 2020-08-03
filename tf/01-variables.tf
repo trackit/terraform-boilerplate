@@ -218,7 +218,7 @@ variable "gitlab_agent_tags" {
 }
 
 variable "gitlab_cache_bucket" {
-  type        = map(string)
+  type        = map
   description = "Configuration to control the creation of the cache bucket. By default the bucket will be created and used as shared cache. To use the same cache across multiple runners disable the creation of the cache and provide a policy and bucket name. See the public runner example for more details."
   /*
   {
