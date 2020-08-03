@@ -123,3 +123,202 @@ variable "env" {
 /*
 // Backup variables
 */
+
+
+
+/*
+// Gitlab Runner variables
+*/
+
+variable "gitlab_aws_region" {
+  type        = string
+  description = "AWS region."
+}
+
+variable "gitlab_aws_zone" {
+  type        = string
+  description = "Deprecated. Will be removed in the next major release."
+}
+
+variable "gitlab_environment" {
+  type        = string
+  description = "A name that identifies the environment, used as prefix and for tagging."
+}
+
+variable "gitlab_runners_name" {
+  type        = string
+  description = "Name of the runner, will be used in the runner config.toml."
+}
+
+variable "gitlab_runners_url" {
+  type        = string
+  description = "URL of the GitLab instance to connect to."
+}
+
+variable "gitlab_runner_registration_config" {
+  type        = map(string)
+  description = "Configuration used to register the runner. See the README for an example, or reference the examples in the examples directory of this repo."
+  /*
+  {
+    "access_level": "",
+    "description": "",
+    "locked_to_project": "",
+    "maximum_timeout": "",
+    "registration_token": "",
+    "run_untagged": "",
+    "tag_list": ""
+  }
+  */
+}
+
+variable "gitlab_agent_tags" {
+  type        = map(string)
+  description = "Map of tags that will be added to agent EC2 instances."
+}
+
+variable "gitlab_cache_bucket" {
+  type        = map(string)
+  description = "Configuration to control the creation of the cache bucket. By default the bucket will be created and used as shared cache. To use the same cache across multiple runners disable the creation of the cache and provide a policy and bucket name. See the public runner example for more details."
+  /*
+  {
+    "bucket": "",
+    "create": true,
+    "policy": ""
+  }
+  */
+}
+
+variable "gitlab_cache_bucket_name_include_account_id" {
+  type        = bool
+  description = "Boolean to add current account ID to cache bucket name."
+}
+
+variable "gitlab_cache_bucket_prefix" {
+  type        = string
+  description = "Prefix for s3 cache bucket name."
+}
+
+variable "gitlab_cache_bucket_versioning" {
+  type        = bool
+  description = "Boolean used to enable versioning on the cache bucket, false by default."
+}
+
+variable "gitlab_cache_expiration_days" {
+  type        = number
+  description = "Number of days before cache objects expires."
+}
+
+variable "gitlab_cache_shared" {
+  type        = bool
+  description = "Enables cache sharing between runners, false by default."
+}
+
+variable "gitlab_cloudwatch_retention_logs" {
+  type        = number
+  description = "Retention for cloudwatch logs. Defaults to unlimited"
+}
+
+variable "gitlab_cloudwatch_logging" {
+  type        = bool
+  description = "Boolean used to enable or disable the CloudWatch logging."
+}
+
+variable "gitlab_docker_download_url" {
+  type        = string
+  description = "Full url pointing to a linux x64 distribution of docker machine. Once set docker_machine_version will be ingored. For example the GitLab version, https://gitlab-docker-machine-downloads.s3.amazonaws.com/v0.16.2-gitlab.2/docker-machine."
+}
+
+variable "gitlab_docker_instance_type" {
+  type        = string
+  description = "Instance type used for the instances hosting docker-machine."
+}
+
+variable "gitlab_docker_options" {
+  type        = list(string)
+  description = "List of additional options for the docker machine config. Each element of this list must be a key=value pair. E.g. '[\"amazonec2-zone=a\"]'"
+}
+
+variable "gitlab_docker_role_json" {
+  type        = string
+  description = "Docker machine runner instance override policy, expected to be in JSON format."
+}
+
+variable "gitlab_docker_spot_price_bid" {
+  type        = string
+  description = "Spot price bid."
+}
+
+variable "gitlab_docker_version" {
+  type        = string
+  description = "Version of docker-machine. The version will be ingored once docker_machine_download_url is set."
+}
+
+variable "gitlab_enable_docker_ssm_access" {
+  type        = bool
+  description = "Add IAM policies to the docker-machine instances to connect via the Session Manager."
+}
+
+variable "gitlab_enable_eip" {
+  type        = bool
+  description = "Enable the assignment of an EIP to the gitlab runner instance"
+}
+
+variable "gitlab_enable_ssh_access" {
+  type        = bool
+  description = "Enables SSH Access to the gitlab runner instance."
+}
+
+variable "gitlab_enable_kms" {
+  type        = bool
+  description = "Let the module manage a KMS key, logs will be encrypted via KMS. Be-aware of the costs of an custom key."
+}
+
+variable "gitlab_enable_manage_token" {
+  type        = bool
+  description = "Boolean to enable the management of the GitLab token in SSM. If true the token will be stored in SSM, which means the SSM property is a terraform managed resource. If false the Gitlab token will be stored in the SSM by the user-data script during creation of the the instance. However the SSM parameter is not managed by terraform and will remain in SSM after a terraform destroy."
+}
+
+variable "gitlab_enable_ping" {
+  type        = bool
+  description = "Allow ICMP Ping to the ec2 instances."
+}
+
+variable "gitlab_enable_runner_ssm_access" {
+  type        = bool
+  description = "Add IAM policies to the runner agent instance to connect via the Session Manager."
+}
+
+variable "gitlab_enable_runner_user_data_log" {
+  type        = bool
+  description = "Enable bash xtrace for the user data script that creates the EC2 instance for the runner agent. Be aware this could log sensitive data such as you GitLab runner token."
+}
+
+variable "gitlab_enable_schedule" {
+  type        = bool
+  description = "Flag used to enable/disable auto scaling group schedule for the runner instance."
+}
+
+variable "gitlab_enable_asg_recreation" {
+  type        = bool
+  description = "Enable automatic redeployment of the Runner ASG when the Launch Configs change."
+}
+
+variable "gitlab_allow_iam_service_linked_role_creation" {
+  type        = bool
+  description = "Boolean used to control attaching the policy to a runner instance to create service linked roles."
+}
+
+variable "gitlab_ami_filter" {
+  type        = map(list(string))
+  description = "List of maps used to create the AMI filter for the Gitlab runner agent AMI. Must resolve to an Amazon Linux 1 or 2 image."
+}
+
+variable "gitlab_ami_owners" {
+  type        = list(string)
+  description = "The list of owners used to select the AMI of Gitlab runner agent instances."
+}
+
+variable "gitlab_arn_format" {
+  type        = string
+  description = "ARN format to be used. May be changed to support deployment in GovCloud/China regions."
+}
