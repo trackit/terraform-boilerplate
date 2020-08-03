@@ -1,5 +1,9 @@
 # https://registry.terraform.io/modules/npalm/gitlab-runner/aws/
 
+resource "local_file" "public_ssh_key" {
+  filename = var.gitlab_public_ssh_key_file
+}
+
 module "runner" {
   source = "npalm/gitlab-runner/aws"
 

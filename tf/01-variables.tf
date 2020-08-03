@@ -130,6 +130,11 @@ variable "env" {
 // Gitlab Runner variables
 */
 
+variable "gitlab_public_ssh_key_file" {
+  type        = string
+  description = "Path to the local public ssh key file."
+}
+
 variable "gitlab_aws_region" {
   type        = string
   description = "AWS region."
