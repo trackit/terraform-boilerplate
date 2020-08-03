@@ -80,12 +80,12 @@ module "lambda_function" {
 #
 #  layer_name          = var.lambda_s3layer_name
 #  description         = var.lambda_s3layer_desc
-#  compatible_runtimes = var.lambda_s3layer_combatible_runtimes # [ "runtime1", "runtime2", ... ]
+#  compatible_runtimes = var.lambda_s3layer_compatible_runtimes # [ "runtime1", "runtime2", ... ]
 
 #  source_path = var.lambda_s3layer_source
 
-#  store_on_s3 = var.lambda_s3_store
-#  s3_bucket   = var.lambda_s3_name
+#  store_on_s3 = var.lambda_s3layer_store
+#  s3_bucket   = var.lambda_bucket_layer_name
 #}
 
 #module "lambda_layer_local" {
@@ -96,7 +96,7 @@ module "lambda_function" {
 
 #  layer_name          = var.lambda_layer_name
 #  description         = var.lambda_layer_desc
-#  compatible_runtimes = var.lambda_layer_combatible_runtimes # [ "runtime1", "runtime2", ... ]
+#  compatible_runtimes = var.lambda_layer_compatible_runtimes # [ "runtime1", "runtime2", ... ]
 
 #  source_path = var.lambda_layer_source
 #}
