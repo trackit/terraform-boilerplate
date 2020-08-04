@@ -20,4 +20,3 @@ module "build" {
   environment_variables = var.codebuild_env_variables
 
   tags                  = var.codebuild_tags
-}
