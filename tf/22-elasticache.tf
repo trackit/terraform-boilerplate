@@ -19,7 +19,7 @@ module "redis" {
   cluster_mode_num_node_groups         = var.redis_cluster_mode_num_node_groups
   cluster_mode_replicas_per_node_group = var.redis_cluster_mode_replicas_per_node_group
 
-  apply_immediately  = true
+  apply_immediately          = true
   automatic_failover_enabled = false
 
   instance_type              = var.redis_instance_type
