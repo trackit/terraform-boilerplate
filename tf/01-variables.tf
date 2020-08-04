@@ -171,10 +171,10 @@ variable "github_token" {
 }
 
 variable "codebuild_env_variables" {
-  type        = list(object({
-                  name  = string
-                  value = string
-                }))
+  type = list(object({
+    name  = string
+    value = string
+  }))
   description = "Environment variables to transfer to build container"
 }
 
