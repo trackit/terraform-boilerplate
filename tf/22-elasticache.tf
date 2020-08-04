@@ -11,8 +11,8 @@ module "redis" {
   zone_id   = var.redis_zone_id
 
   vpc_id                  = module.vpc.vpc_id
-  allowed_security_groups = [module.vpc.vpc_default_security_group_id]
-  subnets                 = module.subnets.private_subnet_ids
+  allowed_security_groups = [module.vpc.default_security_group_id]
+  subnets                 = module.vpc.private_subnets
 
   cluster_size                         = var.redis_cluster_size
   cluster_mode_enabled                 = var.redis_cluster_mode_enabled
