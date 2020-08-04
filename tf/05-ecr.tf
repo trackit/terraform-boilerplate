@@ -6,7 +6,7 @@ data "aws_iam_role" "ecr" {
 }
 
 module "ecr" {
-  source  = "git::https://github.com/cloudposse/terraform-aws-ecr.git?ref=0.21.0"
+  source = "git::https://github.com/cloudposse/terraform-aws-ecr.git?ref=0.21.0"
 
   namespace = var.ecr_namespace
   stage     = var.ecr_stage
