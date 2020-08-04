@@ -1,7 +1,7 @@
 # https://github.com/cloudposse/terraform-aws-elasticache-redis
 
 module "redis" {
-  source = "git::https://github.com/cloudposse/terraform-aws-elasticache-redis.git?ref=master"
+  source = "git::https://github.com/cloudposse/terraform-aws-elasticache-redis.git?ref=0.18.1"
 
   availability_zones = var.redis_availability_zones
 
