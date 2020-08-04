@@ -130,7 +130,58 @@ variable "vpc_azs" {
 // CodeBuild variables
 */
 
+variable "codebuild_name" {
+  type        = string
+  description = "Name of codebuild module"
+}
 
+variable "codebuild_image" {
+  type        = string
+  description = "Build container_image"
+  default     = "aws/codebuild/standard:2.0"
+}
+
+variable "codebuild_compute_type" {
+  type        = string
+  description = "Instance type for build"
+  default     = "BUILD_GENERAL1_SMALL"
+}
+
+variable "codebuild_timeout" {
+  type        = number
+  description = "Timeout build time in minutes"
+  default     = 60
+}
+
+variable "codebuild_privileged_mode" {
+  type        = bool
+  description = "Enables docker daemon inside docker container of the instance"
+  default     = true
+}
+
+variable "codebuild_artifact_type" {
+  type        = string
+  description = "Build output artifact type: CODEPIPELINE, NO_ARTIFACTS or S3"
+  default     = "CODEPIPELINE"
+}
+
+variable "github_token" {
+  type        = string
+  description = "Github token to use for retrieving repository"
+}
+
+variable "codebuild_env_variables" {
+  type        = list(object({
+                  name  = string
+                  value = string
+                }))
+  description = "Environment variables to transfer to build container"
+}
+
+variable "codebuild_tags" {
+  type        = map(string)
+  description = "Codebuild resources tags"
+}
 
 /*
 // CodeDeploy variables
