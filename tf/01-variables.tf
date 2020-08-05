@@ -133,10 +133,77 @@ variable "vpc_azs" {
 
 
 /*
-// CodeDeploy variables
+// CodeDeploy ECS variables
 */
 
+variable "codedeploy_name" {
+  type        = string
+  description = "The codedeploy resources name"
+}
 
+variable "codedeploy_description" {
+  type        = string
+  description = "The codedeploy resource description"
+}
+
+variable "ecs_cluster_name" {
+  type        = string
+  description = "The ECS cluster name"
+}
+
+variable "ecs_service_name" {
+  type        = string
+  description = "The ECS service name"
+}
+
+variable "codedeploy_lb_listener_arns" {
+  type        = list(string)
+  description = "The load balancer listeners ARNs"
+}
+
+variable "codedeploy_auto_rollback_enabled" {
+  type        = bool
+  description = "Enable or not the auto rollback"
+}
+
+variable "codedeploy_auto_rollback_events" {
+  type        = list(string)
+  description = "Events that trigger auto rollback (DEPLOYMENT_FAILURE, DEPLOYMENT_STOP_ON_ALARM)"
+  default     = ["DEPLOYMENT_FAILURE"]
+}
+
+variable "codedeploy_action_on_timeout" {
+  type        = string
+  description = "Choose between continue or stop deployement (CONTINUE_DEPLOYMENT, STOP_DEPLOYMENT)"
+  default     = "STOP_DEPLOYMENT"
+}
+
+variable "codedeploy_wait_time_in_minutes" {
+  type        = number
+  description = "The number of minutes to wait before the status of a blue/green deployment changed to Stopped if rerouting is not started manually"
+  default     = 0
+}
+
+variable "codedeploy_termination_wait_in_minutes" {
+  type        = number
+  description = "Wait time in minutes before terminating the old instance when a deployement succeed"
+  default     = 5
+}
+
+variable "codedeploy_lb_target_group_blue_name" {
+  type        = string
+  description = "Load balancer target group blue name"
+}
+
+variable "codedeploy_lb_target_group_green_name" {
+  type        = string
+  description = "Load balancer target group green name"
+}
+
+variable "codedeploy_tags" {
+  type        = map(string)
+  description = "Tags for CodeDeploy module"
+}
 
 /*
 // Client VPN variables
