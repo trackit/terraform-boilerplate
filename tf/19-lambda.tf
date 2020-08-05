@@ -45,7 +45,7 @@ module "lambda_function" {
   ##### Lambda in VPC #####
   #vpc_subnet_ids         = module.vpc.intra_subnets
   #vpc_security_group_ids = [module.vpc.default_security_group_id]
-  #attach_network_policy = var.lamba_attach_ntw_policy
+  #attach_network_policy = var.lambda_attach_ntw_policy
   #########################
 
   ##### Lambda Permissions Triggers #####

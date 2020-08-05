@@ -293,6 +293,11 @@ variable "lambda_layer_source" {
   description = "The absolute path to a local file or directory containing your Lambda source code (or Layer)"
 }
 
+variable "lambda_attach_ntw_policy" {
+  type        = bool
+  description = "Controls whether VPC/network policy should be added to IAM role for Lambda Function"
+}
+
 /*
 // AutoScalling variables
 */
