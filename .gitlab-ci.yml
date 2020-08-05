@@ -1,0 +1,125 @@
+default:
+  image:
+    name: hashicorp/terraform:0.12.28
+    entrypoint: ["/bin/sh", "-c"]
+
+stages:
+  - packer_build
+  - delete_workspace
+  - init
+  - plan
+  - apply
+  - destroy
+
+.terraform_init: &terraform_init
+  before_script:
+    - export TF_ENV_VAR_FILE_PATH=$(echo $(pwd)/$(echo ${CI_COMMIT_REF_SLUG} | sed 's/\//-/g; s/$/.tfvars/g; s/^/envs\//g'))
+    - export TF_WORKSPACE_NAME=$(echo ${CI_COMMIT_REF_SLUG} | sed 's/\//-/g')
+    - cd tf
+    - terraform init
+    - terraform workspace new $TF_WORKSPACE_NAME || terraform workspace select $TF_WORKSPACE_NAME
+
+build_app_server:
+  image:
+    name: hashicorp/packer:1.6.0
+    entrypoint: ["/bin/sh", "-c"]
+  stage: packer_build
+  tags:
+    - gitlab-org-docker
+  script:
+    - cd packer/app-server
+    - packer build image.json
+  when: manual
+  only:
+    - /^packer.*$/i
+
+build_video_queue_process:
+  image:
+    name: hashicorp/packer:1.6.0
+    entrypoint: ["/bin/sh", "-c"]
+  stage: packer_build
+  tags:
+    - gitlab-org-docker
+  script:
+    - cd packer/video-process-queue
+    - packer build image.json
+  when: manual
+  only:
+    - /^packer.*$/i
+
+delete_workspace:
+  stage: delete_workspace
+  tags:
+    - gitlab-org-docker
+  <<: *terraform_init
+  script:
+    - terraform workspace select default
+    - terraform workspace delete $TF_WORKSPACE_NAME
+  when: manual
+  except:
+    - /^packer.*$/i
+
+.ensure_format: &ensure_format
+  - echo "Ensuring 'terraform fmt' has been applied"
+  - ([ "$(terraform fmt)" = "" ] && echo "We can proceed") || (echo "Your Terraform configuration is not well formatted, you need to run 'terraform fmt' prior to commit/pushing your code" && false)
+
+init:
+  stage: init
+  tags:
+    - gitlab-org-docker
+  <<: *terraform_init
+  script:
+    - *ensure_format
+    - echo "Ensuring that the Terraform configuration is valid"
+    - terraform validate && echo "We can proceed"
+    - cd ../envs
+    - *ensure_format
+  except:
+    - /^packer.*$/i
+
+plan:
+  stage: plan
+  tags:
+    - gitlab-org-docker
+  <<: *terraform_init
+  script:
+    - echo "Verifying that tfvars file exists."
+    - (stat $TF_ENV_VAR_FILE_PATH && echo "tfvars file '$TF_ENV_VAR_FILE_PATH' found!") || (echo "tfvars file '$TF_ENV_VAR_FILE_PATH' is missing. You need to create it and populate it." && false)
+    - terraform plan -var-file $TF_ENV_VAR_FILE_PATH -out=plan | tee plan.out
+  artifacts:
+    paths:
+      - tf/plan
+      - tf/plan.out
+  dependencies:
+    - init
+  except:
+    - /^packer.*$/i
+
+apply:
+  stage: apply
+  tags:
+    - gitlab-org-docker
+  <<: *terraform_init
+  script:
+    - terraform apply -input=false plan
+  when: manual
+  dependencies:
+    - plan
+  except:
+    - /^packer.*$/i
+
+destroy:
+  stage: destroy
+  tags:
+    - gitlab-org-docker
+  <<: *terraform_init
+  script:
+    - terraform destroy -var-file $TF_ENV_VAR_FILE_PATH -auto-approve
+    - terraform workspace select default
+    - terraform workspace delete $TF_WORKSPACE_NAME
+  when: manual
+  dependencies:
+    - apply
+  except:
+    - /^packer.*$/i
+
