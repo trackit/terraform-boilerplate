@@ -10,7 +10,8 @@ module "codedeploy_ecs" {
   ecs_cluster_name = var.ecs_cluster_name
   ecs_service_name = var.ecs_service_name
 
-  lb_listener_arns           = [var.codedeploy_lb_listener_arns]
+  lb_listener_arns = [
+  var.codedeploy_lb_listener_arns]
   blue_lb_target_group_name  = var.codedeploy_lb_target_group_blue_name
   green_lb_target_group_name = var.codedeploy_lb_target_group_green_name
 
