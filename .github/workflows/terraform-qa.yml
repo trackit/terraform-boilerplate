@@ -2,6 +2,11 @@ name: 'Terraform-QA'
 
 on:
   workflow_dispatch:
+    inputs:
+      varfile:
+        description: 'The varfile to use for plan, apply & destroy'
+        default: 'qa.tfvars'
+        required: true
 
 jobs:
   terraform:
