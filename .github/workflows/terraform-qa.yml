@@ -2,10 +2,6 @@ name: 'Terraform-QA'
 
 on:
   workflow_dispatch:
-    inputs:
-      mfa:
-        description: 'MFA'
-        required: false
 
 jobs:
   terraform:
