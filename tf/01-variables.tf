@@ -151,56 +151,67 @@ variable "vpc_azs" {
 variable "lambda_name" {
   type        = string
   description = "Name of the lambda"
+  default     = ""
 }
 
 variable "lambda_desc" {
   type        = string
   description = "Description of the lambda"
+  default     = ""
 }
 
 variable "lambda_handler" {
   type        = string
   description = "Lambda Function entry point in your code"
+  default     = ""
 }
 
 variable "lambda_runtime" {
   type        = string
   description = "Lambda Function runtime"
+  default     = ""
 }
 
 variable "lambda_publish" {
   type        = bool
   description = "Whether to publish creation/change as new Lambda Function Version."
+  default     = false
 }
 
 variable "lambda_at_edge" {
   type        = bool
   description = "Set this to true if using Lambda@Edge, to enable publishing, limit the timeout, and allow edgelambda.amazonaws.com to invoke the function"
+  default     = false
 }
 
 variable "lambda_source" {
   type        = any
   description = "The absolute path to a local file or directory containing your Lambda source code"
+  default     = null
 }
 
 variable "lambda_s3_store" {
   type        = bool
   description = "Whether to store produced artifacts on S3 or locally."
+  default     = false
 }
 
 variable "lambda_s3_name" {
   type        = string
   description = "S3 bucket to store artifacts"
+  default     = null
 }
 
 variable "lambda_create_package" {
   type        = bool
   description = "Controls whether Lambda package should be created"
+  default     = true
 }
 
 variable "lambda_local_package" {
   type        = string
   description = "The absolute path to an existing zip-file to use"
+  default     = null
 }
 
 variable "api_gateway_arn" {
@@ -226,11 +237,13 @@ variable "lambda_rule_source_arn" {
 variable "lambda_s3_bucket" {
   type        = string
   description = "S3 Bucket destination of the lambda"
+  default     = null
 }
 
 variable "lambda_s3_source" {
   type        = string
   description = "The absolute path to a local file or directory containing your Lambda source code"
+  default     = null
 }
 
 variable "lambda_s3layer" {
@@ -241,11 +254,13 @@ variable "lambda_s3layer" {
 variable "lambda_s3layer_name" {
   type        = string
   description = "Name of Lambda Layer to create"
+  default     = ""
 }
 
 variable "lambda_s3layer_desc" {
   type        = string
   description = "Description of your Lambda Function (or Layer)"
+  default     = ""
 }
 
 variable "lambda_s3layer_compatible_runtimes" {
