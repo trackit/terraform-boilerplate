@@ -2,6 +2,9 @@ name: 'Terraform-QA'
 
 on:
   workflow_dispatch:
+  pull_request:
+    branches:
+      - '*'
 
 jobs:
   terraform:
