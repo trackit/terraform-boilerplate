@@ -187,7 +187,7 @@ variable "redis_stage" {
 variable "redis_name" {
   type        = string
   description = "Name of the application"
-  default     = n / a
+  default     = ""
 }
 
 variable "redis_zone_id" {
