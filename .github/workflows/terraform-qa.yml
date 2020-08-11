@@ -2,12 +2,16 @@ name: 'Terraform-QA'
 
 on:
   workflow_dispatch:
+    inputs:
+      varfile:
+        description: 'The varfile to use for plan, apply & destroy'
+        default: 'qa.tfvars'
+        required: true
 
 jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-
 
     defaults:
       run:
@@ -28,19 +32,19 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: terraform plan
+      run: terraform plan -var-file "../envs/${{ github.event.inputs.varfile }}"
       working-directory: tf
 
     - name: Terraform Apply
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: terraform apply -auto-approve
+      run: terraform apply -auto-approve -var-file "../envs/${{ github.event.inputs.varfile }}"
       working-directory: tf
 
     - name: Terraform Destroy
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: terraform destroy -auto-approve
+      run: terraform destroy -auto-approve -var-file "../envs/${{ github.event.inputs.varfile }}"
       working-directory: tf
