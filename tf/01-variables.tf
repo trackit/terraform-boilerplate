@@ -133,10 +133,7 @@ variable "vpc_azs" {
 variable "codebuild_name" {
   type        = string
   description = "Name of codebuild module"
-<<<<<<< HEAD
   default     = "codebuild"
-=======
->>>>>>> 1fffe8a711b5f9ff1796eef36e9fc86506651c9b
 }
 
 variable "codebuild_image" {
