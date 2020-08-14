@@ -133,6 +133,7 @@ variable "vpc_azs" {
 variable "codebuild_name" {
   type        = string
   description = "Name of codebuild module"
+  default     = "codebuild"
 }
 
 variable "codebuild_image" {
@@ -181,6 +182,7 @@ variable "codebuild_env_variables" {
 variable "codebuild_tags" {
   type        = map(string)
   description = "Codebuild resources tags"
+  default     = {}
 }
 
 /*
