@@ -67,6 +67,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Terraforrm Workspace
+      run: terraform workspace new ${BRANCH_NAME}
+      working-directory: tf
+
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1

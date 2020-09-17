@@ -17,12 +17,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Terraforrm Workspace
+      run: terraform workspace new ${BRANCH_NAME}
+      working-directory: tf
+
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-
-    - name: Terraforrm Workspace
-      run: terraform workspace new name
-      working-directory: tf
 
     - name: Terraform Init
       env:
