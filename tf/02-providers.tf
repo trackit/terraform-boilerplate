@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
     bucket = "terraform-boilerplate-qa"
     key    = "terraform.state"
-    region = "us-west-2"
+    region = "us-east-1"
     dynamodb_table = "terraform-lock"
   }
 }
