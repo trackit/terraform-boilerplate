@@ -18,6 +18,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Terraforrm Workspace
+      uses: nelonoel/branch-name@v1
       run: terraform workspace new ${BRANCH_NAME}
       working-directory: tf
 
