@@ -1,0 +1,1 @@
+lambda_source = "../testing/lambda/activities.py"
