@@ -217,25 +217,25 @@ variable "lambda_local_package" {
 variable "api_gateway_arn" {
   type        = string
   description = "APIGateway to allow APIGatewayAny to be triggered by the lambda"
-  default = null
+  default     = null
 }
 
 variable "api_gateway_source_arn" {
   type        = string
   description = "APIGateway arn to allow APIGatewayDevPost to be triggered by the lambda"
-  default = null
+  default     = null
 }
 
 variable "lambda_principal" {
   type        = string
   description = "Principal of the lambda"
-  default = null
+  default     = null
 }
 
 variable "lambda_rule_source_arn" {
   type        = string
   description = "ARN of the rule"
-  default = null
+  default     = null
 }
 
 variable "lambda_s3_bucket" {
@@ -253,7 +253,7 @@ variable "lambda_s3_source" {
 variable "lambda_s3layer" {
   type        = bool
   description = "Controls whether Lambda Layer resource should be created"
-  default = null
+  default     = null
 }
 
 variable "lambda_s3layer_name" {
@@ -271,61 +271,61 @@ variable "lambda_s3layer_desc" {
 variable "lambda_s3layer_compatible_runtimes" {
   type        = list(string)
   description = "A list of Runtimes this layer is compatible with. Up to 5 runtimes can be specified."
-  default = null
+  default     = null
 }
 
 variable "lambda_s3layer_source" {
   type        = any
   description = "The absolute path to a local file or directory containing your Lambda source code (or Layer)"
-  default = null
+  default     = null
 }
 
 variable "lambda_s3layer_store" {
   type        = bool
   description = "Whether to store produced artifacts on S3 or locally."
-  default = null
+  default     = null
 }
 
 variable "lambda_bucket_layer_name" {
   type        = string
   description = "S3 bucket to store artifacts"
-  default = null
+  default     = null
 }
 
 variable "lambda_layer" {
   type        = bool
   description = "Controls whether Lambda Layer resource should be created"
-  default = null
+  default     = null
 }
 
 variable "lambda_layer_name" {
   type        = string
   description = "Name of Lambda Layer to create	"
-  default = null
+  default     = null
 }
 
 variable "lambda_layer_desc" {
   type        = string
   description = "Description of your Lambda Function (or Layer)"
-  default = null
+  default     = null
 }
 
 variable "lambda_layer_compatible_runtimes" {
   type        = list(string)
   description = "A list of Runtimes this layer is compatible with. Up to 5 runtimes can be specified."
-  default = null
+  default     = null
 }
 
 variable "lambda_layer_source" {
   type        = any
   description = "The absolute path to a local file or directory containing your Lambda source code (or Layer)"
-  default = null
+  default     = null
 }
 
 variable "lambda_attach_ntw_policy" {
   type        = bool
   description = "Controls whether VPC/network policy should be added to IAM role for Lambda Function"
-  default = null
+  default     = null
 }
 
 /*
