@@ -166,6 +166,7 @@ variable "lambda_handler" {
   default     = ""
 }
 
+# See for available runtimes: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
 variable "lambda_runtime" {
   type        = string
   description = "Lambda Function runtime"
