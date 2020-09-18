@@ -26,23 +26,5 @@ def generate_response(status, body):
 
 def get_activities(event, context):
     response = table.scan()
-    escape_game = 0
-    laser_game = 0
-    kayak = 0
-    karting = 0
-    rulantica = 0
     data = response['Items']
-    print(data)
-    for item in data:
-        if item['activity'] == 'EscapeGame':
-            escape_game += 1
-        if item['activity'] == 'LaserGame':
-            laser_game += 1
-        if item['activity'] == 'Karting':
-            karting += 1
-        if item['activity'] == 'Kayak':
-            kayak += 1
-        if item['rulantica'] == 'true':
-            rulantica += 1
-    return generate_response(200, {'EscapeGame': escape_game, 'LaserGame': laser_game, 'Karting': karting, 'Kayak': kayak,
-                                   'Rulantica': rulantica})
+    return generate_response(200, {'Activities': item})
