@@ -33,40 +33,23 @@ jobs:
       run: terraform workspace new `echo ${GITHUB_REF} | sed 's/\//-/g'`
       working-directory: tf
 
-=======
-      run: terraform init
-      working-directory: tf
-
->>>>>>> 524c7018b7bee5a0431ccfdad239cbabbd4f54c6
     - name: Terraform Plan
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-<<<<<<< HEAD
       run: terraform plan -var-file ../envs/qa.tfvars
-=======
-      run: terraform plan
->>>>>>> 524c7018b7bee5a0431ccfdad239cbabbd4f54c6
       working-directory: tf
 
     - name: Terraform Apply
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-<<<<<<< HEAD
       run: terraform apply -auto-approve -var-file ../envs/qa.tfvars
-=======
-      run: terraform apply -auto-approve
->>>>>>> 524c7018b7bee5a0431ccfdad239cbabbd4f54c6
       working-directory: tf
 
     - name: Terraform Destroy
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-<<<<<<< HEAD
       run: terraform destroy -auto-approve -var-file ../envs/qa.tfvars
-=======
-      run: terraform destroy -auto-approve
->>>>>>> 524c7018b7bee5a0431ccfdad239cbabbd4f54c6
       working-directory: tf
