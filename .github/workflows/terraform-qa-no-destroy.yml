@@ -1,0 +1,55 @@
+name: 'Terraform-QA-No-Destroy'
+
+on:
+  workflow_dispatch:
+
+.terraform_init: &terraform_init
+  before_script:
+    - export TF_WORKSPACE_NAME=$(echo ${CI_COMMIT_REF_SLUG} | sed 's/\//-/g')
+    - cd tf
+    - terraform init
+    - terraform workspace new $TF_WORKSPACE_NAME || terraform workspace select $TF_WORKSPACE_NAME
+
+jobs:
+  terraform:
+    name: 'Terraform QA No Destroy'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: terraform init
+      working-directory: tf
+
+    - name: Terraforrm Workspace
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: terraform workspace new `echo ${GITHUB_REF} | sed 's/\//-/g'`
+      working-directory: tf
+
+    - name: Terraform Plan
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: terraform plan -var-file ../envs/qa.tfvars
+      working-directory: tf
+
+    - name: Terraform Apply
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: terraform apply -auto-approve -var-file ../envs/qa.tfvars
+      working-directory: tf
