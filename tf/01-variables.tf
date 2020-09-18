@@ -67,7 +67,7 @@ variable "vpc_azs" {
 variable "ecr_role_name" {
   type        = string
   description = "The name of the ecr role"
-  default     = "ecr"
+  default     = "ecr-role"
 }
 
 variable "ecr_namespace" {

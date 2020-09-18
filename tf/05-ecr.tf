@@ -1,8 +1,31 @@
 # https://github.com/cloudposse/terraform-aws-ecr
 
-# IAM Role to be granted ECR permissions
-data "aws_iam_role" "ecr" {
+resource "aws_iam_role" "ecr" {
   name = var.ecr_role_name
+
+  assume_role_policy = <<EOF
+{
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowPushPull",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ec2.amazonaws.com"
+            },
+            "Action": [
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:PutImage",
+                "ecr:InitiateLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:CompleteLayerUpload"
+            ]
+        }
+    ]
+}
+EOF
 }
 
 module "ecr" {
@@ -12,7 +35,7 @@ module "ecr" {
   stage     = var.ecr_stage
   name      = var.ecr_name
 
-  principals_full_access     = [data.aws_iam_role.ecr.arn]
+  principals_full_access     = [aws_iam_role.ecr.arn]
   principals_readonly_access = var.ecr_principals_readonly
 
   enabled    = var.ecr_enabled
