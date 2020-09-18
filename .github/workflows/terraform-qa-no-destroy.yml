@@ -12,7 +12,7 @@ on:
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'Terraform QA No Destroy'
     runs-on: ubuntu-latest
 
     defaults:
