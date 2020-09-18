@@ -3,13 +3,6 @@ name: 'Terraform-QA-No-Destroy'
 on:
   workflow_dispatch:
 
-.terraform_init: &terraform_init
-  before_script:
-    - export TF_WORKSPACE_NAME=$(echo ${CI_COMMIT_REF_SLUG} | sed 's/\//-/g')
-    - cd tf
-    - terraform init
-    - terraform workspace new $TF_WORKSPACE_NAME || terraform workspace select $TF_WORKSPACE_NAME
-
 jobs:
   terraform:
     name: 'Terraform QA No Destroy'
