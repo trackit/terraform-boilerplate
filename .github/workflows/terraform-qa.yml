@@ -21,7 +21,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraforrm Workspace
-      run: terraform workspace new `echo ${GITHUB_REF:11} | sed 's/\//-/g'`
+      run: terraform workspace new `echo ${GITHUB_REF} | sed 's/\//-/g'`
       working-directory: tf
 
     - name: Terraform Init

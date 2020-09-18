@@ -74,7 +74,7 @@ jobs:
       #  cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
     - name: Terraforrm Workspace
-      run: echo "${GITHUB_REF}" && terraform workspace new `echo ${GITHUB_REF:11} | sed 's/\//-/g'`
+      run: echo "${GITHUB_REF}" && terraform workspace new `echo ${GITHUB_REF} | sed 's/\//-/g'`
       working-directory: tf
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
