@@ -30,7 +30,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: terraform workspace new `echo ${GITHUB_REF} | sed 's/\//-/g'`
+      run: terraform workspace select `echo ${GITHUB_REF} | sed 's/\//-/g'` || terraform workspace new `echo ${GITHUB_REF} | sed 's/\//-/g'`
       working-directory: tf
 
     - name: Terraform Destroy
