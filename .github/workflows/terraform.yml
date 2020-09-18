@@ -73,16 +73,16 @@ jobs:
       #with:
       #  cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-    - name: Terraforrm Workspace
-      run: echo "${GITHUB_REF}" && terraform workspace new `echo ${GITHUB_REF} | sed 's/\//-/g'`
-      working-directory: tf
-
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: terraform init
+      working-directory: tf
+
+    - name: Terraforrm Workspace
+      run: echo "${GITHUB_REF}" && terraform workspace new `echo ${GITHUB_REF} | sed 's/\//-/g'`
       working-directory: tf
 
     # Checks that all Terraform configuration files adhere to a canonical format
