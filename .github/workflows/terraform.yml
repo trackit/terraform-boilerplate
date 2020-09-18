@@ -68,7 +68,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Terraforrm Workspace
-      run: terraform workspace new ${GITHUB_REF:17}
+      run: echo "${GITHUB_REF}" && terraform workspace new ${GITHUB_REF:11}
       working-directory: tf
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
