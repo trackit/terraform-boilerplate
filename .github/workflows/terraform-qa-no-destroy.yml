@@ -1,4 +1,4 @@
-name: 'Terraform-QA'
+name: 'Terraform-QA-No-Destroy'
 
 on:
   workflow_dispatch:
@@ -23,12 +23,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
     - name: Terraforrm Workspace
       run: terraform workspace new ${GITHUB_REF:11}
       working-directory: tf
-
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
       env:

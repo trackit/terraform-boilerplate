@@ -67,15 +67,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Terraforrm Workspace
-      run: echo "${GITHUB_REF}" && terraform workspace new ${GITHUB_REF:11}
-      working-directory: tf
-
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       #with:
       #  cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    - name: Terraforrm Workspace
+      run: echo "${GITHUB_REF}" && terraform workspace new ${GITHUB_REF:11}
+      working-directory: tf
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
