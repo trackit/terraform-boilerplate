@@ -1,0 +1,1 @@
+ecr_role_name = "terraform-qa"
