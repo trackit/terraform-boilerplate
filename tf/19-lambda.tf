@@ -1,5 +1,48 @@
 # https://github.com/terraform-aws-modules/terraform-aws-lambda
 
+resource "aws_iam_role" "lambda" {
+  name               = "test-lambda-role"
+  assume_role_policy = <<EOF
+{
+    "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Action": "sts:AssumeRole",
+          "Principal": {
+            "Service": "ec2.amazonaws.com"
+          },
+          "Effect": "Allow",
+          "Sid": ""
+        }
+      ]
+    }
+EOF
+}
+
+resource "aws_iam_policy" "policy" {
+  name        = "test-policy"
+  description = "A test policy"
+  policy      = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "ec2:Describe*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "attach" {
+  role       = aws_iam_role.lambda.name
+  policy_arn = aws_iam_policy.policy.arn
+}
+
 module "lambda_function" {
   source  = "terraform-aws-modules/lambda/aws"
   version = "1.17.0"
@@ -12,10 +55,13 @@ module "lambda_function" {
   lambda_at_edge = var.lambda_at_edge
 
   source_path = var.lambda_source
+  lambda_role = aws_iam_role.lambda.arn
 
-  #tags = {
-  #
-  #}
+  tags = {
+    Terraform          = "true"
+    Environment        = var.env
+    TerraformWorkspace = terraform.workspace
+  }
 
   ##### Store Packages on S3 w/ Lambda Layer #####
   #store_on_s3 = var.lambda_s3_store
