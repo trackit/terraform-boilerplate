@@ -169,7 +169,7 @@ variable "vpc_azs" {
 variable "redis_availability_zones" {
   type        = list(string)
   description = "Availability zone IDs"
-  default     = []
+  default     = null
 }
 
 variable "redis_namespace" {
