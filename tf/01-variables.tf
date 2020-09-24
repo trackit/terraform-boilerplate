@@ -211,13 +211,13 @@ variable "redis_cluster_mode_enabled" {
 variable "redis_cluster_mode_num_node_groups" {
   type        = number
   description = "Number of node groups (shards) for this Redis replication group. Changing this number will trigger an online resizing operation before other settings modifications"
-  default     = 0
+  default     = 1
 }
 
 variable "redis_cluster_mode_replicas_per_node_group" {
   type        = number
   description = "Number of replica nodes in each node group. Valid values are 0 to 5. Changing this number will force a new resource"
-  default     = 0
+  default     = 1
 }
 
 variable "redis_instance_type" {
@@ -295,7 +295,7 @@ variable "redis_port" {
 variable "redis_replication_group_id" {
   type        = string
   description = "Replication group ID with the following constraints: A name must contain from 1 to 20 alphanumeric characters or hyphens. The first character must be a letter. A name cannot end with a hyphen or contain two consecutive hyphens."
-  default     = ""
+  default     = "replication-group"
 }
 
 variable "redis_use_existing_security_groups" {
