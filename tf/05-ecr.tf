@@ -1,7 +1,7 @@
 # https://github.com/cloudposse/terraform-aws-ecr
 
 resource "aws_iam_role" "ecr" {
-  name = "test-role"
+  name               = "test-role"
   assume_role_policy = <<EOF
     {
       "Version": "2012-10-17",
@@ -22,7 +22,7 @@ EOF
 resource "aws_iam_policy" "policy" {
   name        = "test-policy"
   description = "A test policy"
-  policy = <<EOF
+  policy      = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
