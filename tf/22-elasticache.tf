@@ -46,6 +46,12 @@ module "redis" {
 
   use_existing_security_groups = var.redis_use_existing_security_groups
 
+  tags = {
+    Terraform          = "true"
+    Environment        = var.env
+    TerraformWorkspace = terraform.workspace
+  }
+
   #parameter = [
   #  {
   #    name  = "notify-keyspace-events"
