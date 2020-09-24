@@ -58,7 +58,29 @@ variable "vpc_azs" {
 // EKS variables
 */
 
+variable "eks_cluster_name" {
+  type        = string
+  description = "Name of your Kubernetes cluster"
+  default     = "kubernetes-cluster"
+}
 
+variable "eks_instance_type" {
+  type        = string
+  description = "Size of your cluster nodes"
+  default     = "m5.large"
+}
+
+variable "eks_asg_min_size" {
+  type        = string
+  description = "Min node count"
+  default     = "3"
+}
+
+variable "eks_asg_max_size" {
+  type        = string
+  description = "Max node count"
+  default     = "5"
+}
 
 /*
 // ECR variables
