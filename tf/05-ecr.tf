@@ -64,7 +64,9 @@ module "ecr" {
 
   scan_images_on_push = var.ecr_scan_images_on_push
 
-  #tags = {
-  #  "name" = "ecr"
-  #}
+  tags = {
+    Terraform          = "true"
+    Environment        = var.env
+    TerraformWorkspace = terraform.workspace
+  }
 }
