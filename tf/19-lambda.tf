@@ -20,7 +20,7 @@ EOF
 }
 
 resource "aws_iam_policy" "policy" {
-  name        = "test-policy"
+  name        = "test-lambda-policy"
   description = "A test policy"
   policy      = <<EOF
 {
@@ -55,6 +55,7 @@ module "lambda_function" {
   lambda_at_edge = var.lambda_at_edge
 
   source_path = var.lambda_source
+  policy      = aws_iam_policy.policy.arn
   lambda_role = aws_iam_role.lambda.arn
 
   tags = {
