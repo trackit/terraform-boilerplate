@@ -175,19 +175,19 @@ variable "redis_availability_zones" {
 variable "redis_namespace" {
   type        = string
   description = "Namespace (e.g. eg or cp)"
-  default     = ""
+  default     = "redis-namespace"
 }
 
 variable "redis_stage" {
   type        = string
   description = "Stage (e.g. prod, dev, staging)"
-  default     = ""
+  default     = "dev"
 }
 
 variable "redis_name" {
   type        = string
   description = "Name of the application"
-  default     = ""
+  default     = "redis-name"
 }
 
 variable "redis_zone_id" {
@@ -271,13 +271,13 @@ variable "redis_auth_token" {
 variable "redis_dns_subdomain" {
   type        = string
   description = "The subdomain to use for the CNAME record. If not provided then the CNAME record will use var.name."
-  default     = ""
+  default     = "d"
 }
 
 variable "elasticache_subnet_group_name" {
   type        = string
   description = "Subnet group name for the ElastiCache instance"
-  default     = ""
+  default     = "subnet-group"
 }
 
 variable "redis_enabled" {
