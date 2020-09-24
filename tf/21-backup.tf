@@ -1,5 +1,16 @@
 # https://github.com/cloudposse/terraform-aws-backup/tree/0.4.0
 
+resource "aws_ebs_volume" "example" {
+  availability_zone = var.vpc_azs[0]
+  size              = 1
+
+  tags = {
+    Terraform          = "true"
+    Environment        = var.env
+    TerraformWorkspace = terraform.workspace
+  }
+}
+
 module "backup" {
   source = "git::https://github.com/cloudposse/terraform-aws-backup.git?ref=tags/0.4.0"
 
@@ -20,28 +31,22 @@ module "backup" {
     ##### List of ARN of resources to assign a backup plan. #####
     ### EBS Volume
     #module.ebs.arn,
-    #aws_ebs_volume._.arn,
-    #data.aws_ebs_volume._.arn,
+    aws_ebs_volume.example.arn,
     ### RDS
     #module.rds.arn,
-    #aws_db_instance._.arn,
-    #data.aws_db_instance._.arn,
+    #aws_db_instance.example.arn,
     ### DynamoDB
     #module.dynamodb.arn,
-    #aws_dynamodb_table._.arn,
-    #data.aws_dynamodb_table._.arn,
+    #aws_dynamodb_table.example.arn,
     ### EFS
     #module.efs.arn,
-    #aws_efs_file_system._.arn,
-    #data.aws_efs_file_system._.arn,
+    #aws_efs_file_system.example.arn,
     ### EC2
     #module.ec2.arn,
-    #aws_instance._.arn,
-    #data.aws_instance._.arn,
+    #aws_instance.example.arn,
     ### Storage Gateway
     #module.storagegateway.arn,
-    #aws_storagegateway_gateway._.arn,
-    #data.aws_storagegateway_gateway._.arn,
+    #aws_storagegateway_gateway.example.arn,
     ##########################################
   ]
 
