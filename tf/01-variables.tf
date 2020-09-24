@@ -265,6 +265,7 @@ variable "redis_attributes" {
 variable "redis_auth_token" {
   type        = string
   description = "Auth token for password protecting redis, transit_encryption_enabled must be set to true. Password must be longer than 16 chars"
+  default     = "123456789ABCDEFG"
 }
 
 variable "redis_dns_subdomain" {
