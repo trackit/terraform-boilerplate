@@ -1,31 +1,46 @@
 # https://github.com/cloudposse/terraform-aws-ecr
 
 resource "aws_iam_role" "ecr" {
-  name = var.ecr_role_name
-
+  name = "test-role"
   assume_role_policy = <<EOF
-{
-    "Version": "2008-10-17",
-    "Statement": [
+    {
+      "Version": "2012-10-17",
+      "Statement": [
         {
-            "Sid": "AllowPushPull",
-            "Effect": "Allow",
-            "Principal": {
-                "Service": "ec2.amazonaws.com"
-            },
-            "Action": [
-                "ecr:GetDownloadUrlForLayer",
-                "ecr:BatchGetImage",
-                "ecr:BatchCheckLayerAvailability",
-                "ecr:PutImage",
-                "ecr:InitiateLayerUpload",
-                "ecr:UploadLayerPart",
-                "ecr:CompleteLayerUpload"
-            ]
+          "Action": "sts:AssumeRole",
+          "Principal": {
+            "Service": "ec2.amazonaws.com"
+          },
+          "Effect": "Allow",
+          "Sid": ""
         }
-    ]
+      ]
+    }
+EOF
+}
+
+resource "aws_iam_policy" "policy" {
+  name        = "test-policy"
+  description = "A test policy"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "ec2:Describe*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
 }
 EOF
+}
+
+resource "aws_iam_role_policy_attachment" "attach" {
+  role       = aws_iam_role.ecr.name
+  policy_arn = aws_iam_policy.policy.arn
 }
 
 module "ecr" {
