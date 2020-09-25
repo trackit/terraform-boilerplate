@@ -215,18 +215,17 @@ variable "gitlab_runner_registration_config" {
 variable "gitlab_agent_tags" {
   type        = map(string)
   description = "Map of tags that will be added to agent EC2 instances."
+  default     = {}
 }
 
 variable "gitlab_cache_bucket" {
   type        = map
   description = "Configuration to control the creation of the cache bucket. By default the bucket will be created and used as shared cache. To use the same cache across multiple runners disable the creation of the cache and provide a policy and bucket name. See the public runner example for more details."
-  /*
-  {
-    "bucket": "",
-    "create": true,
-    "policy": ""
+  default = {
+    "bucket" : "",
+    "create" : true,
+    "policy" : ""
   }
-  */
 }
 
 variable "gitlab_cache_bucket_name_include_account_id" {
