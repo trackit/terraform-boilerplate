@@ -1,0 +1,1 @@
+gitlab_public_ssh_key_file = "./gitlab_runner/public_ssh_key"
