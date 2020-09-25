@@ -388,9 +388,7 @@ variable "gitlab_ami_filter" {
 variable "gitlab_ami_owners" {
   type        = list(string)
   description = "The list of owners used to select the AMI of Gitlab runner agent instances."
-  default = [
-    "099720109477"
-  ]
+  default     = []
 }
 
 variable "gitlab_arn_format" {
