@@ -352,21 +352,23 @@ variable "gitlab_allow_iam_service_linked_role_creation" {
 variable "gitlab_ami_filter" {
   type        = map(list(string))
   description = "List of maps used to create the AMI filter for the Gitlab runner agent AMI. Must resolve to an Amazon Linux 1 or 2 image."
+  default = {
+    "name" : [
+      "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"
+    ]
+  }
 }
 
 variable "gitlab_ami_owners" {
   type        = list(string)
   description = "The list of owners used to select the AMI of Gitlab runner agent instances."
+  default = [
+    "099720109477"
+  ]
 }
 
 variable "gitlab_arn_format" {
   type        = string
   description = "ARN format to be used. May be changed to support deployment in GovCloud/China regions."
   default     = ""
-}
-
-variable "gitlab_tags" {
-  type        = map(string)
-  description = "Map of tags that will be added to created resources. By default resources will be tagged with name and environment."
-  default     = {}
 }
