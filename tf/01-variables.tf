@@ -292,7 +292,7 @@ variable "gitlab_docker_options" {
 variable "gitlab_docker_role_json" {
   type        = string
   description = "Docker machine runner instance override policy, expected to be in JSON format."
-  default     = []
+  default     = ""
 }
 
 variable "gitlab_docker_spot_price_bid" {
