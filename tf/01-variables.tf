@@ -372,7 +372,7 @@ variable "gitlab_enable_asg_recreation" {
 variable "gitlab_allow_iam_service_linked_role_creation" {
   type        = bool
   description = "Boolean used to control attaching the policy to a runner instance to create service linked roles."
-  default     = true
+  default     = false
 }
 
 variable "gitlab_ami_filter" {
@@ -388,7 +388,9 @@ variable "gitlab_ami_filter" {
 variable "gitlab_ami_owners" {
   type        = list(string)
   description = "The list of owners used to select the AMI of Gitlab runner agent instances."
-  default     = []
+  default = [
+    "099720109477"
+  ]
 }
 
 variable "gitlab_arn_format" {
