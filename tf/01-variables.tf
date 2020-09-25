@@ -288,6 +288,7 @@ variable "gitlab_docker_instance_type" {
 variable "gitlab_docker_options" {
   type        = list(string)
   description = "List of additional options for the docker machine config. Each element of this list must be a key=value pair. E.g. '[\"amazonec2-zone=a\"]'"
+  default     = []
 }
 
 variable "gitlab_docker_role_json" {
