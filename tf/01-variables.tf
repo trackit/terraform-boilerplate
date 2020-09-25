@@ -186,13 +186,13 @@ variable "gitlab_aws_zone" {
 variable "gitlab_environment" {
   type        = string
   description = "A name that identifies the environment, used as prefix and for tagging."
-  default     = ""
+  default     = "dev"
 }
 
 variable "gitlab_runners_name" {
   type        = string
   description = "Name of the runner, will be used in the runner config.toml."
-  default     = ""
+  default     = "gitlab-test"
 }
 
 variable "gitlab_runners_url" {
