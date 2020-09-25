@@ -1,5 +1,10 @@
 # https://github.com/cloudposse/terraform-aws-elasticache-redis
 
+resource "aws_elasticache_subnet_group" "elasticache_test_subnet_group" {
+  name       = "tf-test-cache-subnet"
+  subnet_ids = module.vpc.private_subnets
+}
+
 module "redis" {
   source = "git::https://github.com/cloudposse/terraform-aws-elasticache-redis.git?ref=0.18.1"
 
@@ -36,7 +41,7 @@ module "redis" {
 
   dns_subdomain = var.redis_dns_subdomain
 
-  elasticache_subnet_group_name = var.elasticache_subnet_group_name
+  elasticache_subnet_group_name = aws_elasticache_subnet_group.elasticache_test_subnet_group.name
 
   enabled = var.redis_enabled
 
