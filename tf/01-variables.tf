@@ -180,7 +180,7 @@ variable "gitlab_aws_region" {
 variable "gitlab_aws_zone" {
   type        = string
   description = "Deprecated. Will be removed in the next major release."
-  default = "us-east-1a"
+  default     = "us-east-1a"
 }
 
 variable "gitlab_environment" {
