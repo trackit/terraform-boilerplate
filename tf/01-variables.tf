@@ -346,6 +346,7 @@ variable "gitlab_enable_asg_recreation" {
 variable "gitlab_allow_iam_service_linked_role_creation" {
   type        = bool
   description = "Boolean used to control attaching the policy to a runner instance to create service linked roles."
+  default     = true
 }
 
 variable "gitlab_ami_filter" {
@@ -361,9 +362,11 @@ variable "gitlab_ami_owners" {
 variable "gitlab_arn_format" {
   type        = string
   description = "ARN format to be used. May be changed to support deployment in GovCloud/China regions."
+  default     = ""
 }
 
 variable "gitlab_tags" {
   type        = map(string)
   description = "Map of tags that will be added to created resources. By default resources will be tagged with name and environment."
+  default     = {}
 }
