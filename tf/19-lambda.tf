@@ -9,7 +9,7 @@ resource "aws_iam_role" "lambda" {
         {
           "Action": "sts:AssumeRole",
           "Principal": {
-            "Service": "ec2.amazonaws.com"
+            "Service": "lambda.amazonaws.com"
           },
           "Effect": "Allow",
           "Sid": ""
@@ -28,10 +28,12 @@ resource "aws_iam_policy" "policy" {
   "Statement": [
     {
       "Action": [
-        "ec2:Describe*"
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
       ],
-      "Effect": "Allow",
-      "Resource": "*"
+      "Resource": "arn:aws:logs:*:*:*",
+      "Effect": "Allow"
     }
   ]
 }
