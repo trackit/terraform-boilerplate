@@ -1,4 +1,4 @@
-lambda_source = "./lambda/activities.py"
+lambda_source = "./lambda_handlers/activities.py"
 lambda_name = "test"
 lambda_handler = "activities.get_activities"
 lambda_runtime = "python3.8"
