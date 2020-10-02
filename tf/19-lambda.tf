@@ -19,7 +19,7 @@ resource "aws_iam_role" "lambda" {
 resource "aws_iam_policy" "policy" {
   name        = "test-lambda-policy"
   description = "A test policy"
-  policy = jsondecode({
+  policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
