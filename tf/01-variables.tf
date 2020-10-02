@@ -109,6 +109,7 @@ variable "rds_identifier" {
 variable "rds_availability_zone" {
   type        = string
   description = "The Availability Zone of the RDS instance"
+  default     = "us-east-1a"
 }
 
 variable "rds_engine" {
