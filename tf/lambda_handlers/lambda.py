@@ -1,9 +1,7 @@
 import json
 import decimal
-import boto3
 
 dynamodb = boto3.resource('dynamodb', region_name='eu-west-3')
-table = dynamodb.Table('Form')
 
 
 class DecimalEncoder(json.JSONEncoder):
@@ -24,7 +22,5 @@ def generate_response(status, body):
     }
 
 
-def get_activities(event, context):
-    response = table.scan()
-    data = response['Items']
-    return generate_response(200, {'Activities': item})
+def handler_test(event, context):
+    return generate_response(200, {'Status': True})
