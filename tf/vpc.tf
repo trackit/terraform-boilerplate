@@ -1,10 +1,11 @@
 #
-# https://github.com/terraform-aws-modules/terraform-aws-vpc
+# https://github.com/terraform-aws-modules/terraform-aws-vpc/tree/v2.55.0
 #
 
 module "vpc" {
   source           = "terraform-aws-modules/vpc/aws"
-  version          = "2.44.0"
+  version          = "~> v2.55.0"
+
   name             = var.vpc_name
   cidr             = var.vpc_cidr
   azs              = var.vpc_azs
@@ -36,11 +37,7 @@ module "vpc" {
   #     TerraformWorkspace = terraform.workspace
   #   }
 
-  tags = {
-    Terraform          = "true"
-    Environnment       = var.env
-    TerraformWorkspace = terraform.workspace
-  }
+  tags = local.tags
 }
 
 # --- Flow Logs Configuration --
