@@ -2,42 +2,37 @@
 
 resource "aws_iam_role" "lambda" {
   name               = "test-lambda-role"
-  assume_role_policy = <<EOF
-{
-    "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Action": "sts:AssumeRole",
-          "Principal": {
-            "Service": "lambda.amazonaws.com"
-          },
-          "Effect": "Allow",
-          "Sid": ""
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "lambda.amazonaws.com"
         }
-      ]
-    }
-EOF
+      }
+    ]
+  })
 }
 
 resource "aws_iam_policy" "policy" {
   name        = "test-lambda-policy"
   description = "A test policy"
-  policy      = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents"
-      ],
-      "Resource": "arn:aws:logs:*:*:*",
-      "Effect": "Allow"
-    }
-  ]
-}
-EOF
+  policy      = jsondecode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        Resource = "arn:aws:logs:*:*:*",
+        Effect = "Allow"
+      }
+    ]
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "attach" {
