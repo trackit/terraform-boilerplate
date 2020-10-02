@@ -10,8 +10,8 @@ module "redis" {
 
   availability_zones = var.redis_availability_zones
 
-  name      = var.redis_name
-  zone_id   = var.redis_zone_id
+  name    = var.redis_name
+  zone_id = var.redis_zone_id
 
   vpc_id                  = module.vpc.vpc_id
   allowed_security_groups = [module.vpc.default_security_group_id]
