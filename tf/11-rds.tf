@@ -45,6 +45,9 @@ module "rds" {
   maintenance_window = var.rds_maintenance
   backup_window      = var.rds_backup
 
+  monitoring_interval  = var.rds_monitoring_interval
+  monitoring_role_name = var.rds_monitoring_role_name
+
   tags = {
     Terraform          = "true"
     Environnment       = var.env
