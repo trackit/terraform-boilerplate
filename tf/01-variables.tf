@@ -160,7 +160,47 @@ variable "vpc_azs" {
 // Backup variables
 */
 
+variable "backup_name" {
+  type        = string
+  description = "Name of your AWS Backup"
+  default     = ""
+}
 
+variable "backup_schedule" {
+  type        = string
+  description = "CRON expression specifying when backup job is initiated"
+  default     = "cron(0 12 * * ? *)"
+}
+
+variable "backup_start_window" {
+  type        = number
+  description = "Minutes before beginning a backup"
+  default     = null
+}
+
+variable "backup_completion_window" {
+  type        = number
+  description = "Minutes before canceling the job and returning an error"
+  default     = null
+}
+
+variable "backup_destination_vault_arn" {
+  type        = string
+  description = "ARN of the destination backup vault for the copied backup"
+  default     = null
+}
+
+variable "backup_cold_storage_after" {
+  type        = number
+  description = "Number of days after creation that a recovery point is moved to cold storage"
+  default     = null
+}
+
+variable "backup_delete_after" {
+  type        = number
+  description = "Number of days after creation that a recovery point is deleted"
+  default     = null
+}
 
 /*
 // Elasticache variables
@@ -302,47 +342,4 @@ variable "redis_use_existing_security_groups" {
   type        = bool
   description = "Flag to enable/disable creation of Security Group in the module. Set to true to disable Security Group creation and provide a list of existing security Group IDs in existing_security_groups to place the cluster into"
   default     = false
-}
-
-
-variable "backup_name" {
-  type        = string
-  description = "Name of your AWS Backup"
-  default     = ""
-}
-
-variable "backup_schedule" {
-  type        = string
-  description = "CRON expression specifying when backup job is initiated"
-  default     = "cron(0 12 * * ? *)"
-}
-
-variable "backup_start_window" {
-  type        = number
-  description = "Minutes before beginning a backup"
-  default     = null
-}
-
-variable "backup_completion_window" {
-  type        = number
-  description = "Minutes before canceling the job and returning an error"
-  default     = null
-}
-
-variable "backup_destination_vault_arn" {
-  type        = string
-  description = "ARN of the destination backup vault for the copied backup"
-  default     = null
-}
-
-variable "backup_cold_storage_after" {
-  type        = number
-  description = "Number of days after creation that a recovery point is moved to cold storage"
-  default     = null
-}
-
-variable "backup_delete_after" {
-  type        = number
-  description = "Number of days after creation that a recovery point is deleted"
-  default     = null
 }
