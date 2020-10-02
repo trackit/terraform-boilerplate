@@ -2,7 +2,7 @@ name: 'Terraform-QA-Only-Destroy'
 
 on:
   schedule:
-    - cron: '0 23 * * *'
+    - cron: '42 0 * * *'
 
 jobs:
   terraform:
