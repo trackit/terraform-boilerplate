@@ -1,7 +1,7 @@
 # https://github.com/terraform-aws-modules/terraform-aws-lambda
 
 resource "aws_iam_role" "lambda" {
-  name               = "test-lambda-role"
+  name = "test-lambda-role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -19,7 +19,7 @@ resource "aws_iam_role" "lambda" {
 resource "aws_iam_policy" "policy" {
   name        = "test-lambda-policy"
   description = "A test policy"
-  policy      = jsondecode({
+  policy = jsondecode({
     Version = "2012-10-17",
     Statement = [
       {
@@ -29,7 +29,7 @@ resource "aws_iam_policy" "policy" {
           "logs:PutLogEvents"
         ],
         Resource = "arn:aws:logs:*:*:*",
-        Effect = "Allow"
+        Effect   = "Allow"
       }
     ]
   })
