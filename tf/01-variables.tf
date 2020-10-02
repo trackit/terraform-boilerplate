@@ -76,7 +76,41 @@ variable "vpc_azs" {
 // EC2 variables
 */
 
+variable "ec2_name" {
+  type        = string
+  description = "Name to be used on all resources as prefix"
+  default     = "test-ec2"
+}
 
+variable "ec2_instance_count" {
+  type        = number
+  description = "Number of instances to launch"
+  default     = 1
+}
+
+variable "ec2_ami" {
+  type        = string
+  description = "ID of AMI to use for the instance"
+  default     = "ami-ebd02392"
+}
+
+variable "ec2_instance_type" {
+  type        = string
+  description = "The type of instance to start"
+  default     = "t2.micro"
+}
+
+variable "ec2_key_name" {
+  type        = string
+  description = "The key name to use for the instance"
+  default     = ""
+}
+
+variable "monitoring" {
+  type        = bool
+  description = "If true, the launched EC2 instance will have detailed monitoring enabled"
+  default     = true
+}
 
 /*
 // ACM variables
