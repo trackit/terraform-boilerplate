@@ -1,4 +1,4 @@
-# https://github.com/cloudposse/terraform-aws-elasticache-redis
+# https://github.com/cloudposse/terraform-aws-elasticache-redis/tree/0.25.0
 
 resource "aws_elasticache_subnet_group" "elasticache_test_subnet_group" {
   name       = "tf-test-cache-subnet"
@@ -6,12 +6,10 @@ resource "aws_elasticache_subnet_group" "elasticache_test_subnet_group" {
 }
 
 module "redis" {
-  source = "git::https://github.com/cloudposse/terraform-aws-elasticache-redis.git?ref=0.18.1"
+  source = "git::https://github.com/cloudposse/terraform-aws-elasticache-redis.git?ref=0.25.0"
 
   availability_zones = var.redis_availability_zones
 
-  namespace = var.redis_namespace
-  stage     = var.redis_stage
   name      = var.redis_name
   zone_id   = var.redis_zone_id
 
@@ -51,11 +49,7 @@ module "redis" {
 
   use_existing_security_groups = var.redis_use_existing_security_groups
 
-  tags = {
-    Terraform          = "true"
-    Environment        = var.env
-    TerraformWorkspace = terraform.workspace
-  }
+  tags = local.tags
 
   #parameter = [
   #  {
