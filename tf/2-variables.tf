@@ -704,19 +704,19 @@ variable "cognito_auto_verified_attributes" {
 }
 
 variable "cognito_admin_create_user_config" {
-  type        = map
+  type        = map(any)
   description = ""
   default     = {}
 }
 
 variable "cognito_email_configuration" {
-  type        = map
+  type        = map(any)
   description = ""
   default     = {}
 }
 
 variable "cognito_password_policy" {
-  type        = map
+  type        = map(any)
   description = ""
   default = {
     minimum_length    = 10
@@ -728,13 +728,13 @@ variable "cognito_password_policy" {
 }
 
 variable "cognito_schemas" {
-  type        = list
+  type        = list(any)
   description = ""
   default     = []
 }
 
 variable "cognito_string_schemas" {
-  type        = list
+  type        = list(any)
   description = ""
   default     = []
 }
