@@ -675,3 +675,66 @@ variable "vpc_azs" {
   description = "Your VPC availability zones"
   default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
+
+/*
+// Cognito variables
+*/
+
+variable "user_pool_name" {
+  type        = string
+  description = ""
+  default     = "userpool-name"
+}
+
+variable "cognito_alias_attributes" {
+  type        = list
+  description = ""
+  default = [
+    "email",
+    "phone_number"
+  ]
+}
+
+variable "cognito_auto_verified_attributes" {
+  type        = list
+  description = ""
+  default = [
+    "email"
+  ]
+}
+
+variable "cognito_admin_create_user_config" {
+  type        = map
+  description = ""
+  default     = {}
+}
+
+variable "cognito_email_configuration" {
+  type        = map
+  description = ""
+  default     = {}
+}
+
+variable "cognito_password_policy" {
+  type        = map
+  description = ""
+  default = {
+    minimum_length    = 10
+    require_lowercase = false
+    require_numbers   = true
+    require_symbols   = true
+    require_uppercase = true
+  }
+}
+
+variable "cognito_schemas" {
+  type        = list
+  description = ""
+  default     = []
+}
+
+variable "cognito_string_schemas" {
+  type        = list
+  description = ""
+  default     = []
+}
