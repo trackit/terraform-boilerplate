@@ -91,7 +91,7 @@ variable "ec2_instance_count" {
 variable "ec2_ami" {
   type        = string
   description = "ID of AMI to use for the instance"
-  default     = "ami-ebd02392"
+  default     = "ami-0ff8a91507f77f867"
 }
 
 variable "ec2_instance_type" {
