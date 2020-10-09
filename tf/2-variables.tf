@@ -229,10 +229,6 @@ variable "redis_use_existing_security_groups" {
 
 
 /*
-// GuardDuty variables
-*/
-
-/*
 // Gitlab Runner variables
 */
 
@@ -468,6 +464,12 @@ variable "gitlab_arn_format" {
   description = "ARN format to be used. May be changed to support deployment in GovCloud/China regions."
   default     = ""
 }
+
+/*
+// GuardDuty variables
+*/
+
+
 
 /*
 // Lambda variables
