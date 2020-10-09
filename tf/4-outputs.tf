@@ -113,7 +113,12 @@ output "lambda" {
 // RDS outputs
 */
 
-
+output "RDS" {
+  value = {
+    id = module.rds.this_db_instance_id
+    arn = module.rds.this_db_instance_arn
+  }
+}
 
 /*
 // Route53 outputs
