@@ -36,113 +36,7 @@ variable "env" {
 // Backup variables
 */
 
-variable "rds_identifier" {
-  type        = string
-  description = "The name of the RDS instance, if omitted, Terraform will assign a random, unique identifier"
-  default     = "demodb"
-}
 
-variable "rds_availability_zone" {
-  type        = string
-  description = "The Availability Zone of the RDS instance"
-  default     = "us-east-1a"
-}
-
-variable "rds_engine" {
-  type        = string
-  description = "The database engine to use"
-  default     = "mysql"
-}
-
-variable "rds_engine_version" {
-  type        = string
-  description = "The engine version to use"
-  default     = "5.7.19"
-}
-
-variable "rds_instance" {
-  type        = string
-  description = "The instance type of the RDS instance"
-  default     = "db.t2.large"
-}
-
-variable "rds_storage" {
-  type        = string
-  description = "One of 'standard' (magnetic), 'gp2' (general purpose SSD), or 'io1' (provisioned IOPS SSD). The default is 'io1' if iops is specified, 'standard' if not. Note that this behaviour is different from the AWS web console, where the default is 'gp2'."
-  default     = 5
-}
-
-variable "rds_name" {
-  type        = string
-  description = "The DB name to create. If omitted, no database is created initially"
-  default     = "demodb"
-}
-
-variable "rds_username" {
-  type        = string
-  description = "Username for the master DB user"
-  default     = "user"
-}
-
-variable "rds_password" {
-  type        = string
-  description = "Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file"
-  default     = "YourPwdShouldBeLongAndSecure!"
-}
-
-variable "rds_port" {
-  type        = string
-  description = "The port on which the DB accepts connections"
-  default     = "3306"
-}
-
-variable "rds_maintenance" {
-  type        = string
-  description = "The window to perform maintenance in. Syntax: 'ddd:hh24:mi-ddd:hh24:mi'. Eg: 'Mon:00:00-Mon:03:00'"
-  default     = "Mon:00:00-Mon:03:00"
-}
-
-variable "rds_backup" {
-  type        = string
-  description = "The daily time range (in UTC) during which automated backups are created if they are enabled. Example: '09:46-10:16'. Must not overlap with maintenance_window"
-  default     = "03:00-06:00"
-}
-
-variable "rds_monitoring_interval" {
-  type        = number
-  description = "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. The default is 0. Valid Values: 0, 1, 5, 10, 15, 30, 60."
-  default     = 0
-}
-
-variable "rds_monitoring_role_name" {
-  type        = string
-  description = "Name of the IAM role which will be created when create_monitoring_role is enabled."
-  default     = "MyRDSMonitoringRole"
-}
-
-variable "rds_monitoring_role_arn" {
-  type        = string
-  description = "The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Must be specified if monitoring_interval is non-zero."
-  default     = ""
-}
-
-variable "rds_family" {
-  type        = string
-  description = "The family of the DB parameter group"
-  default     = "mysql5.7"
-}
-
-variable "rds_major_engine_version" {
-  type        = string
-  description = "Specifies the major version of the engine that this option group should be associated with"
-  default     = "5.7"
-}
-
-variable "final_snapshot_identifier" {
-  type        = string
-  description = "The name of your final DB snapshot when this DB instance is deleted."
-  default     = "demodb"
-}
 
 /*
 // Client VPN variables
@@ -529,7 +423,113 @@ variable "lambda_attach_ntw_policy" {
 // RDS variables
 */
 
+variable "rds_identifier" {
+  type        = string
+  description = "The name of the RDS instance, if omitted, Terraform will assign a random, unique identifier"
+  default     = "rds-boilerplate"
+}
 
+variable "rds_availability_zone" {
+  type        = string
+  description = "The Availability Zone of the RDS instance"
+  default     = "us-east-1a"
+}
+
+variable "rds_engine" {
+  type        = string
+  description = "The database engine to use"
+  default     = "mysql"
+}
+
+variable "rds_engine_version" {
+  type        = string
+  description = "The engine version to use"
+  default     = "5.7.19"
+}
+
+variable "rds_instance" {
+  type        = string
+  description = "The instance type of the RDS instance"
+  default     = "db.t2.large"
+}
+
+variable "rds_storage" {
+  type        = string
+  description = "One of 'standard' (magnetic), 'gp2' (general purpose SSD), or 'io1' (provisioned IOPS SSD). The default is 'io1' if iops is specified, 'standard' if not. Note that this behaviour is different from the AWS web console, where the default is 'gp2'."
+  default     = 5
+}
+
+variable "rds_name" {
+  type        = string
+  description = "The DB name to create. If omitted, no database is created initially"
+  default     = "demodb"
+}
+
+variable "rds_username" {
+  type        = string
+  description = "Username for the master DB user"
+  default     = "user"
+}
+
+variable "rds_password" {
+  type        = string
+  description = "Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file"
+  default     = "YourPwdShouldBeLongAndSecure!"
+}
+
+variable "rds_port" {
+  type        = string
+  description = "The port on which the DB accepts connections"
+  default     = "3306"
+}
+
+variable "rds_maintenance" {
+  type        = string
+  description = "The window to perform maintenance in. Syntax: 'ddd:hh24:mi-ddd:hh24:mi'. Eg: 'Mon:00:00-Mon:03:00'"
+  default     = "Mon:00:00-Mon:03:00"
+}
+
+variable "rds_backup" {
+  type        = string
+  description = "The daily time range (in UTC) during which automated backups are created if they are enabled. Example: '09:46-10:16'. Must not overlap with maintenance_window"
+  default     = "03:00-06:00"
+}
+
+variable "rds_monitoring_interval" {
+  type        = number
+  description = "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. The default is 0. Valid Values: 0, 1, 5, 10, 15, 30, 60."
+  default     = 0
+}
+
+variable "rds_monitoring_role_name" {
+  type        = string
+  description = "Name of the IAM role which will be created when create_monitoring_role is enabled."
+  default     = "MyRDSMonitoringRole"
+}
+
+variable "rds_monitoring_role_arn" {
+  type        = string
+  description = "The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Must be specified if monitoring_interval is non-zero."
+  default     = ""
+}
+
+variable "rds_family" {
+  type        = string
+  description = "The family of the DB parameter group"
+  default     = "mysql5.7"
+}
+
+variable "rds_major_engine_version" {
+  type        = string
+  description = "Specifies the major version of the engine that this option group should be associated with"
+  default     = "5.7"
+}
+
+variable "final_snapshot_identifier" {
+  type        = string
+  description = "The name of your final DB snapshot when this DB instance is deleted."
+  default     = "demodb"
+}
 
 /*
 // Route53 variables

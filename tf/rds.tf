@@ -1,3 +1,5 @@
+# https://registry.terraform.io/modules/terraform-aws-modules/rds/aws/2.18.0
+
 resource "aws_security_group" "rds_security_group" {
   name        = "rds-security-group"
   description = "Security group for RDS"
@@ -15,14 +17,12 @@ resource "aws_security_group" "rds_security_group" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  tags = {
-    Name = "rds_security_group"
-  }
+  tags = local.tags
 }
 
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
-  version = "2.18.0"
+  version = "~> 2.18.0"
 
   identifier = var.rds_identifier
 
@@ -48,12 +48,6 @@ module "rds" {
   monitoring_interval  = var.rds_monitoring_interval
   monitoring_role_name = var.rds_monitoring_role_name
 
-  tags = {
-    Terraform          = "true"
-    Environnment       = var.env
-    TerraformWorkspace = terraform.workspace
-  }
-
   subnet_ids = module.vpc.database_subnets
 
   family = var.rds_family
@@ -63,4 +57,6 @@ module "rds" {
   final_snapshot_identifier = var.final_snapshot_identifier
 
   deletion_protection = true
+
+  tags = local.tags
 }
