@@ -4,7 +4,7 @@ module "aws_cognito_user_pool" {
   source  = "lgallard/cognito-user-pool/aws"
   version = "0.6.2"
 
-  user_pool_name           = "mypool"
+  user_pool_name           = var.user_pool_name
   alias_attributes         = var.cognito_alias_attributes
   auto_verified_attributes = var.cognito_auto_verified_attributes
 
@@ -13,11 +13,11 @@ module "aws_cognito_user_pool" {
   email_configuration = var.cognito_email_configuration
 
   password_policy = {
-    minimum_length    = 10
-    require_lowercase = false
-    require_numbers   = true
-    require_symbols   = true
-    require_uppercase = true
+    minimum_length                   = 10
+    require_lowercase                = false
+    require_numbers                  = true
+    require_symbols                  = true
+    require_uppercase                = true
     temporary_password_validity_days = 30
   }
 
