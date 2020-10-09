@@ -121,7 +121,7 @@ variable "cdn_logging_config" {
 variable "cdn_origin" {
   type        = any
   description = "One or more origins for this distribution (multiples allowed)."
-  default     = null
+  default     = {}
 }
 
 variable "cdn_cache_behavior" {
