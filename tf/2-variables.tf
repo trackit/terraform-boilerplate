@@ -128,6 +128,12 @@ variable "cognito_string_schemas" {
   default     = []
 }
 
+variable "cognito_client_name" {
+  type        = string
+  description = "The name of the application client"
+  default     = "client-name"
+}
+
 /*
 // CodePipeline variables
 */

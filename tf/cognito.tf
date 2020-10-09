@@ -25,5 +25,7 @@ module "aws_cognito_user_pool" {
 
   string_schemas = var.cognito_string_schemas
 
+  client_name = ""
+
   tags = local.tags
 }
