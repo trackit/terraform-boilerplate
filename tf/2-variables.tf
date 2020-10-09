@@ -84,12 +84,6 @@ variable "env" {
 // ECR variables
 */
 
-variable "ecr_role_name" {
-  type        = string
-  description = "The name of the ecr role"
-  default     = "ecr-role"
-}
-
 variable "ecr_name" {
   type        = string
   description = "The Name of the application or solution (e.g. bastion or portal)"
