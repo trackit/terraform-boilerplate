@@ -1,4 +1,4 @@
-# https://registry.terraform.io/modules/npalm/gitlab-runner/aws/
+# https://registry.terraform.io/modules/npalm/gitlab-runner/aws/4.19.0
 
 resource "local_file" "public_ssh_key" {
   filename = var.gitlab_public_ssh_key_file
@@ -6,9 +6,9 @@ resource "local_file" "public_ssh_key" {
 
 module "runner" {
   source  = "npalm/gitlab-runner/aws"
-  version = "4.19.0"
+  version = "~> 4.19.0"
 
-  aws_region  = var.gitlab_aws_region
+  aws_region  = var.region
   aws_zone    = var.gitlab_aws_zone
   environment = var.gitlab_environment
 
@@ -34,7 +34,6 @@ module "runner" {
   #cloudwatch_logging_retention_in_days = var.gitlab_cloudwatch_retention_logs
   #enable_cloudwatch_logging = var.gitlab_cloudwatch_logging
 
-
   docker_machine_download_url      = var.gitlab_docker_download_url
   docker_machine_instance_type     = var.gitlab_docker_instance_type
   docker_machine_options           = var.gitlab_docker_options
@@ -53,7 +52,6 @@ module "runner" {
   enable_schedule                   = var.gitlab_enable_schedule
 
   enable_asg_recreation = var.gitlab_enable_asg_recreation
-
 
   allow_iam_service_linked_role_creation = var.gitlab_allow_iam_service_linked_role_creation
   ami_filter                             = var.gitlab_ami_filter

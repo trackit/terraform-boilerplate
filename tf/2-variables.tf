@@ -237,12 +237,6 @@ variable "gitlab_public_ssh_key_file" {
   description = "Path to the local public ssh key file."
 }
 
-variable "gitlab_aws_region" {
-  type        = string
-  description = "AWS region."
-  default     = "us-east1"
-}
-
 variable "gitlab_aws_zone" {
   type        = string
   description = "Deprecated. Will be removed in the next major release."
