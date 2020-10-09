@@ -74,7 +74,13 @@
 // EKS outputs
 */
 
-
+output "eks" {
+  value = {
+    id       = module.eks.cluster_id
+    arn      = module.eks.cluster_arn
+    endpoint = module.eks.cluster_endpoint
+  }
+}
 
 /*
 // ElastiCache outputs
