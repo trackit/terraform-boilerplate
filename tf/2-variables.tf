@@ -90,46 +90,16 @@ variable "ecr_role_name" {
   default     = "ecr-role"
 }
 
-variable "ecr_namespace" {
-  type        = string
-  description = "Namespace (e.g. eg or cp)"
-  default     = "eg"
-}
-
-variable "ecr_stage" {
-  type        = string
-  description = "Stage (e.g. prod, dev, staging)"
-  default     = "dev"
-}
-
 variable "ecr_name" {
   type        = string
   description = "The Name of the application or solution (e.g. bastion or portal)"
   default     = "ecr"
 }
 
-variable "ecr_principals_readonly" {
-  type        = list(string)
-  description = "Principal ARNs to provide with readonly access to the ECR"
-  default     = []
-}
-
-variable "ecr_enabled" {
-  type        = bool
-  description = "Set to false to prevent the module from creating any resources"
-  default     = true
-}
-
 variable "ecr_attributes" {
   type        = list(string)
   description = "Additional attributes (e.g. policy or role)"
   default     = []
-}
-
-variable "ecr_lifecycle_policy" {
-  type        = bool
-  description = "Set to false to prevent the module from adding any lifecycle policies to any repositories"
-  default     = true
 }
 
 variable "ecr_image_names" {

@@ -1,29 +1,25 @@
-# https://github.com/cloudposse/terraform-aws-ecr
+# https://github.com/cloudposse/terraform-aws-ecr/tree/0.21.0
 
 module "ecr" {
   source = "git::https://github.com/cloudposse/terraform-aws-ecr.git?ref=0.21.0"
 
-  namespace = var.ecr_namespace
-  stage     = var.ecr_stage
-  name      = var.ecr_name
+  name = var.ecr_name
 
   //principals_full_access     = [aws_iam_role.ecr.arn]
-  principals_readonly_access = var.ecr_principals_readonly
+  // Principal ARNs to provide with readonly access to the ECR
+  principals_readonly_access = []
 
-  enabled    = var.ecr_enabled
   attributes = var.ecr_attributes
 
-  enable_lifecycle_policy = var.ecr_lifecycle_policy
+  // Set to false to prevent the module from adding any lifecycle policies to any repositories
+  enable_lifecycle_policy = true
 
-  image_names          = var.ecr_image_names
-  image_tag_mutability = var.ecr_image_tag
+  image_names = var.ecr_image_names
+  // The tag mutability setting for the repository. Must be one of: MUTABLE or IMMUTABLE
+  image_tag_mutability = "MUTABLE"
   max_image_count      = var.ecr_max_image
 
   scan_images_on_push = var.ecr_scan_images_on_push
 
-  tags = {
-    Terraform          = "true"
-    Environment        = var.env
-    TerraformWorkspace = terraform.workspace
-  }
+  tags = local.tags
 }
