@@ -127,7 +127,7 @@ variable "cdn_origin" {
 variable "cdn_cache_behavior" {
   type        = any
   description = "The map of cache behaviors for this distribution. Key default will be used as the default cache behavior, all other keys will be used as ordered list of cache behaviors. List from top to bottom in order of precedence. The topmost cache behavior will have precedence 0."
-  default     = null
+  default     = {}
 }
 
 variable "cdn_acm_domain_name" {
