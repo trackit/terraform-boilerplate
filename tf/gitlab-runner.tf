@@ -61,9 +61,5 @@ module "runner" {
 
   arn_format = var.gitlab_arn_format
 
-  tags = {
-    Terraform          = "true"
-    Environment        = var.env
-    TerraformWorkspace = terraform.workspace
-  }
+  tags = local.tags
 }
