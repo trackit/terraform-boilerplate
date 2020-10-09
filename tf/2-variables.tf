@@ -78,6 +78,57 @@ variable "backup_name" {
 
 
 /*
+// Cognito variables
+*/
+
+variable "user_pool_name" {
+  type        = string
+  description = ""
+  default     = "userpool-name"
+}
+
+variable "cognito_alias_attributes" {
+  type        = list
+  description = ""
+  default = [
+    "email",
+    "phone_number"
+  ]
+}
+
+variable "cognito_auto_verified_attributes" {
+  type        = list
+  description = ""
+  default = [
+    "email"
+  ]
+}
+
+variable "cognito_admin_create_user_config" {
+  type        = map(any)
+  description = ""
+  default     = {}
+}
+
+variable "cognito_email_configuration" {
+  type        = map(any)
+  description = ""
+  default     = {}
+}
+
+variable "cognito_schemas" {
+  type        = list(any)
+  description = ""
+  default     = []
+}
+
+variable "cognito_string_schemas" {
+  type        = list(any)
+  description = ""
+  default     = []
+}
+
+/*
 // CodePipeline variables
 */
 
@@ -674,55 +725,4 @@ variable "vpc_azs" {
   type        = list(string)
   description = "Your VPC availability zones"
   default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
-}
-
-/*
-// Cognito variables
-*/
-
-variable "user_pool_name" {
-  type        = string
-  description = ""
-  default     = "userpool-name"
-}
-
-variable "cognito_alias_attributes" {
-  type        = list
-  description = ""
-  default = [
-    "email",
-    "phone_number"
-  ]
-}
-
-variable "cognito_auto_verified_attributes" {
-  type        = list
-  description = ""
-  default = [
-    "email"
-  ]
-}
-
-variable "cognito_admin_create_user_config" {
-  type        = map(any)
-  description = ""
-  default     = {}
-}
-
-variable "cognito_email_configuration" {
-  type        = map(any)
-  description = ""
-  default     = {}
-}
-
-variable "cognito_schemas" {
-  type        = list(any)
-  description = ""
-  default     = []
-}
-
-variable "cognito_string_schemas" {
-  type        = list(any)
-  description = ""
-  default     = []
 }
