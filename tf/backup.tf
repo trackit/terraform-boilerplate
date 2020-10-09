@@ -18,9 +18,9 @@ module "backup" {
 
   ### Backup Rule Lifecycle
   ## Number of days after creation that a recovery point is moved to cold storage
-  cold_storage_after = 7
+  cold_storage_after = 30
   ## Number of days after creation that a recovery point is deleted
-  delete_after = 30
+  delete_after = 120
 
   ### List of ARN of resources to assign a backup plan.
   backup_resources = [
