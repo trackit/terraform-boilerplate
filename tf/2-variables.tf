@@ -43,15 +43,15 @@ variable "eks_instance_type" {
 }
 
 variable "eks_asg_min_size" {
-  type        = string
+  type        = number
   description = "Min node count"
-  default     = "1"
+  default     = 1
 }
 
 variable "eks_asg_max_size" {
-  type        = string
+  type        = number
   description = "Max node count"
-  default     = "1"
+  default     = 1
 }
 
 /*
