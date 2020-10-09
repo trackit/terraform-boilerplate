@@ -12,7 +12,13 @@ module "aws_cognito_user_pool" {
 
   email_configuration = var.cognito_email_configuration
 
-  password_policy = var.cognito_password_policy
+  password_policy = {
+    minimum_length    = 10
+    require_lowercase = false
+    require_numbers   = true
+    require_symbols   = true
+    require_uppercase = true
+  }
 
   schemas = var.cognito_schemas
 

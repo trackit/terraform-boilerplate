@@ -715,18 +715,6 @@ variable "cognito_email_configuration" {
   default     = {}
 }
 
-variable "cognito_password_policy" {
-  type        = map(any)
-  description = ""
-  default = {
-    minimum_length    = 10
-    require_lowercase = false
-    require_numbers   = true
-    require_symbols   = true
-    require_uppercase = true
-  }
-}
-
 variable "cognito_schemas" {
   type        = list(any)
   description = ""
