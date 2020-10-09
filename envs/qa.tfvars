@@ -1,5 +1,25 @@
-/*
-// Backup variables
-*/
-
+// -- ACM
+// -- ALB
+// -- AutoScalling
+// -- Backup
 backup_name = "tf-boilerplate-qa"
+// -- Client VPN
+// -- CloudTrail
+// -- CodeBuild
+// -- CodeCommit
+// -- CodePipeline
+// -- EC2
+// -- ECR
+// -- EKS
+// -- ElastiCache
+// -- ElasticSearch
+// -- GuardDuty
+// -- Lambda
+lambda_source = "./lambda_handlers/lambda.py"
+lambda_name = "test"
+lambda_handler = "lambda.handler_test"
+lambda_runtime = "python3.8"
+// -- RDS
+// -- Route53
+// -- VPC
+vpc_name = "terraform-boilerplate-qa-vpc"

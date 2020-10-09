@@ -4,11 +4,7 @@ resource "aws_ebs_volume" "example" {
   availability_zone = var.vpc_azs[0]
   size              = 1
 
-  tags = {
-    Terraform          = "true"
-    Environment        = var.env
-    TerraformWorkspace = terraform.workspace
-  }
+  tags = local.tags
 }
 
 module "backup" {
@@ -50,11 +46,7 @@ module "backup" {
     ##########################################
   ]
 
-  tags = {
-    Terraform          = "true"
-    Environment        = var.env
-    TerraformWorkspace = terraform.workspace
-  }
+  tags = local.tags
 }
 
 ##### Add Tag selection #####
