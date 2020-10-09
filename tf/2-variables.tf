@@ -54,6 +54,95 @@ variable "backup_name" {
 
 
 /*
+// CloudFront variables
+*/
+
+
+variable "cdn_aliases" {
+  type        = list(string)
+  description = "Extra CNAMEs (alternate domain names), if any, for this distribution."
+  default     = ["cdn.example.com"]
+}
+
+variable "cdn_comment" {
+  type        = string
+  description = "Any comments you want to include about the distribution."
+  default     = null
+}
+
+variable "cdn_enabled" {
+  type        = bool
+  description = "Whether the distribution is enabled to accept end user requests for content."
+  default     = true
+}
+
+variable "cdn_is_ipv6_enabled" {
+  type        = bool
+  description = "Whether the IPv6 is enabled for the distribution."
+  default     = true
+}
+
+variable "cdn_price_class" {
+  type        = string
+  description = "The price class for this distribution. One of PriceClass_All, PriceClass_200, PriceClass_100"
+  default     = null
+}
+
+variable "cdn_retain_on_delete" {
+  type        = bool
+  description = "Disables the distribution instead of deleting it when destroying the resource through Terraform. If this is set, the distribution needs to be deleted manually afterwards."
+  default     = false
+}
+
+variable "cdn_wait_for_deployment" {
+  type        = bool
+  description = "If enabled, the resource will wait for the distribution status to change from InProgress to Deployed. Setting this tofalse will skip the process."
+  default     = false
+}
+
+variable "cdn_create_origin_access_identity" {
+  type        = bool
+  description = "Controls if CloudFront origin access identity should be created"
+  default     = false
+}
+
+variable "cdn_origin_access_identities" {
+  type        = map(string)
+  description = "Map of CloudFront origin access identities (value as a comment)"
+  default     = {}
+}
+
+variable "cdn_logging_config" {
+  type        = any
+  description = "The logging configuration that controls how logs are written to your distribution (maximum one)."
+  default     = {}
+}
+
+variable "cdn_origin" {
+  type        = any
+  description = "One or more origins for this distribution (multiples allowed)."
+  default     = null
+}
+
+variable "cdn_cache_behavior" {
+  type        = any
+  description = "The map of cache behaviors for this distribution. Key default will be used as the default cache behavior, all other keys will be used as ordered list of cache behaviors. List from top to bottom in order of precedence. The topmost cache behavior will have precedence 0."
+  default     = null
+}
+
+variable "cdn_acm_domain_name" {
+  type        = string
+  description = "Domain name of the acm certificate."
+  default     = "example.com"
+}
+
+variable "cdn_acm_method" {
+  type        = string
+  description = "Validation method of the acm certificate."
+  default     = "DNS"
+}
+
+/*
 // CloudTrail variables
 */
 
