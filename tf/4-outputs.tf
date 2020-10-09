@@ -23,7 +23,6 @@
 output "backup" {
   value = {
     plan_arn  = module.backup.backup_plan_arn
-    vault_id  = module.backup.backup_vault_id
     vault_arn = module.backup.backup_vault_arn
   }
 }
