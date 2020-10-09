@@ -14,6 +14,12 @@ variable "env" {
   default     = "dev"
 }
 
+variable "tags" {
+  type        = map(string)
+  description = "Tags to add to all resources."
+  default     = {}
+}
+
 /*
 // ACM variables
 */
@@ -36,7 +42,10 @@ variable "env" {
 // Backup variables
 */
 
-
+variable "backup_name" {
+  type        = string
+  description = "Name of your AWS Backup"
+}
 
 /*
 // Client VPN variables

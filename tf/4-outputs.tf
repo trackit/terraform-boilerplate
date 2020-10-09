@@ -20,7 +20,12 @@
 // Backup outputs
 */
 
-
+output "backup" {
+  value = {
+    plan_arn  = module.backup.backup_plan_arn
+    vault_arn = module.backup.backup_vault_arn
+  }
+}
 
 /*
 // Client VPN outputs
