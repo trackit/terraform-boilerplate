@@ -18,15 +18,12 @@ module "aws_cognito_user_pool" {
     require_numbers   = true
     require_symbols   = true
     require_uppercase = true
+    temporary_password_validity_days = 30
   }
 
   schemas = var.cognito_schemas
 
   string_schemas = var.cognito_string_schemas
 
-  tags = {
-    Owner       = "infra"
-    Environment = "production"
-    Terraform   = true
-  }
+  tags = local.tags
 }
