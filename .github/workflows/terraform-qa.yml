@@ -5,7 +5,7 @@ on:
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'Terraform QA'
     runs-on: ubuntu-latest
 
     defaults:
