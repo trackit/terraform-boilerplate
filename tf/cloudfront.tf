@@ -1,8 +1,8 @@
-# https://registry.terraform.io/modules/terraform-aws-modules/cloudfront/aws/0.3.0
+# https://registry.terraform.io/modules/terraform-aws-modules/cloudfront/aws/1.1.0
 
 module "cdn" {
   source  = "terraform-aws-modules/cloudfront/aws"
-  version = "0.3.0"
+  version = "1.1.0"
 
   aliases = var.cdn_aliases
 
