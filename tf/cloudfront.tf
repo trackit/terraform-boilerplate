@@ -1,16 +1,5 @@
 # https://registry.terraform.io/modules/terraform-aws-modules/cloudfront/aws/0.3.0
 
-resource "aws_acm_certificate" "cert" {
-  domain_name       = var.cdn_acm_domain_name
-  validation_method = var.cdn_acm_method
-
-  tags = local.tags
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
 module "cdn" {
   source  = "terraform-aws-modules/cloudfront/aws"
   version = "0.3.0"
@@ -39,4 +28,15 @@ module "cdn" {
   }
 
   tags = local.tags
+}
+
+resource "aws_acm_certificate" "cert" {
+  domain_name       = var.cdn_acm_domain_name
+  validation_method = var.cdn_acm_method
+
+  tags = local.tags
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
