@@ -1,7 +1,7 @@
-# https://github.com/cloudposse/terraform-aws-ecr/tree/0.21.0
+# https://github.com/cloudposse/terraform-aws-ecr/tree/0.27.0
 
 module "ecr" {
-  source = "git::https://github.com/cloudposse/terraform-aws-ecr.git?ref=0.21.0"
+  source = "git::https://github.com/cloudposse/terraform-aws-ecr.git?ref=0.27.0"
 
   name = var.ecr_name
 
