@@ -48,6 +48,36 @@ variable "env" {
 // CloudTrail variables
 */
 
+
+
+/*
+// CodeBuild variables
+*/
+
+
+
+/*
+// CodeCommit variables
+*/
+
+
+
+/*
+// CodeDeploy variables
+*/
+
+
+
+/*
+// CodePipeline variables
+*/
+
+
+
+/*
+// EC2 variables
+*/
+
 variable "ec2_name" {
   type        = string
   description = "Name to be used on all resources as prefix"
@@ -83,36 +113,6 @@ variable "monitoring" {
   description = "If true, the launched EC2 instance will have detailed monitoring enabled"
   default     = true
 }
-
-/*
-// CodeBuild variables
-*/
-
-
-
-/*
-// CodeCommit variables
-*/
-
-
-
-/*
-// CodeDeploy variables
-*/
-
-
-
-/*
-// CodePipeline variables
-*/
-
-
-
-/*
-// EC2 variables
-*/
-
-
 
 /*
 // ECR variables
