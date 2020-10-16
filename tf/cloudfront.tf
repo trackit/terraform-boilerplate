@@ -18,9 +18,42 @@ module "cdn" {
 
   logging_config = var.cdn_logging_config
 
-  origin = var.cdn_origin
+  # One or more origins for this distribution (multiples allowed).
+  origin = {
+    something = {
+      domain_name = "something.example.com"
+      custom_origin_config = {
+        http_port              = 80
+        https_port             = 443
+        origin_protocol_policy = "match-viewer"
+        origin_ssl_protocols = [
+          "TLSv1"
+        ]
+      }
+    }
+  }
 
-  cache_behavior = var.cdn_cache_behavior
+  # The map of cache behaviors for this distribution.
+  # Key default will be used as the default cache behavior, all other keys will be used as ordered list of cache behaviors.
+  # List from top to bottom in order of precedence.
+  # The topmost cache behavior will have precedence 0.
+  cache_behavior = {
+    target_origin_id       = "something"
+    viewer_protocol_policy = "allow-all"
+
+    allowed_methods = [
+      "GET",
+      "HEAD",
+      "OPTIONS"
+    ]
+    cached_methods = [
+      "GET",
+      "HEAD"
+    ]
+    compress     = true
+    query_string = true
+  }
+}
 
   viewer_certificate = {
     acm_certificate_arn = aws_acm_certificate.cert.arn
