@@ -68,7 +68,13 @@
 // ECR outputs
 */
 
-
+output "ecr" {
+  value = {
+    id   = module.ecr.registry_id
+    arn  = module.ecr.repository_arn
+    name = module.ecr.repository_name
+  }
+}
 
 /*
 // EKS outputs
