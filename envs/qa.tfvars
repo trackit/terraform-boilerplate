@@ -8,6 +8,7 @@
 // -- CodeCommit
 // -- CodePipeline
 // -- EC2
+ec2_name = "ec2-terraform-boilerplate"
 // -- ECR
 // -- EKS
 // -- ElastiCache
