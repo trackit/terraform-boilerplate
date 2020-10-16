@@ -162,6 +162,17 @@ output "route53" {
 */
 
 /*
+// S3 outputs
+*/
+
+output "s3" {
+  value = {
+    id  = module.s3.this_s3_bucket_id
+    arn = module.s3.this_s3_bucket_arn
+  }
+}
+
+/*
 // VPC outputs
 */
 

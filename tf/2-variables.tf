@@ -637,6 +637,28 @@ variable "final_snapshot_identifier" {
 
 
 /*
+// S3 variables
+*/
+
+variable "s3_name" {
+  type        = string
+  description = "Name of the bucket. If omitted, Terraform will assign a random, unique name."
+  default     = null
+}
+
+variable "s3_acl" {
+  type        = string
+  description = "ACL of the bucket."
+  default     = "private"
+}
+
+variable "s3_versioning" {
+  type        = bool
+  description = "Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket."
+  default     = false
+}
+
+/*
 // VPC variables
 */
 
