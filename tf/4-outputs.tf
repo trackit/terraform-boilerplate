@@ -113,7 +113,7 @@ output "lambda" {
 // RDS outputs
 */
 
-output "RDS" {
+output "rds" {
   value = {
     id  = module.rds.this_db_instance_id
     arn = module.rds.this_db_instance_arn
