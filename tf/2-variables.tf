@@ -93,7 +93,41 @@ variable "backup_name" {
 // ECR variables
 */
 
+variable "ecr_name" {
+  type        = string
+  description = "The Name of the application or solution (e.g. bastion or portal)"
+  default     = "ecr"
+}
 
+variable "ecr_attributes" {
+  type        = list(string)
+  description = "Additional attributes (e.g. policy or role)"
+  default     = []
+}
+
+variable "ecr_image_names" {
+  type        = list(string)
+  description = "List of Docker local image names, used as repository names for AWS ECR"
+  default     = []
+}
+
+variable "ecr_image_tag" {
+  type        = string
+  description = "The tag mutability setting for the repository. Must be one of: MUTABLE or IMMUTABLE"
+  default     = "MUTABLE"
+}
+
+variable "ecr_max_image" {
+  type        = number
+  description = "How many Docker Image versions AWS ECR will store"
+  default     = 500
+}
+
+variable "ecr_scan_images_on_push" {
+  type        = bool
+  description = "Indicates whether images are scanned after being pushed to the repository (true) or not (false)"
+  default     = false
+}
 
 /*
 // EKS variables

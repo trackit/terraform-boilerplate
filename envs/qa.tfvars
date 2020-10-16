@@ -10,6 +10,7 @@ backup_name = "tf-boilerplate-qa"
 // -- CodePipeline
 // -- EC2
 // -- ECR
+ecr_name = "ecr-terraform-boilerplate"
 // -- EKS
 eks_cluster_name = "boilerplate-cluster"
 // -- ElastiCache
