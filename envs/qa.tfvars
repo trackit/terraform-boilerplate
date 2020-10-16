@@ -25,7 +25,5 @@ lambda_runtime = "python3.8"
 // -- RDS
 rds_name = "boilerplate"
 // -- Route53
-route53_record_name = "www.example.com"
-route53_zone_name = "www.example.com"
 // -- VPC
 vpc_name = "boilerplate"
