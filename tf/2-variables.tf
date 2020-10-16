@@ -89,7 +89,7 @@ variable "user_pool_name" {
 
 variable "cognito_alias_attributes" {
   type        = list
-  description = ""
+  description = "Attributes supported as an alias for this user pool. Possible values: phone_number, email, or preferred_username. Conflicts with username_attributes"
   default = [
     "email",
     "phone_number"
@@ -98,7 +98,7 @@ variable "cognito_alias_attributes" {
 
 variable "cognito_auto_verified_attributes" {
   type        = list
-  description = ""
+  description = "The attributes to be auto-verified. Possible values: email, phone_number"
   default = [
     "email"
   ]
@@ -106,25 +106,25 @@ variable "cognito_auto_verified_attributes" {
 
 variable "cognito_admin_create_user_config" {
   type        = map(any)
-  description = ""
+  description = "The configuration for AdminCreateUser requests"
   default     = {}
 }
 
 variable "cognito_email_configuration" {
   type        = map(any)
-  description = ""
+  description = "The Email Configuration"
   default     = {}
 }
 
 variable "cognito_schemas" {
   type        = list(any)
-  description = ""
+  description = "A container with the schema attributes of a user pool. Maximum of 50 attributes"
   default     = []
 }
 
 variable "cognito_string_schemas" {
   type        = list(any)
-  description = ""
+  description = "A container with the string schema attributes of a user pool. Maximum of 50 attributes"
   default     = []
 }
 
