@@ -53,7 +53,6 @@ module "cdn" {
     compress     = true
     query_string = true
   }
-}
 
   viewer_certificate = {
     acm_certificate_arn = aws_acm_certificate.cert.arn
