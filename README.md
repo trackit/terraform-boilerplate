@@ -16,6 +16,7 @@ and you can add the variable that you want to change in the [envs/qa.tfvars](./e
 You can use the following command to deploy:
 
 ```sh
+$ cd ./tf
 $ terraform init
 $ terraform plan -var-file ../envs/qa.tfvars
 $ terraform apply -var-file ../envs/qa.tfvars
@@ -29,11 +30,11 @@ $ terraform destroy -var-file ../envs/qa.tfvars
 
 ## Testing
 
-You can find in the `.github/workflows` folder different QA that you can run to test with Github:
-- `terraform.yml`: automatically running on master and PR when you push. This make a terraform init & plan
-- `terraform-qa.yml`: manually triggered in Github Actions. This make a terraform init, plan, apply & destroy
-- `terraform-qa-no-destroy`: manually triggered in Github Actions. This make a terraform init, plan & apply
-- `terraform-qa-only-destroy`: manually triggered in Github Actions. This make a terraform init & destroy
+You can find in the [.github/workflows](./.github/workflows) folder different QA that you can run to test with Github:
+- [terraform.yml](./.github/workflows/terraform.yml): automatically running on master and PR when you push. This make a terraform init & plan
+- [terraform-qa.yml](./.github/workflows/terraform-qa.yml): manually triggered in Github Actions. This make a terraform init, plan, apply & destroy
+- [terraform-qa-no-destroy](./.github/workflows/terraform-qa-no-destroy.yml): manually triggered in Github Actions. This make a terraform init, plan & apply
+- [terraform-qa-only-destroy](./.github/workflows/terraform-qa-only-destroy.yml): manually triggered in Github Actions. This make a terraform init & destroy
 
 ## Services Available
 
