@@ -62,7 +62,12 @@
 // EC2 outputs
 */
 
-
+output "ec2" {
+  value = {
+    id  = module.ec2-instance.id
+    arn = module.ec2-instance.arn
+  }
+}
 
 /*
 // ECR outputs
