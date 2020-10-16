@@ -14,9 +14,5 @@ module "ec2-instance" {
   vpc_security_group_ids = [module.vpc.default_security_group_id]
   subnet_id              = module.vpc.private_subnets[0]
 
-  tags = {
-    Terraform          = "true"
-    Environment        = var.env
-    TerraformWorkspace = terraform.workspace
-  }
+  tags = local.tags
 }
