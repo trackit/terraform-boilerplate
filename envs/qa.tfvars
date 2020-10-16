@@ -2,14 +2,18 @@
 // -- ALB
 // -- AutoScalling
 // -- Backup
+backup_name = "tf-boilerplate-qa"
 // -- Client VPN
 // -- CloudTrail
 // -- CodeBuild
 // -- CodeCommit
 // -- CodePipeline
 // -- EC2
+ec2_name = "ec2-terraform-boilerplate"
 // -- ECR
+ecr_name = "ecr-terraform-boilerplate"
 // -- EKS
+eks_cluster_name = "boilerplate-cluster"
 // -- ElastiCache
 // -- ElasticSearch
 // -- GuardDuty
@@ -21,5 +25,7 @@ lambda_runtime = "python3.8"
 // -- RDS
 rds_name = "terraform-boilerplate"
 // -- Route53
+route53_record_name = "terraform-boilerplate"
+route53_zone_name = "terraform-boilerplate"
 // -- VPC
 vpc_name = "terraform-boilerplate-qa-vpc"

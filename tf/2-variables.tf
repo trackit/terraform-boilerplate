@@ -14,6 +14,12 @@ variable "env" {
   default     = "dev"
 }
 
+variable "tags" {
+  type        = map(string)
+  description = "Tags to add to all resources."
+  default     = {}
+}
+
 /*
 // ACM variables
 */
@@ -36,7 +42,10 @@ variable "env" {
 // Backup variables
 */
 
-
+variable "backup_name" {
+  type        = string
+  description = "Name of your AWS Backup"
+}
 
 /*
 // Client VPN variables
@@ -78,19 +87,109 @@ variable "env" {
 // EC2 variables
 */
 
+variable "ec2_name" {
+  type        = string
+  description = "Name to be used on all resources as prefix"
+  default     = "test-ec2"
+}
 
+variable "ec2_instance_count" {
+  type        = number
+  description = "Number of instances to launch"
+  default     = 1
+}
+
+variable "ec2_ami" {
+  type        = string
+  description = "ID of AMI to use for the instance"
+  default     = "ami-0ff8a91507f77f867"
+}
+
+variable "ec2_instance_type" {
+  type        = string
+  description = "The type of instance to start"
+  default     = "t2.micro"
+}
+
+variable "ec2_key_name" {
+  type        = string
+  description = "The key name to use for the instance"
+  default     = ""
+}
+
+variable "monitoring" {
+  type        = bool
+  description = "If true, the launched EC2 instance will have detailed monitoring enabled"
+  default     = true
+}
 
 /*
 // ECR variables
 */
 
+variable "ecr_name" {
+  type        = string
+  description = "The Name of the application or solution (e.g. bastion or portal)"
+  default     = "ecr"
+}
 
+variable "ecr_attributes" {
+  type        = list(string)
+  description = "Additional attributes (e.g. policy or role)"
+  default     = []
+}
+
+variable "ecr_image_names" {
+  type        = list(string)
+  description = "List of Docker local image names, used as repository names for AWS ECR"
+  default     = []
+}
+
+variable "ecr_image_tag" {
+  type        = string
+  description = "The tag mutability setting for the repository. Must be one of: MUTABLE or IMMUTABLE"
+  default     = "MUTABLE"
+}
+
+variable "ecr_max_image" {
+  type        = number
+  description = "How many Docker Image versions AWS ECR will store"
+  default     = 500
+}
+
+variable "ecr_scan_images_on_push" {
+  type        = bool
+  description = "Indicates whether images are scanned after being pushed to the repository (true) or not (false)"
+  default     = false
+}
 
 /*
 // EKS variables
 */
 
+variable "eks_cluster_name" {
+  type        = string
+  description = "Name of your Kubernetes cluster"
+  default     = "kubernetes-cluster"
+}
 
+variable "eks_instance_type" {
+  type        = string
+  description = "Size of your cluster nodes"
+  default     = "m5.large"
+}
+
+variable "eks_asg_min_size" {
+  type        = number
+  description = "Min node count"
+  default     = 1
+}
+
+variable "eks_asg_max_size" {
+  type        = number
+  description = "Max node count"
+  default     = 1
+}
 
 /*
 // ElastiCache variables
@@ -535,7 +634,35 @@ variable "final_snapshot_identifier" {
 // Route53 variables
 */
 
+variable "route53_zone_name" {
+  type        = string
+  description = "This is the name of the hosted zone."
+  default     = "example.com"
+}
 
+variable "route53_records" {
+  type        = list(string)
+  description = "A string list of records. To specify a single record value longer than 255 characters such as a TXT record for DKIM, add \"\" inside the Terraform configuration string"
+  default     = null
+}
+
+variable "route53_type" {
+  type        = string
+  description = "The record type. Valid values are A, AAAA, CAA, CNAME, MX, NAPTR, NS, PTR, SOA, SPF, SRV and TXT."
+  default     = "A"
+}
+
+variable "route53_ttl" {
+  type        = string
+  description = "The TTL of the record."
+  default     = "300"
+}
+
+variable "route53_record_name" {
+  type        = string
+  description = "The name of the record."
+  default     = "www.example.com"
+}
 
 /*
 // VPC variables
