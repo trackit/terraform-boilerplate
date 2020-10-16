@@ -9,7 +9,7 @@
 // -- CodePipeline
 // -- EC2
 // -- ECR
-ecr_role_name = "terraform-qa"
+ecr_name = "ecr-terraform-boilerplate"
 // -- EKS
 // -- ElastiCache
 // -- ElasticSearch
