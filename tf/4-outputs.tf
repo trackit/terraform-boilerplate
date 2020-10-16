@@ -20,7 +20,12 @@
 // Backup outputs
 */
 
-
+output "backup" {
+  value = {
+    plan_arn  = module.backup.backup_plan_arn
+    vault_arn = module.backup.backup_vault_arn
+  }
+}
 
 /*
 // Client VPN outputs
@@ -80,7 +85,13 @@ output "ecr" {
 // EKS outputs
 */
 
-
+output "eks" {
+  value = {
+    id       = module.eks.cluster_id
+    arn      = module.eks.cluster_arn
+    endpoint = module.eks.cluster_endpoint
+  }
+}
 
 /*
 // ElastiCache outputs
@@ -119,13 +130,29 @@ output "lambda" {
 // RDS outputs
 */
 
-
+output "rds" {
+  value = {
+    id  = module.rds.this_db_instance_id
+    arn = module.rds.this_db_instance_arn
+  }
+}
 
 /*
 // Route53 outputs
 */
 
-
+output "route53" {
+  value = {
+    record = {
+      id   = aws_route53_record.record.id
+      name = aws_route53_record.record.name
+    },
+    zone = {
+      id   = aws_route53_zone.primary_zone.id
+      name = aws_route53_zone.primary_zone.name
+    }
+  }
+}
 
 /*
 // VPC outputs
