@@ -45,9 +45,9 @@ module "s3" {
     ## Specifies which methods are allowed. Can be GET, PUT, POST, DELETE or HEAD.
     allowed_methods = ["GET", "HEAD"]
     ## Specifies which headers are allowed
-    allowed_headers = ["Content-Length", "Content-Type", "Accept", "x-amz-*"]
+    allowed_headers = ["Content-Length", "Content-Type", "Accept"]
     ## Specifies expose header in the response.
-    expose_headers = ["ETag", "Content-Length", "Content-Type", "x-amz-*"]
+    expose_headers = ["ETag", "Content-Length", "Content-Type"]
     ## Specifies time in seconds that browser can cache the response for a preflight request.
     max_age_seconds = 3000
   }]
