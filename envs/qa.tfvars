@@ -10,6 +10,7 @@ backup_name = "tf-boilerplate-qa"
 // -- CodePipeline
 // -- Cognito
 user_pool_name = "terraform-boilerplate"
+cognito_client_name = "terraform-boilerplate"
 // -- EC2
 ec2_name = "boilerplate"
 // -- ECR
