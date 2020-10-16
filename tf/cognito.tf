@@ -2,7 +2,7 @@
 
 module "aws_cognito_user_pool" {
   source  = "lgallard/cognito-user-pool/aws"
-  version = "0.6.2"
+  version = "~> 0.6.2"
 
   user_pool_name           = var.user_pool_name
   alias_attributes         = var.cognito_alias_attributes
