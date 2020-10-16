@@ -2,7 +2,7 @@
 <p>
 </p>
 
-> Terraform boilerplate is a Trackit repository which is going to help DevOps deploying infrastructure on AWS
+> Terraform boilerplate is a repository aiming to help DevOps to deploy infrastructure on AWS
 
 ## Terraform
 
