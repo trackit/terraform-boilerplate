@@ -8,7 +8,7 @@
 
 This project is using terraform to deploy infrastructure, you can download it here: https://learn.hashicorp.com/tutorials/terraform/install-cli
 
-Here it is services you can deploy using this repository:
+Here are the services that you can deploy using this repository:
 - AWS Route53
 - AWS RDS
 - AWS Backup
