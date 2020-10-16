@@ -1,12 +1,12 @@
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone
+
 resource "aws_route53_zone" "primary_zone" {
   name = var.route53_zone_name
 
-  tags = {
-    Terraform          = "true"
-    Environment        = var.env
-    TerraformWorkspace = terraform.workspace
-  }
+  tags = local.tags
 }
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
 
 resource "aws_route53_record" "record" {
   zone_id = aws_route53_zone.primary_zone.zone_id
