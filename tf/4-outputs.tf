@@ -136,7 +136,18 @@ output "lambda" {
 // Route53 outputs
 */
 
-
+output "route53" {
+  value = {
+    record = {
+      id   = aws_route53_record.record.id
+      name = aws_route53_record.record.name
+    },
+    zone = {
+      id   = aws_route53_zone.primary_zone.id
+      name = aws_route53_zone.primary_zone.name
+    }
+  }
+}
 
 /*
 // VPC outputs
