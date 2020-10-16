@@ -72,12 +72,12 @@ resource "aws_s3_bucket_object" "folder" {
 
 ## File
 resource "aws_s3_bucket_object" "file" {
-  bucket       = module.s3.this_s3_bucket_id
-  acl          = "private"
-  key          = "test2/lambda.py"
-  source       = var.lambda_source
-  etag         = filemd5(var.lambda_source)
-  tags         = local.tags
+  bucket = module.s3.this_s3_bucket_id
+  acl    = "private"
+  key    = "test2/lambda.py"
+  source = var.lambda_source
+  etag   = filemd5(var.lambda_source)
+  tags   = local.tags
 }
 
 ##### S3 Notifications
