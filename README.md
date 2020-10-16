@@ -8,6 +8,16 @@
 
 This project is using terraform to deploy infrastructure, you can download it here: https://learn.hashicorp.com/tutorials/terraform/install-cli
 
+Here it is the service you can deploy using this repository:
+- AWS Route53
+- AWS RDS
+- AWS Backup
+- AWS ECR
+- AWS Elasticache
+- AWS EKS
+- AWS VPC
+- AWS Lambda
+
 ## Usage
 
 You can find all the needed variable in the `tf/2-variables.tf` file
