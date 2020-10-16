@@ -22,6 +22,7 @@ lambda_name = "test"
 lambda_handler = "lambda.handler_test"
 lambda_runtime = "python3.8"
 // -- RDS
+rds_name = "terraform-boilerplate"
 // -- Route53
 route53_record_name = "terraform-boilerplate"
 route53_zone_name = "terraform-boilerplate"
