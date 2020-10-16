@@ -153,8 +153,8 @@ output "route53" {
       name = aws_route53_record.record.name
     },
     zone = {
-      id   = aws_route53_zone.primary_zone.id
-      name = aws_route53_zone.primary_zone.name
+      id   = aws_route53_zone.private.id
+      name = aws_route53_zone.private.name
     }
   }
 }
