@@ -1,7 +1,8 @@
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone
 
+/*
 resource "aws_route53_zone" "primary_zone" {
-  name = var.route53_zone_name
+  name = "www.example.com"
 
   tags = local.tags
 }
@@ -10,8 +11,9 @@ resource "aws_route53_zone" "primary_zone" {
 
 resource "aws_route53_record" "record" {
   zone_id = aws_route53_zone.primary_zone.zone_id
-  name    = var.route53_record_name
-  type    = var.route53_type
-  ttl     = var.route53_ttl
-  records = var.route53_records
+  name    = "www.example.com"
+  type    = A
+  ttl     = 300
+  records = null
 }
+*/

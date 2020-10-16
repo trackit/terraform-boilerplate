@@ -36,7 +36,7 @@ module "rds" {
 
   final_snapshot_identifier = var.final_snapshot_identifier
 
-  deletion_protection = true
+  deletion_protection = false
 
   tags = local.tags
 }

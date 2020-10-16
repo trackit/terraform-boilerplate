@@ -634,35 +634,7 @@ variable "final_snapshot_identifier" {
 // Route53 variables
 */
 
-variable "route53_zone_name" {
-  type        = string
-  description = "This is the name of the hosted zone."
-  default     = "example.com"
-}
 
-variable "route53_records" {
-  type        = list(string)
-  description = "A string list of records. To specify a single record value longer than 255 characters such as a TXT record for DKIM, add \"\" inside the Terraform configuration string"
-  default     = null
-}
-
-variable "route53_type" {
-  type        = string
-  description = "The record type. Valid values are A, AAAA, CAA, CNAME, MX, NAPTR, NS, PTR, SOA, SPF, SRV and TXT."
-  default     = "A"
-}
-
-variable "route53_ttl" {
-  type        = string
-  description = "The TTL of the record."
-  default     = "300"
-}
-
-variable "route53_record_name" {
-  type        = string
-  description = "The name of the record."
-  default     = "www.example.com"
-}
 
 /*
 // VPC variables

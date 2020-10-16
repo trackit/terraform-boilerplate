@@ -9,11 +9,11 @@ backup_name = "tf-boilerplate-qa"
 // -- CodeCommit
 // -- CodePipeline
 // -- EC2
-ec2_name = "ec2-terraform-boilerplate"
+ec2_name = "boilerplate"
 // -- ECR
-ecr_name = "ecr-terraform-boilerplate"
+ecr_name = "boilerplate"
 // -- EKS
-eks_cluster_name = "boilerplate-cluster"
+eks_cluster_name = "boilerplate"
 // -- ElastiCache
 // -- ElasticSearch
 // -- GuardDuty
@@ -23,9 +23,7 @@ lambda_name = "test"
 lambda_handler = "lambda.handler_test"
 lambda_runtime = "python3.8"
 // -- RDS
-rds_name = "terraform-boilerplate"
+rds_name = "boilerplate"
 // -- Route53
-route53_record_name = "terraform-boilerplate"
-route53_zone_name = "terraform-boilerplate"
 // -- VPC
-vpc_name = "terraform-boilerplate-qa-vpc"
+vpc_name = "boilerplate"

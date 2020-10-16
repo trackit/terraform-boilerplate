@@ -146,6 +146,7 @@ output "rds" {
 // Route53 outputs
 */
 
+/*
 output "route53" {
   value = {
     record = {
@@ -158,6 +159,7 @@ output "route53" {
     }
   }
 }
+*/
 
 /*
 // VPC outputs
