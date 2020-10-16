@@ -11,6 +11,7 @@ backup_name = "tf-boilerplate-qa"
 // -- EC2
 // -- ECR
 // -- EKS
+eks_cluster_name = "boilerplate-cluster"
 // -- ElastiCache
 // -- ElasticSearch
 // -- GuardDuty

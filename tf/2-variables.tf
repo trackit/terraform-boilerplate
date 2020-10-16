@@ -99,7 +99,29 @@ variable "backup_name" {
 // EKS variables
 */
 
+variable "eks_cluster_name" {
+  type        = string
+  description = "Name of your Kubernetes cluster"
+  default     = "kubernetes-cluster"
+}
 
+variable "eks_instance_type" {
+  type        = string
+  description = "Size of your cluster nodes"
+  default     = "m5.large"
+}
+
+variable "eks_asg_min_size" {
+  type        = number
+  description = "Min node count"
+  default     = 1
+}
+
+variable "eks_asg_max_size" {
+  type        = number
+  description = "Max node count"
+  default     = 1
+}
 
 /*
 // ElastiCache variables
