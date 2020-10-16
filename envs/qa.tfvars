@@ -9,6 +9,7 @@ backup_name = "tf-boilerplate-qa"
 // -- CodeCommit
 // -- CodePipeline
 // -- EC2
+ec2_name = "ec2-terraform-boilerplate"
 // -- ECR
 ecr_name = "ecr-terraform-boilerplate"
 // -- EKS
