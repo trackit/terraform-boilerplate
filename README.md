@@ -39,14 +39,14 @@ You can find in the [.github/workflows](./.github/workflows) folder different QA
 ## Services Available
 
 Here are the services that you can deploy using this repository:
-- [AWS Route53](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone)
-- [AWS RDS](https://registry.terraform.io/modules/terraform-aws-modules/rds/aws/2.18.0)
-- [AWS Backup](https://github.com/cloudposse/terraform-aws-backup/tree/0.4.0)
-- [AWS ECR](https://github.com/cloudposse/terraform-aws-ecr/tree/0.21.0)
-- [AWS Elasticache](https://github.com/cloudposse/terraform-aws-elasticache-redis/tree/0.25.0)
-- [AWS EKS](https://github.com/terraform-aws-modules/terraform-aws-eks/tree/v12.2.0)
-- [AWS VPC](https://github.com/terraform-aws-modules/terraform-aws-vpc/tree/v2.55.0)
-- [AWS Lambda](https://github.com/terraform-aws-modules/terraform-aws-vpc/tree/v2.55.0)
+- [AWS Route53](./tf/route53.tf)
+- [AWS RDS](./tf/rds.tf)
+- [AWS Backup](./tf/backup.tf)
+- [AWS ECR](./tf/ecr.tf)
+- [AWS Elasticache](./tf/elasticache.tf)
+- [AWS EKS](./tf/eks.tf)
+- [AWS VPC](./tf/vpc.tf)
+- [AWS Lambda](./tf/lambda.tf)
 
 ## Author
 
