@@ -37,6 +37,14 @@ and you can destroy you're infrastructure into using this command:
 $ terraform destroy -var-file ../envs/qa.tfvars
 ```
 
+## Testing
+
+You can find in the `.github/workflows` folder different QA that you can run to test with Github:
+- `terraform.yml`: automatically running on master and PR when you push. This make a terraform init & plan
+- `terraform-qa.yml`: manually triggered in Github Actions. This make a terraform init, plan, apply & destroy
+- `terraform-qa-no-destroy`: manually triggered in Github Actions. This make a terraform init, plan & apply
+- `terraform-qa-only-destroy`: manually triggered in Github Actions. This make a terraform init & destroy
+
 ## Author
 
 👤 **Trackit**
