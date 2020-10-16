@@ -34,6 +34,18 @@ output "backup" {
 
 
 /*
+// Cloudfront outputs
+*/
+
+output "cloudfront" {
+  value = {
+    id   = module.cdn.this_cloudfront_distribution_id
+    arn  = module.cdn.this_cloudfront_distribution_arn
+    name = module.cdn.this_cloudfront_distribution_domain_name
+  }
+}
+
+/*
 // CloudTrail outputs
 */
 
