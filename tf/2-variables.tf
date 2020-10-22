@@ -59,14 +59,32 @@ variable "backup_name" {
 
 variable "cloudtrail_name" {
   type        = string
-  description = ""
-  default     = "cloudtrail_name"
+  description = "Solution name, e.g. 'app' or 'jenkins'"
+  default     = "app"
 }
 
-variable "s3_cloudtrail_name" {
-  type        = string
-  description = ""
-  default     = "s3_cloudtrail_name"
+variable "cloudtrail_log_file_validation" {
+  type        = bool
+  description = "Specifies whether log file integrity validation is enabled. Creates signed digest for validated contents of logs"
+  default     = true
+}
+
+variable "cloudtrail_include_global_service_events" {
+  type        = bool
+  description = "Specifies whether the trail is publishing events from global services such as IAM to the log files"
+  default     = true
+}
+
+variable "cloudtrail_is_multi_region_trail" {
+  type        = bool
+  description = "Specifies whether the trail is created in the current region or in all regions"
+  default     = false
+}
+
+variable "cloudtrail_enable_logging" {
+  type        = bool
+  description = "Enable logging for the trail"
+  default     = true
 }
 
 /*
