@@ -2,7 +2,12 @@
 // ACM outputs
 */
 
-
+output "acm" {
+  value = {
+    arn          = module.acm.this_acm_certificate_arn
+    domain_names = module.acm.distinct_domain_names
+  }
+}
 
 /*
 // ALB outputs

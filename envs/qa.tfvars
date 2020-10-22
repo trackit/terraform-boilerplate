@@ -1,4 +1,5 @@
 // -- ACM
+acm_domain_name = "boilerplate-example.com"
 // -- ALB
 // -- AutoScalling
 // -- Backup
