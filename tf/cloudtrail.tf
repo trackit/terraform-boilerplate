@@ -17,6 +17,6 @@ module "cloudtrail" {
 module "cloudtrail_s3_bucket" {
   source = "git::https://github.com/cloudposse/terraform-aws-cloudtrail-s3-bucket.git?ref=tags/0.12.0"
 
-  name = var.cloudtrail_name
+  name = var.cloudtrail_s3_name
   tags = local.tags
 }

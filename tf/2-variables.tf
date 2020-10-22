@@ -63,6 +63,12 @@ variable "cloudtrail_name" {
   default     = "app"
 }
 
+variable "cloudtrail_s3_name" {
+  type        = string
+  description = "S3 name, e.g. 'app' or 'jenkins'"
+  default     = "app"
+}
+
 variable "cloudtrail_log_file_validation" {
   type        = bool
   description = "Specifies whether log file integrity validation is enabled. Creates signed digest for validated contents of logs"

@@ -6,6 +6,7 @@ backup_name = "tf-boilerplate-qa"
 // -- Client VPN
 // -- CloudTrail
 cloudtrail_name = "boilerplate"
+cloudtrail_s3_name = "boilerplate-s3"
 // -- CodeBuild
 // -- CodeCommit
 // -- CodePipeline
