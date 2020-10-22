@@ -43,10 +43,10 @@ output "cloudtrail" {
       id  = module.cloudtrail.cloudtrail_id
       arn = module.cloudtrail.cloudtrail_arn
     },
-    #s3 = {
-    #  id  = module.cloudtrail_s3_bucket.bucket_id
-    #  arn = module.cloudtrail_s3_bucket.bucket_arn
-    #}
+    s3 = {
+      id  = module.cloudtrail_s3_bucket.bucket_id
+      arn = module.cloudtrail_s3_bucket.bucket_arn
+    }
   }
 }
 
