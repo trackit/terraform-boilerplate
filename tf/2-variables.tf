@@ -57,7 +57,17 @@ variable "backup_name" {
 // CloudTrail variables
 */
 
+variable "cloudtrail_name" {
+  type        = string
+  description = ""
+  default     = "cloudtrail_name"
+}
 
+variable "s3_cloudtrail_name" {
+  type        = string
+  description = ""
+  default     = "s3_cloudtrail_name"
+}
 
 /*
 // CodeBuild variables
