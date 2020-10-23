@@ -6,7 +6,7 @@ on:
 
 jobs:
   terraform:
-    name: 'Terraform QA Only Destroy'
+    name: 'Terraform QA Only Destroy Everyday'
     runs-on: ubuntu-latest
 
     defaults:
