@@ -1,5 +1,6 @@
 // -- ACM
 // -- ALB
+alb_name = "tf-boilerplate-alb"
 // -- AutoScalling
 // -- Backup
 backup_name = "tf-boilerplate-qa"

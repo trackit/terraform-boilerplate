@@ -30,7 +30,17 @@ variable "tags" {
 // ALB variables
 */
 
+variable "alb_name" {
+  type        = string
+  description = ""
+  default     = "alb"
+}
 
+variable "alb_load_balancer_type" {
+  type        = string
+  description = ""
+  default     = "application"
+}
 
 /*
 // AutoScalling variables

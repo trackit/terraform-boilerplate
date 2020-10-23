@@ -8,7 +8,12 @@
 // ALB outputs
 */
 
-
+output "alb" {
+  value = {
+    arn = module.alb.this_lb_arn
+    id  = module.alb.this_lb_id
+  }
+}
 
 /*
 // AutoScalling outputs
