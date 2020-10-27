@@ -10,10 +10,15 @@ This project is using terraform to deploy infrastructure, you can download it he
 
 ## Usage
 
-You can find all the needed variable in the [tf/2-variables.tf](./tf/2-variables.tf) file
-and you can add the variable that you want to change in the [envs/qa.tfvars](./envs/qa.tfvars) file.
+The project is aimed to be used with `terraform workspace` which is why there is the `envs` directory. Feel free to create new files in this folder to overwrite default variables defined in [tf/2-variables.tf](./tf/2-variables.tf). 
 
-You can use the following command to deploy:
+
+
+[envs/qa.tfvars](./envs/qa.tfvars) is use in our CI/CD pipeline to make sure the code we want to merge can be deployed.
+
+
+
+### Deploy
 
 ```sh
 $ cd ./tf
@@ -22,7 +27,9 @@ $ terraform plan -var-file ../envs/qa.tfvars
 $ terraform apply -var-file ../envs/qa.tfvars
 ```
 
-and you can destroy you're infrastructure into using this command:
+
+
+### Destroy
 
 ```sh
 $ terraform destroy -var-file ../envs/qa.tfvars
