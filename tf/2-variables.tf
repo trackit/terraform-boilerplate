@@ -104,13 +104,10 @@ variable "github_token" {
   description = "Github token to use for retrieving repository"
 }
 
-variable "codebuild_env_variables" {
-  type = list(object({
-    name  = string
-    value = string
-  }))
-  description = "Environment variables to transfer to build container"
-  default     = []
+variable "codebuild_build_type" {
+  type        = string
+  description = "Build environment type, either LINUX_CONTAINER or WINDOWS_CONTAINER"
+  default     = "LINUX_CONTAINER"
 }
 
 /*

@@ -1,14 +1,15 @@
 #
-# https://github.com/cloudposse/terraform-aws-codebuild?ref=0.21.0
+# https://github.com/cloudposse/terraform-aws-codebuild?ref=0.25.0
 #
 
 module "codebuild" {
-  source = "git::https://github.com/cloudposse/terraform-aws-codebuild.git?ref=0.21.0"
+  source = "git::https://github.com/cloudposse/terraform-aws-codebuild.git?ref=0.25.0"
   name   = var.codebuild_name
 
   build_image        = var.codebuild_image
   build_compute_type = var.codebuild_compute_type
   build_timeout      = var.codebuild_timeout
+  build_type         = var.codebuild_build_type
 
   privileged_mode = var.codebuild_privileged_mode
 
