@@ -19,7 +19,7 @@ module "codebuild" {
 
   environment_variables = [
     {
-      name = "EXAMPLE_ENV_VARIABLE_NAME"
+      name  = "EXAMPLE_ENV_VARIABLE_NAME"
       value = "EXAMPLE_ENV_VARIABLE_VALUE"
     },
   ]
