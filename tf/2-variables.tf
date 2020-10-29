@@ -32,13 +32,13 @@ variable "tags" {
 
 variable "alb_name" {
   type        = string
-  description = ""
+  description = "The resource name and Name tag of the load balancer."
   default     = "alb"
 }
 
 variable "alb_load_balancer_type" {
   type        = string
-  description = ""
+  description = "The type of load balancer to create. Possible values are application or network."
   default     = "application"
 }
 
