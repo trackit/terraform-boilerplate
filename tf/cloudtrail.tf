@@ -18,5 +18,26 @@ module "cloudtrail_s3_bucket" {
   source = "git::https://github.com/cloudposse/terraform-aws-cloudtrail-s3-bucket.git?ref=tags/0.12.0"
 
   name = var.cloudtrail_s3_name
+
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        Sid : "AWSCloudTrailAclCheck20150319",
+        Effect : "Allow",
+        Principal : { "Service" : "cloudtrail.amazonaws.com" },
+        Action : "s3:GetBucketAcl",
+        Resource : "arn:aws:s3:::${var.cloudtrail_s3_name}"
+      },
+      {
+        Sid : "AWSCloudTrailWrite20150319",
+        Effect : "Allow",
+        Principal : { "Service" : "cloudtrail.amazonaws.com" },
+        Action : "s3:PutObject",
+        Resource : "arn:aws:s3:::myBucketName/[optional prefix]/AWSLogs/${var.cloudtrail_account_id}/*",
+        Condition : { "StringEquals" : { "s3:x-amz-acl" : "bucket-owner-full-control" } }
+      }
+    ]
+  })
   tags = local.tags
 }

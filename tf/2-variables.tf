@@ -93,6 +93,12 @@ variable "cloudtrail_enable_logging" {
   default     = true
 }
 
+variable "cloudtrail_account_id" {
+  type        = string
+  description = "The account ID where the bucket S3"
+  default     = ""
+}
+
 /*
 // CodeBuild variables
 */
