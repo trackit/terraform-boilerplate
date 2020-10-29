@@ -8,7 +8,7 @@ module "alb" {
 
   load_balancer_type = var.alb_load_balancer_type
 
-  vpc_id          = module.vpc.default_vpc_id
+  vpc_id          = module.vpc.vpc_id
   subnets         = module.vpc.private_subnets
   security_groups = [module.vpc.default_security_group_id]
 
