@@ -35,6 +35,7 @@ jobs:
         for ws in $(terraform workspace list | grep 'refs-')
         do
           terraform workspace select $ws
+          terraform init
           terraform destroy -auto-approve -var-file ../envs/qa.tfvars
         done
       working-directory: tf
