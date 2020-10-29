@@ -1,10 +1,9 @@
 #
-# https://github.com/cloudposse/terraform-aws-codebuild
+# https://github.com/cloudposse/terraform-aws-codebuild?ref=0.21.0
 #
 
-module "build" {
+module "codebuild" {
   source = "git::https://github.com/cloudposse/terraform-aws-codebuild.git?ref=0.21.0"
-  stage  = var.env
   name   = var.codebuild_name
 
   build_image        = var.codebuild_image
@@ -17,7 +16,12 @@ module "build" {
 
   github_token = var.github_token
 
-  environment_variables = var.codebuild_env_variables
+  environment_variables = [
+    {
+      name = "EXAMPLE_ENV_VARIABLE_NAME"
+      value = "EXAMPLE_ENV_VARIABLE_VALUE"
+    },
+  ]
 
-  tags = var.codebuild_tags
+  tags = local.tags
 }

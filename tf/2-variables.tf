@@ -66,7 +66,7 @@ variable "backup_name" {
 variable "codebuild_name" {
   type        = string
   description = "Name of codebuild module"
-  default     = "codebuild"
+  default     = ""
 }
 
 variable "codebuild_image" {
@@ -111,12 +111,6 @@ variable "codebuild_env_variables" {
   }))
   description = "Environment variables to transfer to build container"
   default     = []
-}
-
-variable "codebuild_tags" {
-  type        = map(string)
-  description = "Codebuild resources tags"
-  default     = {}
 }
 
 /*
