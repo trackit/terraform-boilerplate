@@ -39,5 +39,6 @@ module "cloudtrail_s3_bucket" {
       }
     ]
   })
+  force_destroy = true
   tags = local.tags
 }
