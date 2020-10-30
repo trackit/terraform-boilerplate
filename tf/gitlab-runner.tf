@@ -12,7 +12,7 @@ module "runner" {
   aws_zone    = var.gitlab_aws_zone
   environment = var.gitlab_environment
 
-  #ssh_public_key = local_file.public_ssh_key.content
+  ssh_public_key = local_file.public_ssh_key.content
 
   vpc_id                   = module.vpc.vpc_id
   subnet_ids_gitlab_runner = module.vpc.private_subnets
