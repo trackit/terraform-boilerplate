@@ -5,6 +5,9 @@
 backup_name = "tf-boilerplate-qa"
 // -- Client VPN
 // -- CloudTrail
+cloudtrail_name = "boilerplate"
+cloudtrail_s3_name = "boilerplate-cloudtrail"
+cloudtrail_account_id = "394125495069"
 // -- CodeBuild
 // -- CodeCommit
 // -- CodePipeline
