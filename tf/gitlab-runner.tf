@@ -32,9 +32,9 @@ module "runner" {
   #cloudwatch_logging_retention_in_days = var.gitlab_cloudwatch_retention_logs
   #enable_cloudwatch_logging = var.gitlab_cloudwatch_logging
 
-  docker_machine_download_url      = var.gitlab_docker_download_url
-  docker_machine_instance_type     = var.gitlab_docker_instance_type
-  docker_machine_options           = var.gitlab_docker_options
+  docker_machine_download_url  = var.gitlab_docker_download_url
+  docker_machine_instance_type = var.gitlab_docker_instance_type
+  docker_machine_options       = var.gitlab_docker_options
   #docker_machine_role_json         = var.gitlab_docker_role_json
   docker_machine_spot_price_bid    = var.gitlab_docker_spot_price_bid
   docker_machine_version           = var.gitlab_docker_version
