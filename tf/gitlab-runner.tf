@@ -32,6 +32,7 @@ module "runner" {
   #cloudwatch_logging_retention_in_days = var.gitlab_cloudwatch_retention_logs
   #enable_cloudwatch_logging = var.gitlab_cloudwatch_logging
 
+  /*
   docker_machine_download_url   = var.gitlab_docker_download_url
   docker_machine_instance_type  = var.gitlab_docker_instance_type
   docker_machine_options        = var.gitlab_docker_options
@@ -48,6 +49,7 @@ module "runner" {
   #enable_runner_ssm_access          = var.gitlab_enable_runner_ssm_access
   enable_runner_user_data_trace_log = var.gitlab_enable_runner_user_data_log
   enable_schedule                   = var.gitlab_enable_schedule
+  */
 
   enable_asg_recreation = var.gitlab_enable_asg_recreation
 
