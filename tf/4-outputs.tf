@@ -58,6 +58,17 @@ output "backup" {
 
 
 /*
+// Cognito outputs
+*/
+
+output "cognito" {
+  value = {
+    arn = module.aws_cognito_user_pool.arn
+    id  = module.aws_cognito_user_pool.id
+  }
+}
+
+/*
 // CodePipeline outputs
 */
 
