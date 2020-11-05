@@ -83,12 +83,12 @@ variable "backup_name" {
 
 variable "user_pool_name" {
   type        = string
-  description = ""
+  description = "The User Pool Name"
   default     = "userpool-name"
 }
 
 variable "cognito_alias_attributes" {
-  type        = list
+  type        = list(string)
   description = "Attributes supported as an alias for this user pool. Possible values: phone_number, email, or preferred_username. Conflicts with username_attributes"
   default = [
     "email",
@@ -97,23 +97,11 @@ variable "cognito_alias_attributes" {
 }
 
 variable "cognito_auto_verified_attributes" {
-  type        = list
+  type        = list(string)
   description = "The attributes to be auto-verified. Possible values: email, phone_number"
   default = [
     "email"
   ]
-}
-
-variable "cognito_admin_create_user_config" {
-  type        = map(any)
-  description = "The configuration for AdminCreateUser requests"
-  default     = {}
-}
-
-variable "cognito_email_configuration" {
-  type        = map(any)
-  description = "The Email Configuration"
-  default     = {}
 }
 
 variable "cognito_schemas" {

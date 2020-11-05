@@ -8,9 +8,11 @@ module "aws_cognito_user_pool" {
   alias_attributes         = var.cognito_alias_attributes
   auto_verified_attributes = var.cognito_auto_verified_attributes
 
-  admin_create_user_config = var.cognito_admin_create_user_config
+  # The configuration for AdminCreateUser requests
+  admin_create_user_config = {}
 
-  email_configuration = var.cognito_email_configuration
+  # The Email Configuration
+  email_configuration = {}
 
   password_policy = {
     minimum_length                   = 10
