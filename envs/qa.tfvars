@@ -18,6 +18,7 @@ ecr_name = "boilerplate"
 // -- EKS
 eks_cluster_name = "boilerplate"
 // -- ElastiCache
+redis_name = "boilerplate"
 // -- ElasticSearch
 // -- GuardDuty
 // -- Lambda
