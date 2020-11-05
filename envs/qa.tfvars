@@ -22,7 +22,7 @@ eks_cluster_name = "boilerplate"
 // -- GuardDuty
 // -- Lambda
 lambda_source = "./lambda_handlers/lambda.py"
-lambda_name = "test"
+lambda_name = "lambda_boilerplate"
 lambda_handler = "lambda.handler_test"
 lambda_runtime = "python3.8"
 // -- RDS
