@@ -8,9 +8,7 @@ module "aws_cognito_user_pool" {
   alias_attributes         = var.cognito_alias_attributes
   auto_verified_attributes = var.cognito_auto_verified_attributes
 
-  client_allowed_oauth_flows                  = []
-  client_allowed_oauth_flows_user_pool_client = true
-  client_allowed_oauth_scopes                 = []
+  client_allowed_oauth_flows_user_pool_client = false
 
   # The configuration for AdminCreateUser requests
   admin_create_user_config = {}
