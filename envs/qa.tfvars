@@ -11,6 +11,9 @@ cloudtrail_account_id = "394125495069"
 // -- CodeBuild
 // -- CodeCommit
 // -- CodePipeline
+// -- Cognito
+user_pool_name = "terraform-boilerplate"
+cognito_client_name = "terraform-boilerplate"
 // -- EC2
 ec2_name = "boilerplate"
 // -- ECR
@@ -18,11 +21,12 @@ ecr_name = "boilerplate"
 // -- EKS
 eks_cluster_name = "boilerplate"
 // -- ElastiCache
+redis_name = "boilerplate"
 // -- ElasticSearch
 // -- GuardDuty
 // -- Lambda
 lambda_source = "./lambda_handlers/lambda.py"
-lambda_name = "test"
+lambda_name = "lambda_boilerplate"
 lambda_handler = "lambda.handler_test"
 lambda_runtime = "python3.8"
 // -- RDS

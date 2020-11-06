@@ -118,6 +118,51 @@ variable "cloudtrail_account_id" {
 
 
 /*
+// Cognito variables
+*/
+
+variable "user_pool_name" {
+  type        = string
+  description = "The User Pool Name"
+  default     = "userpool-name"
+}
+
+variable "cognito_alias_attributes" {
+  type        = list(string)
+  description = "Attributes supported as an alias for this user pool. Possible values: phone_number, email, or preferred_username. Conflicts with username_attributes"
+  default = [
+    "email",
+    "phone_number"
+  ]
+}
+
+variable "cognito_auto_verified_attributes" {
+  type        = list(string)
+  description = "The attributes to be auto-verified. Possible values: email, phone_number"
+  default = [
+    "email"
+  ]
+}
+
+variable "cognito_schemas" {
+  type        = list(any)
+  description = "A container with the schema attributes of a user pool. Maximum of 50 attributes"
+  default     = []
+}
+
+variable "cognito_string_schemas" {
+  type        = list(any)
+  description = "A container with the string schema attributes of a user pool. Maximum of 50 attributes"
+  default     = []
+}
+
+variable "cognito_client_name" {
+  type        = string
+  description = "The name of the application client"
+  default     = "client-name"
+}
+
+/*
 // CodePipeline variables
 */
 
