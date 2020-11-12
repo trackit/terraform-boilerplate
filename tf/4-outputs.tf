@@ -57,7 +57,7 @@ output "cloudtrail" {
 output "codebuild" {
   value = {
     arn = module.codebuild.project_arn
-    id = module.codebuild.project_id
+    id  = module.codebuild.project_id
   }
 }
 
