@@ -57,7 +57,47 @@ variable "backup_name" {
 // CloudTrail variables
 */
 
+variable "cloudtrail_name" {
+  type        = string
+  description = "Solution name, e.g. 'app' or 'jenkins'"
+  default     = "app"
+}
 
+variable "cloudtrail_s3_name" {
+  type        = string
+  description = "S3 name, e.g. 'app' or 'jenkins'"
+  default     = "app"
+}
+
+variable "cloudtrail_log_file_validation" {
+  type        = bool
+  description = "Specifies whether log file integrity validation is enabled. Creates signed digest for validated contents of logs"
+  default     = true
+}
+
+variable "cloudtrail_include_global_service_events" {
+  type        = bool
+  description = "Specifies whether the trail is publishing events from global services such as IAM to the log files"
+  default     = true
+}
+
+variable "cloudtrail_is_multi_region_trail" {
+  type        = bool
+  description = "Specifies whether the trail is created in the current region or in all regions"
+  default     = false
+}
+
+variable "cloudtrail_enable_logging" {
+  type        = bool
+  description = "Enable logging for the trail"
+  default     = true
+}
+
+variable "cloudtrail_account_id" {
+  type        = string
+  description = "The account ID where the bucket S3"
+  default     = ""
+}
 
 /*
 // CodeBuild variables
@@ -123,6 +163,51 @@ variable "codebuild_build_type" {
 
 
 /*
+// Cognito variables
+*/
+
+variable "user_pool_name" {
+  type        = string
+  description = "The User Pool Name"
+  default     = "userpool-name"
+}
+
+variable "cognito_alias_attributes" {
+  type        = list(string)
+  description = "Attributes supported as an alias for this user pool. Possible values: phone_number, email, or preferred_username. Conflicts with username_attributes"
+  default = [
+    "email",
+    "phone_number"
+  ]
+}
+
+variable "cognito_auto_verified_attributes" {
+  type        = list(string)
+  description = "The attributes to be auto-verified. Possible values: email, phone_number"
+  default = [
+    "email"
+  ]
+}
+
+variable "cognito_schemas" {
+  type        = list(any)
+  description = "A container with the schema attributes of a user pool. Maximum of 50 attributes"
+  default     = []
+}
+
+variable "cognito_string_schemas" {
+  type        = list(any)
+  description = "A container with the string schema attributes of a user pool. Maximum of 50 attributes"
+  default     = []
+}
+
+variable "cognito_client_name" {
+  type        = string
+  description = "The name of the application client"
+  default     = "client-name"
+}
+
+/*
 // CodePipeline variables
 */
 
@@ -132,19 +217,109 @@ variable "codebuild_build_type" {
 // EC2 variables
 */
 
+variable "ec2_name" {
+  type        = string
+  description = "Name to be used on all resources as prefix"
+  default     = "test-ec2"
+}
 
+variable "ec2_instance_count" {
+  type        = number
+  description = "Number of instances to launch"
+  default     = 1
+}
+
+variable "ec2_ami" {
+  type        = string
+  description = "ID of AMI to use for the instance"
+  default     = "ami-0ff8a91507f77f867"
+}
+
+variable "ec2_instance_type" {
+  type        = string
+  description = "The type of instance to start"
+  default     = "t2.micro"
+}
+
+variable "ec2_key_name" {
+  type        = string
+  description = "The key name to use for the instance"
+  default     = ""
+}
+
+variable "monitoring" {
+  type        = bool
+  description = "If true, the launched EC2 instance will have detailed monitoring enabled"
+  default     = true
+}
 
 /*
 // ECR variables
 */
 
+variable "ecr_name" {
+  type        = string
+  description = "The Name of the application or solution (e.g. bastion or portal)"
+  default     = "ecr"
+}
 
+variable "ecr_attributes" {
+  type        = list(string)
+  description = "Additional attributes (e.g. policy or role)"
+  default     = []
+}
+
+variable "ecr_image_names" {
+  type        = list(string)
+  description = "List of Docker local image names, used as repository names for AWS ECR"
+  default     = []
+}
+
+variable "ecr_image_tag" {
+  type        = string
+  description = "The tag mutability setting for the repository. Must be one of: MUTABLE or IMMUTABLE"
+  default     = "MUTABLE"
+}
+
+variable "ecr_max_image" {
+  type        = number
+  description = "How many Docker Image versions AWS ECR will store"
+  default     = 500
+}
+
+variable "ecr_scan_images_on_push" {
+  type        = bool
+  description = "Indicates whether images are scanned after being pushed to the repository (true) or not (false)"
+  default     = false
+}
 
 /*
 // EKS variables
 */
 
+variable "eks_cluster_name" {
+  type        = string
+  description = "Name of your Kubernetes cluster"
+  default     = "kubernetes-cluster"
+}
 
+variable "eks_instance_type" {
+  type        = string
+  description = "Size of your cluster nodes"
+  default     = "m5.large"
+}
+
+variable "eks_asg_min_size" {
+  type        = number
+  description = "Min node count"
+  default     = 1
+}
+
+variable "eks_asg_max_size" {
+  type        = number
+  description = "Max node count"
+  default     = 1
+}
 
 /*
 // ElastiCache variables
@@ -477,13 +652,141 @@ variable "lambda_attach_ntw_policy" {
 // RDS variables
 */
 
+variable "rds_identifier" {
+  type        = string
+  description = "The name of the RDS instance, if omitted, Terraform will assign a random, unique identifier"
+  default     = "rds-boilerplate"
+}
 
+variable "rds_availability_zone" {
+  type        = string
+  description = "The Availability Zone of the RDS instance"
+  default     = "us-east-1a"
+}
+
+variable "rds_engine" {
+  type        = string
+  description = "The database engine to use"
+  default     = "mysql"
+}
+
+variable "rds_engine_version" {
+  type        = string
+  description = "The engine version to use"
+  default     = "5.7.19"
+}
+
+variable "rds_instance" {
+  type        = string
+  description = "The instance type of the RDS instance"
+  default     = "db.t2.large"
+}
+
+variable "rds_storage" {
+  type        = string
+  description = "One of 'standard' (magnetic), 'gp2' (general purpose SSD), or 'io1' (provisioned IOPS SSD). The default is 'io1' if iops is specified, 'standard' if not. Note that this behaviour is different from the AWS web console, where the default is 'gp2'."
+  default     = 5
+}
+
+variable "rds_name" {
+  type        = string
+  description = "The DB name to create. If omitted, no database is created initially"
+  default     = "demodb"
+}
+
+variable "rds_username" {
+  type        = string
+  description = "Username for the master DB user"
+  default     = "user"
+}
+
+variable "rds_password" {
+  type        = string
+  description = "Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file"
+  default     = "YourPwdShouldBeLongAndSecure!"
+}
+
+variable "rds_port" {
+  type        = string
+  description = "The port on which the DB accepts connections"
+  default     = "3306"
+}
+
+variable "rds_maintenance" {
+  type        = string
+  description = "The window to perform maintenance in. Syntax: 'ddd:hh24:mi-ddd:hh24:mi'. Eg: 'Mon:00:00-Mon:03:00'"
+  default     = "Mon:00:00-Mon:03:00"
+}
+
+variable "rds_backup" {
+  type        = string
+  description = "The daily time range (in UTC) during which automated backups are created if they are enabled. Example: '09:46-10:16'. Must not overlap with maintenance_window"
+  default     = "03:00-06:00"
+}
+
+variable "rds_monitoring_interval" {
+  type        = number
+  description = "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. The default is 0. Valid Values: 0, 1, 5, 10, 15, 30, 60."
+  default     = 0
+}
+
+variable "rds_monitoring_role_name" {
+  type        = string
+  description = "Name of the IAM role which will be created when create_monitoring_role is enabled."
+  default     = "MyRDSMonitoringRole"
+}
+
+variable "rds_monitoring_role_arn" {
+  type        = string
+  description = "The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Must be specified if monitoring_interval is non-zero."
+  default     = ""
+}
+
+variable "rds_family" {
+  type        = string
+  description = "The family of the DB parameter group"
+  default     = "mysql5.7"
+}
+
+variable "rds_major_engine_version" {
+  type        = string
+  description = "Specifies the major version of the engine that this option group should be associated with"
+  default     = "5.7"
+}
+
+variable "final_snapshot_identifier" {
+  type        = string
+  description = "The name of your final DB snapshot when this DB instance is deleted."
+  default     = "demodb"
+}
 
 /*
 // Route53 variables
 */
 
 
+
+/*
+// S3 variables
+*/
+
+variable "s3_name" {
+  type        = string
+  description = "Name of the bucket. If omitted, Terraform will assign a random, unique name."
+  default     = null
+}
+
+variable "s3_acl" {
+  type        = string
+  description = "ACL of the bucket."
+  default     = "private"
+}
+
+variable "s3_versioning" {
+  type        = bool
+  description = "Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket."
+  default     = false
+}
 
 /*
 // VPC variables

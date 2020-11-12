@@ -37,7 +37,18 @@ output "backup" {
 // CloudTrail outputs
 */
 
-
+output "cloudtrail" {
+  value = {
+    cloudtrail = {
+      id  = module.cloudtrail.cloudtrail_id
+      arn = module.cloudtrail.cloudtrail_arn
+    },
+    s3 = {
+      id  = module.cloudtrail_s3_bucket.bucket_id
+      arn = module.cloudtrail_s3_bucket.bucket_arn
+    }
+  }
+}
 
 /*
 // CodeBuild outputs
@@ -58,6 +69,17 @@ output "backup" {
 
 
 /*
+// Cognito outputs
+*/
+
+output "cognito" {
+  value = {
+    arn = module.aws_cognito_user_pool.arn
+    id  = module.aws_cognito_user_pool.id
+  }
+}
+
+/*
 // CodePipeline outputs
 */
 
@@ -67,19 +89,36 @@ output "backup" {
 // EC2 outputs
 */
 
-
+output "ec2" {
+  value = {
+    id  = module.ec2-instance.id
+    arn = module.ec2-instance.arn
+  }
+}
 
 /*
 // ECR outputs
 */
 
-
+output "ecr" {
+  value = {
+    id   = module.ecr.registry_id
+    arn  = module.ecr.repository_arn
+    name = module.ecr.repository_name
+  }
+}
 
 /*
 // EKS outputs
 */
 
-
+output "eks" {
+  value = {
+    id       = module.eks.cluster_id
+    arn      = module.eks.cluster_arn
+    endpoint = module.eks.cluster_endpoint
+  }
+}
 
 /*
 // ElastiCache outputs
@@ -118,13 +157,42 @@ output "lambda" {
 // RDS outputs
 */
 
-
+output "rds" {
+  value = {
+    id  = module.rds.this_db_instance_id
+    arn = module.rds.this_db_instance_arn
+  }
+}
 
 /*
 // Route53 outputs
 */
 
+/*
+output "route53" {
+  value = {
+    record = {
+      id   = aws_route53_record.record.id
+      name = aws_route53_record.record.name
+    },
+    zone = {
+      id   = aws_route53_zone.primary_zone.id
+      name = aws_route53_zone.primary_zone.name
+    }
+  }
+}
+*/
 
+/*
+// S3 outputs
+*/
+
+output "s3" {
+  value = {
+    id  = module.s3.this_s3_bucket_id
+    arn = module.s3.this_s3_bucket_arn
+  }
+}
 
 /*
 // VPC outputs
