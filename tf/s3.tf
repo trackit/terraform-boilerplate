@@ -14,8 +14,7 @@ module "s3" {
   block_public_acls   = true
   block_public_policy = true
 
-  attach_policy = true
-  policy        = data.aws_iam_policy_document.s3.json
+  attach_policy = false
 
   versioning = {
     enabled = var.s3_versioning
@@ -53,9 +52,6 @@ module "s3" {
   }]
 
   tags = local.tags
-}
-
-data "aws_iam_policy_document" "s3" {
 }
 
 ##### S3 Objects
