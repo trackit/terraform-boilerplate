@@ -440,7 +440,7 @@ variable "emr_visible_to_all_users" {
 variable "emr_release_label" {
   type        = string
   description = "The release label for the Amazon EMR release. "  
-  default = "emr-5.31.0"
+  default = "emr-6.2.0"
 }
 
 variable "emr_applications" {
@@ -459,7 +459,7 @@ variable "emr_configurations_json" {
 variable "emr_core_instance_group_instance_type" {
   type        = string
   description = "EC2 instance type for all instances in the Core instance group"  
-  default = "on-demand"
+  default = "m4.large"
 }
 
 variable "emr_core_instance_group_instance_count" {
@@ -489,7 +489,7 @@ variable "emr_core_instance_group_ebs_volumes_per_instance" {
 variable "emr_master_instance_group_instance_type" {
   type        = string
   description = "EC2 instance type for all instances in the Master instance group"  
-  default = "t2.micro"
+  default = "m4.large"
 }
 
 variable "emr_master_instance_group_instance_count" {

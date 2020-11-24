@@ -23,6 +23,8 @@ eks_cluster_name = "boilerplate"
 // -- ElastiCache
 redis_name = "boilerplate"
 // -- ElasticSearch
+// -- EMR
+emr_name = "boilerplate"
 // -- GuardDuty
 // -- Lambda
 lambda_source = "./lambda_handlers/lambda.py"
