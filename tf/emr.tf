@@ -1,3 +1,4 @@
+/*
 module "emr_cluster" {
   source                                         = "git::https://github.com/cloudposse/terraform-aws-emr-cluster.git?ref=tags/0.15.0"
   
@@ -36,8 +37,9 @@ module "emr_cluster" {
 
 
   create_task_instance_group                     = var.emr_create_task_instance_group
-  log_uri                                        = format("s3n://%s/", module.s3.this_s3_bucket_id)
+  //log_uri                                        = format("s3n://%s/", module.s3.this_s3_bucket_id)
   key_name                                       = var.emr_aws_key_pair_name
 
   tags = local.tags
 }
+*/
