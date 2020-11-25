@@ -54,6 +54,7 @@ Here are the services that you can deploy using this repository:
 - [AWS EKS](./tf/eks.tf)
 - [AWS VPC](./tf/vpc.tf)
 - [AWS Lambda](./tf/lambda.tf)
+- [AWS EMR](./tf/emr.tf)
 
 ## Author
 
