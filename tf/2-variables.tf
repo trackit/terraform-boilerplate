@@ -20,6 +20,12 @@ variable "tags" {
   default     = {}
 }
 
+variable "account_id" {
+  type        = string
+  description = "The AWS Account ID"
+  default     = ""
+}
+
 /*
 // ACM variables
 */
@@ -246,6 +252,64 @@ variable "ecr_scan_images_on_push" {
   type        = bool
   description = "Indicates whether images are scanned after being pushed to the repository (true) or not (false)"
   default     = false
+}
+
+/*
+// ECS variables
+*/
+
+variable "ecs_role_name" {
+  type        = string
+  description = "The name of the task assume role"
+  default     = "ecs-task-role-boilerplate"
+}
+
+variable "ecs_container_memory" {
+  type        = number
+  description = "The amount of memory (in MiB) to allow the container to use. This is a hard limit, if the container attempts to exceed the container_memory, the container is killed. This field is optional for Fargate launch type and the total amount of container_memory of all containers in a task will need to be lower than the task memory value"
+  default     = null
+}
+
+variable "ecs_task_cpu" {
+  type        = number
+  description = "The CPU of the task definition"
+  default     = 512
+}
+
+variable "ecs_task_family" {
+  type        = string
+  description = "Name of the family"
+  default     = "ecs-task-boilerplate"
+}
+
+variable "ecs_container_name" {
+  type        = string
+  description = "Name of the ECS container"
+  default     = "app"
+}
+
+variable "ecs_execution_role_name" {
+  type        = string
+  description = "Name of the execution role"
+  default     = "EcsExecutionRole"
+}
+
+variable "ecs_cluster_name" {
+  type        = string
+  description = "Name of the ECS Cluster"
+  default     = "ecs-cluster-boilerplate"
+}
+
+variable "ecs_service_name" {
+  type        = string
+  description = "Name of the ECS Service"
+  default     = "ecs-service-boilerplate"
+}
+
+variable "ecs_schedule_expression" {
+  type        = string
+  description = "The schedule expression for automatic triggered. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions"
+  default     = "rate(7 days)"
 }
 
 /*
@@ -719,7 +783,15 @@ variable "final_snapshot_identifier" {
 // Route53 variables
 */
 
+/*
+// SNS variables
+*/
 
+variable "sns_name" {
+  type        = string
+  description = "Name of the SNS Topic"
+  default     = "sns-boilerplate"
+}
 
 /*
 // S3 variables
