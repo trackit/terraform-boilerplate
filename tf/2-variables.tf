@@ -410,7 +410,125 @@ variable "redis_use_existing_security_groups" {
 // ElasticSearch variables
 */
 
+/*
+//  Amazon EMR variables
+*/
+variable "emr_name" {
+  type        = string
+  description = "Name of the Amazon EMR App"  
+}
 
+variable "emr_namespace" {
+  type        = string
+  description = "Namespace, which could be your organization name or abbreviation, e.g. 'eg' or 'cp'"  
+  default = "company"
+}
+
+variable "emr_ebs_root_volume_size" {
+  type        = number
+  description = "Size in GiB of the EBS root device volume of the Linux AMI that is used for each EC2 instance. Available in Amazon EMR version 4.x and later"  
+  default = 10
+}
+
+variable "emr_visible_to_all_users" {
+  type        = bool
+  description = "Whether the job flow is visible to all IAM users of the AWS account associated with the job flow"  
+  default = true
+}
+
+# https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-release-5x.html
+variable "emr_release_label" {
+  type        = string
+  description = "The release label for the Amazon EMR release. "  
+  default = "emr-6.2.0"
+}
+
+variable "emr_applications" {
+  type        = list(string)
+  description = "A list of applications for the cluster. Valid values are: Flink, Ganglia, Hadoop, HBase, HCatalog, Hive, Hue, JupyterHub, Livy, Mahout, MXNet, Oozie, Phoenix, Pig, Presto, Spark, Sqoop, TensorFlow, Tez, Zeppelin, and ZooKeeper (as of EMR 5.25.0). Case insensitive"  
+  default = ["Hadoop"]
+}
+
+# More details https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-configure-apps.html
+variable "emr_configurations_json" {
+  type        = string
+  description = "A JSON string for supplying list of configurations for the EMR cluster."  
+  default = ""
+}
+
+variable "emr_core_instance_group_instance_type" {
+  type        = string
+  description = "EC2 instance type for all instances in the Core instance group"  
+  default = "m4.large"
+}
+
+variable "emr_core_instance_group_instance_count" {
+  type        = number
+  description = "Target number of instances for the Core instance group. Must be at least 1"
+  default = 1
+}
+
+variable "emr_core_instance_group_ebs_size" {
+  type        = number
+  description = "Core instances volume size, in gibibytes (GiB)"  
+  default = 64
+}
+
+variable "emr_core_instance_group_ebs_type" {
+  type        = string
+  description = "Core instances volume type. Valid options are gp2, io1, standard and st1"  
+  default = "standard"
+}
+
+variable "emr_core_instance_group_ebs_volumes_per_instance" {
+  type        = number
+  description = "The number of EBS volumes with this configuration to attach to each EC2 instance in the Core instance group"  
+  default = 1
+}
+
+variable "emr_master_instance_group_instance_type" {
+  type        = string
+  description = "EC2 instance type for all instances in the Master instance group"  
+  default = "m4.large"
+}
+
+variable "emr_master_instance_group_instance_count" {
+  type        = number
+  description = "Target number of instances for the Master instance group. Must be at least 1"  
+  default = 1
+}
+
+variable "emr_master_instance_group_ebs_size" {
+  type        = number
+  description = "Master instances volume size, in gibibytes (GiB)"  
+  default = 10
+}
+
+variable "emr_master_instance_group_ebs_type" {
+  type        = string
+  description = "Master instances volume type. Valid options are gp2, io1, standard and st1"  
+  default = "standard"
+}
+
+variable "emr_master_instance_group_ebs_volumes_per_instance" {
+  type        = number
+  description = "The number of EBS volumes with this configuration to attach to each EC2 instance in the Master instance group"  
+  default = 1
+}
+
+# https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-master-core-task-nodes.html
+# https://www.terraform.io/docs/providers/aws/r/emr_instance_group.html
+variable "emr_create_task_instance_group" {
+  type        = bool
+  description = "Whether to create an instance group for Task nodes."  
+  default = false
+}
+
+variable "emr_aws_key_pair_name" {
+  type        = string
+  description = "Amazon EC2 key pair that can be used to ssh to the master node as the user called hadoop"
+  default     = null
+}
 
 /*
 // GuardDuty variables
