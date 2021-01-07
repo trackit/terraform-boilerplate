@@ -136,9 +136,9 @@ output "redis" {
 
 output "elasticsearch" {
   value = {
-    id = module.elasticsearch.domain_id
+    id   = module.elasticsearch.domain_id
     name = module.elasticsearch.domain_name
-    arn = module.elasticsearch.domain_arn
+    arn  = module.elasticsearch.domain_arn
   }
 }
 
