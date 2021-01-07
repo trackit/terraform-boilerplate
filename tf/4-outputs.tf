@@ -49,7 +49,18 @@ output "cloudfront" {
 // CloudTrail outputs
 */
 
-
+output "cloudtrail" {
+  value = {
+    cloudtrail = {
+      id  = module.cloudtrail.cloudtrail_id
+      arn = module.cloudtrail.cloudtrail_arn
+    },
+    s3 = {
+      id  = module.cloudtrail_s3_bucket.bucket_id
+      arn = module.cloudtrail_s3_bucket.bucket_arn
+    }
+  }
+}
 
 /*
 // CodeBuild outputs
@@ -68,6 +79,17 @@ output "cloudfront" {
 */
 
 
+
+/*
+// Cognito outputs
+*/
+
+output "cognito" {
+  value = {
+    arn = module.aws_cognito_user_pool.arn
+    id  = module.aws_cognito_user_pool.id
+  }
+}
 
 /*
 // CodePipeline outputs
@@ -172,6 +194,17 @@ output "route53" {
   }
 }
 */
+
+/*
+// S3 outputs
+*/
+
+output "s3" {
+  value = {
+    id  = module.s3.this_s3_bucket_id
+    arn = module.s3.this_s3_bucket_arn
+  }
+}
 
 /*
 // VPC outputs

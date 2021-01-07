@@ -134,7 +134,47 @@ variable "cdn_acm_method" {
 // CloudTrail variables
 */
 
+variable "cloudtrail_name" {
+  type        = string
+  description = "Solution name, e.g. 'app' or 'jenkins'"
+  default     = "app"
+}
 
+variable "cloudtrail_s3_name" {
+  type        = string
+  description = "S3 name, e.g. 'app' or 'jenkins'"
+  default     = "app"
+}
+
+variable "cloudtrail_log_file_validation" {
+  type        = bool
+  description = "Specifies whether log file integrity validation is enabled. Creates signed digest for validated contents of logs"
+  default     = true
+}
+
+variable "cloudtrail_include_global_service_events" {
+  type        = bool
+  description = "Specifies whether the trail is publishing events from global services such as IAM to the log files"
+  default     = true
+}
+
+variable "cloudtrail_is_multi_region_trail" {
+  type        = bool
+  description = "Specifies whether the trail is created in the current region or in all regions"
+  default     = false
+}
+
+variable "cloudtrail_enable_logging" {
+  type        = bool
+  description = "Enable logging for the trail"
+  default     = true
+}
+
+variable "cloudtrail_account_id" {
+  type        = string
+  description = "The account ID where the bucket S3"
+  default     = ""
+}
 
 /*
 // CodeBuild variables
@@ -153,6 +193,51 @@ variable "cdn_acm_method" {
 */
 
 
+
+/*
+// Cognito variables
+*/
+
+variable "user_pool_name" {
+  type        = string
+  description = "The User Pool Name"
+  default     = "userpool-name"
+}
+
+variable "cognito_alias_attributes" {
+  type        = list(string)
+  description = "Attributes supported as an alias for this user pool. Possible values: phone_number, email, or preferred_username. Conflicts with username_attributes"
+  default = [
+    "email",
+    "phone_number"
+  ]
+}
+
+variable "cognito_auto_verified_attributes" {
+  type        = list(string)
+  description = "The attributes to be auto-verified. Possible values: email, phone_number"
+  default = [
+    "email"
+  ]
+}
+
+variable "cognito_schemas" {
+  type        = list(any)
+  description = "A container with the schema attributes of a user pool. Maximum of 50 attributes"
+  default     = []
+}
+
+variable "cognito_string_schemas" {
+  type        = list(any)
+  description = "A container with the string schema attributes of a user pool. Maximum of 50 attributes"
+  default     = []
+}
+
+variable "cognito_client_name" {
+  type        = string
+  description = "The name of the application client"
+  default     = "client-name"
+}
 
 /*
 // CodePipeline variables
@@ -712,6 +797,28 @@ variable "final_snapshot_identifier" {
 */
 
 
+
+/*
+// S3 variables
+*/
+
+variable "s3_name" {
+  type        = string
+  description = "Name of the bucket. If omitted, Terraform will assign a random, unique name."
+  default     = null
+}
+
+variable "s3_acl" {
+  type        = string
+  description = "ACL of the bucket."
+  default     = "private"
+}
+
+variable "s3_versioning" {
+  type        = bool
+  description = "Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket."
+  default     = false
+}
 
 /*
 // VPC variables
