@@ -15,7 +15,7 @@ module "s3" {
   block_public_policy = true
 
   attach_policy = true
-  policy        = data.aws_iam_policy_document.s3.json
+  #policy        = data.aws_iam_policy_document.s3.json
 
   versioning = {
     enabled = var.s3_versioning
