@@ -9,12 +9,12 @@ module "s3" {
   ## https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/dev/acl-overview.html#canned-acl
   acl = var.s3_acl
   ## Indicates if all objects will be deleted from the bucket so that the bucket can be destroyed without error
-  force_destroy = false
+  force_destroy = true
 
   block_public_acls   = true
   block_public_policy = true
 
-  attach_policy = true
+  #attach_policy = true
   #policy        = data.aws_iam_policy_document.s3.json
 
   versioning = {
