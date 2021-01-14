@@ -1,4 +1,3 @@
-account_id = "394125495069"
 // -- ACM
 // -- ALB
 // -- AutoScalling
