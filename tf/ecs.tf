@@ -46,6 +46,7 @@ resource "aws_ecs_task_definition" "task" {
   network_mode             = "awsvpc"
   cpu                      = var.ecs_task_cpu
   memory                   = var.ecs_container_memory
+  tags = local.tags
 }
 
 resource "aws_ecs_service" "service" {
@@ -59,6 +60,7 @@ resource "aws_ecs_service" "service" {
     security_groups  = [module.vpc.default_security_group_id]
   }
   launch_type = "FARGATE"
+  tags = local.tags
 }
 
 resource "aws_cloudwatch_event_rule" "scheduled_task" {
@@ -68,6 +70,7 @@ resource "aws_cloudwatch_event_rule" "scheduled_task" {
   ## See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions
   schedule_expression = var.ecs_schedule_expression
   is_enabled          = true
+  tags = local.tags
 }
 
 resource "aws_cloudwatch_event_target" "scheduled_task" {
