@@ -112,7 +112,7 @@ variable "cloudtrail_account_id" {
 
 
 /*
-// CodeDeploy variables
+// CodeDeploy ECS variables
 */
 
 
