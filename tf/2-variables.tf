@@ -115,7 +115,16 @@ variable "cloudtrail_account_id" {
 // CodeDeploy ECS variables
 */
 
+variable "codedeploy_ecs_app_name" {
+  type        = string
+  description = "Name of Cdedeploy ressource"
+  default     = "codedeploy"
+}
 
+variable "codedeploy_ecs_s3_bucket_arn" {
+  type        = string
+  description = "The S3 bucket arn, the CodePipeline one."
+}
 
 /*
 // Cognito variables
