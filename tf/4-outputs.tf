@@ -109,6 +109,46 @@ output "ecr" {
 }
 
 /*
+// ECS outputs
+*/
+
+output "ecs_task_definition" {
+  value = {
+    id  = aws_ecs_task_definition.task.id
+    arn = aws_ecs_task_definition.task.arn
+  }
+}
+
+output "ecs_service" {
+  value = {
+    id              = aws_ecs_service.service.id
+    name            = aws_ecs_service.service.name
+    security_groups = aws_ecs_service.service.network_configuration[0].security_groups
+    subnets         = aws_ecs_service.service.network_configuration[0].subnets
+  }
+}
+
+output "ecs_cluster" {
+  value = {
+    id   = aws_ecs_cluster.cluster.id
+    arn  = aws_ecs_cluster.cluster.arn
+    name = aws_ecs_cluster.cluster.name
+  }
+}
+
+output "ecs_execution_role" {
+  value = {
+    arn = aws_iam_role.ecs_execution_role.arn
+  }
+}
+
+output "ecs_task_role" {
+  value = {
+    arn = aws_iam_role.task_role.arn
+  }
+}
+
+/*
 // EKS outputs
 */
 
@@ -182,6 +222,17 @@ output "route53" {
   }
 }
 */
+
+/*
+// SNS outputs
+*/
+
+output "sns" {
+  value = {
+    id  = aws_sns_topic.sns_topic.id
+    arn = aws_sns_topic.sns_topic.arn
+  }
+}
 
 /*
 // S3 outputs

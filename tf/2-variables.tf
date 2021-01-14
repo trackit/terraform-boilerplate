@@ -249,6 +249,82 @@ variable "ecr_scan_images_on_push" {
 }
 
 /*
+// ECS variables
+*/
+
+variable "ecs_role_name" {
+  type        = string
+  description = "The name of the task assume role"
+  default     = "ecs-task-role-boilerplate"
+}
+
+variable "ecs_container_memory" {
+  type        = number
+  description = "The amount of memory (in MiB) to allow the container to use. This is a hard limit, if the container attempts to exceed the container_memory, the container is killed. This field is optional for Fargate launch type and the total amount of container_memory of all containers in a task will need to be lower than the task memory value"
+  default     = null
+}
+
+variable "ecs_task_cpu" {
+  type        = number
+  description = "The CPU of the task definition"
+  default     = 512
+}
+
+variable "ecs_task_family" {
+  type        = string
+  description = "Name of the family"
+  default     = "ecs-task-boilerplate"
+}
+
+variable "ecs_container_name" {
+  type        = string
+  description = "Name of the ECS container"
+  default     = "app"
+}
+
+variable "ecs_execution_role_name" {
+  type        = string
+  description = "Name of the execution role"
+  default     = "EcsExecutionRole"
+}
+
+variable "ecs_cluster_name" {
+  type        = string
+  description = "Name of the ECS Cluster"
+  default     = "ecs-cluster-boilerplate"
+}
+
+variable "ecs_service_name" {
+  type        = string
+  description = "Name of the ECS Service"
+  default     = "ecs-service-boilerplate"
+}
+
+variable "ecs_schedule_expression" {
+  type        = string
+  description = "The schedule expression for automatic triggered. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions"
+  default     = "rate(7 days)"
+}
+
+variable "ecs_enable_scheduling" {
+  type        = bool
+  description = "Enable ECS scheduling with cloudwatch"
+  default     = true
+}
+
+variable "ecs_task_role_policies" {
+  type        = list(string)
+  description = "List of policy ARNs to attached to the task role"
+  default     = []
+}
+
+variable "ecs_execution_role_policies" {
+  type        = list(string)
+  description = "List of policy ARNs to attached to the execution role"
+  default     = []
+}
+
+/*
 // EKS variables
 */
 
@@ -719,7 +795,15 @@ variable "final_snapshot_identifier" {
 // Route53 variables
 */
 
+/*
+// SNS variables
+*/
 
+variable "sns_name" {
+  type        = string
+  description = "Name of the SNS Topic"
+  default     = "sns-boilerplate"
+}
 
 /*
 // S3 variables

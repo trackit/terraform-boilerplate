@@ -18,3 +18,5 @@ provider "kubernetes" {
   load_config_file       = false
   version                = "~> 1.9"
 }
+
+data "aws_caller_identity" "current" {}
