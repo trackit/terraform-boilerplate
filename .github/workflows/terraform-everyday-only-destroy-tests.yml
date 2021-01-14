@@ -1,7 +1,9 @@
 name: 'Terraform-QA-Destroy-Everything-Manually'
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - 'fix-github-actions'
 
 jobs:
   terraform:
