@@ -1,0 +1,43 @@
+name: 'Terraform-QA-Destroy-Everything-Manually'
+
+on:
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    name: 'Terraform QA Destroy Everything Manually'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.13.5
+
+    - name: Terraform Init
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: terraform version && terraform init
+      working-directory: tf
+
+    - name: Terraform Destroy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      if: always()
+      run: |
+        for ws in $(terraform workspace list | grep 'refs-')
+        do
+          terraform workspace select $ws
+          terraform init
+          terraform destroy -auto-approve -var-file ../envs/qa.tfvars
+        done
+      working-directory: tf
