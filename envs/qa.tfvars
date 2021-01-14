@@ -28,6 +28,7 @@ ecs_execution_role_name = "BoilerplateECSExecutionRole"
 ecs_cluster_name = "ecs-cluster-boilerplate"
 ecs_service_name = "ecs-service-boilerplate"
 ecs_schedule_expression = "rate(7 days)"
+enable_ecs_scheduling = true
 // -- EKS
 eks_cluster_name = "boilerplate"
 // -- ElastiCache

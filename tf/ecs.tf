@@ -62,7 +62,8 @@ resource "aws_ecs_service" "service" {
 }
 
 resource "aws_cloudwatch_event_rule" "scheduled_task" {
-  name = "ecs-service-rule"
+  count = var.enable_ecs_scheduling ? 1 : 0
+  name  = "ecs-service-rule"
 
   # See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions
   schedule_expression = var.ecs_schedule_expression
@@ -70,6 +71,7 @@ resource "aws_cloudwatch_event_rule" "scheduled_task" {
 }
 
 resource "aws_cloudwatch_event_target" "scheduled_task" {
+  count     = var.enable_ecs_scheduling ? 1 : 0
   target_id = "ecs-service-target"
   rule      = aws_cloudwatch_event_rule.scheduled_task.name
   arn       = aws_ecs_cluster.cluster.arn
