@@ -39,7 +39,7 @@ jobs:
         do
           terraform workspace select $ws
           terraform init
-          terraform destroy -auto-approve -var-file ../envs/qa.tfvars
+          terraform destroy -auto-approve -var-file ../envs/qa.tfvars || true
         done
       continue-on-error: true
       working-directory: tf
