@@ -41,5 +41,5 @@ jobs:
           terraform init
           terraform destroy -auto-approve -var-file ../envs/qa.tfvars
         done
+      if: always()
       working-directory: tf
-      continue-on-error: true
