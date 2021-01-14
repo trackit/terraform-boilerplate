@@ -2,7 +2,7 @@ resource "aws_ecs_cluster" "cluster" {
   name = var.ecs_cluster_name
 }
 
-# https://github.com/cloudposse/terraform-aws-ecs-container-definition
+# https://github.com/cloudposse/terraform-aws-ecs-container-definition/tree/0.44.0
 module "ecs-container-definition" {
   source  = "cloudposse/ecs-container-definition/aws"
   version = "0.44.0"
@@ -35,12 +35,12 @@ resource "aws_ecs_task_definition" "task" {
   container_definitions = module.ecs-container-definition.json_map_encoded_list
   family                = var.ecs_task_family
 
-  # TaskRoleArn
-  # SecurityAudit - The one needed to be created (see: https://github.com/trackit/devops-project-management/issues/9)
+  ## TaskRoleArn
+  ## SecurityAudit - The one needed to be created (see: https://github.com/trackit/devops-project-management/issues/9)
   task_role_arn = aws_iam_role.task_role.arn
 
-  # ExecutionRoleArn
-  # ECR Access Role
+  ## ExecutionRoleArn
+  ## ECR Access Role
   execution_role_arn       = aws_iam_role.ecs_execution_role.arn
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
@@ -65,7 +65,7 @@ resource "aws_cloudwatch_event_rule" "scheduled_task" {
   count = var.enable_ecs_scheduling ? 1 : 0
   name  = "ecs-service-rule"
 
-  # See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions
+  ## See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions
   schedule_expression = var.ecs_schedule_expression
   is_enabled          = true
 }
