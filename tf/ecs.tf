@@ -46,7 +46,7 @@ resource "aws_ecs_task_definition" "task" {
   network_mode             = "awsvpc"
   cpu                      = var.ecs_task_cpu
   memory                   = var.ecs_container_memory
-  tags = local.tags
+  tags                     = local.tags
 }
 
 resource "aws_ecs_service" "service" {
@@ -60,7 +60,7 @@ resource "aws_ecs_service" "service" {
     security_groups  = [module.vpc.default_security_group_id]
   }
   launch_type = "FARGATE"
-  tags = local.tags
+  tags        = local.tags
 }
 
 resource "aws_cloudwatch_event_rule" "scheduled_task" {
@@ -70,7 +70,7 @@ resource "aws_cloudwatch_event_rule" "scheduled_task" {
   ## See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions
   schedule_expression = var.ecs_schedule_expression
   is_enabled          = true
-  tags = local.tags
+  tags                = local.tags
 }
 
 resource "aws_cloudwatch_event_target" "scheduled_task" {
@@ -266,41 +266,41 @@ resource "aws_iam_role_policy_attachment" "execution_role_attached_policy" {
 
 # AWS IAM Role and Policy for cloudwatch
 resource "aws_iam_role" "scheduled_task_cloudwatch" {
-  name               = "ecs-cloudwatch-role"
+  name = "ecs-cloudwatch-role"
   assume_role_policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        Action: "sts:AssumeRole",
-        Principal: {
-          Service: "events.amazonaws.com"
+        Action : "sts:AssumeRole",
+        Principal : {
+          Service : "events.amazonaws.com"
         },
-        Effect: "Allow",
-        Sid: ""
+        Effect : "Allow",
+        Sid : ""
       }
     ]
   })
 }
 
 resource "aws_iam_role_policy" "scheduled_task_cloudwatch_policy" {
-  name   = "ecs-cloudwatch-policy"
-  role   = aws_iam_role.scheduled_task_cloudwatch.id
+  name = "ecs-cloudwatch-policy"
+  role = aws_iam_role.scheduled_task_cloudwatch.id
   policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        Effect: "Allow",
-        Action: [
+        Effect : "Allow",
+        Action : [
           "ecs:RunTask"
         ],
-        Resource: [
+        Resource : [
           replace(aws_ecs_task_definition.task.arn, "/:\\d+$/", ":*")
         ]
       },
       {
-        Effect: "Allow",
-        Action: "iam:PassRole",
-        Resource: [
+        Effect : "Allow",
+        Action : "iam:PassRole",
+        Resource : [
           "*"
         ]
       }
