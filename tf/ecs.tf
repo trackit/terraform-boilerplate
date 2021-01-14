@@ -1,5 +1,7 @@
 resource "aws_ecs_cluster" "cluster" {
   name = var.ecs_cluster_name
+
+  tags = local.tags
 }
 
 # https://github.com/cloudposse/terraform-aws-ecs-container-definition/tree/0.44.0
@@ -46,7 +48,8 @@ resource "aws_ecs_task_definition" "task" {
   network_mode             = "awsvpc"
   cpu                      = var.ecs_task_cpu
   memory                   = var.ecs_container_memory
-  tags                     = local.tags
+
+  tags = local.tags
 }
 
 resource "aws_ecs_service" "service" {
@@ -60,7 +63,8 @@ resource "aws_ecs_service" "service" {
     security_groups  = [module.vpc.default_security_group_id]
   }
   launch_type = "FARGATE"
-  tags        = local.tags
+
+  tags = local.tags
 }
 
 resource "aws_cloudwatch_event_rule" "scheduled_task" {
@@ -108,6 +112,8 @@ resource "aws_iam_role" "ecs_execution_role" {
       }
     ]
   })
+
+  tags = local.tags
 }
 
 resource "aws_iam_policy" "access_logs_policy" {
@@ -280,6 +286,8 @@ resource "aws_iam_role" "scheduled_task_cloudwatch" {
       }
     ]
   })
+
+  tags = local.tags
 }
 
 resource "aws_iam_role_policy" "scheduled_task_cloudwatch_policy" {
