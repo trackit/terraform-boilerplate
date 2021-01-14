@@ -1,9 +1,9 @@
 name: 'Terraform-QA-Only-Destroy-Everyday'
 
 on:
+  workflow_dispatch
   schedule:
     - cron: '42 0 * * *'
-  workflow_dispatch:
 
 jobs:
   terraform:
