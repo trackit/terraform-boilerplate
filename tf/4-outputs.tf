@@ -136,6 +136,18 @@ output "ecs_cluster" {
   }
 }
 
+output "ecs_execution_role" {
+  value = {
+    arn = aws_iam_role.ecs_execution_role.arn
+  }
+}
+
+output "ecs_task_role" {
+  value = {
+    arn = aws_iam_role.task_role.arn
+  }
+}
+
 /*
 // EKS outputs
 */
