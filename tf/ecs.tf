@@ -267,47 +267,43 @@ resource "aws_iam_role_policy_attachment" "execution_role_attached_policy" {
 # AWS IAM Role and Policy for cloudwatch
 resource "aws_iam_role" "scheduled_task_cloudwatch" {
   name               = "ecs-cloudwatch-role"
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "events.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-EOF
+  assume_role_policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        Action: "sts:AssumeRole",
+        Principal: {
+          Service: "events.amazonaws.com"
+        },
+        Effect: "Allow",
+        Sid: ""
+      }
+    ]
+  })
 }
 
 resource "aws_iam_role_policy" "scheduled_task_cloudwatch_policy" {
   name   = "ecs-cloudwatch-policy"
   role   = aws_iam_role.scheduled_task_cloudwatch.id
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ecs:RunTask"
-      ],
-      "Resource": [
-        "${replace(aws_ecs_task_definition.task.arn, "/:\\d+$/", ":*")}"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": "iam:PassRole",
-      "Resource": [
-        "*"
-      ]
-    }
-  ]
-}
-EOF
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        Effect: "Allow",
+        Action: [
+          "ecs:RunTask"
+        ],
+        Resource: [
+          replace(aws_ecs_task_definition.task.arn, "/:\\d+$/", ":*")
+        ]
+      },
+      {
+        Effect: "Allow",
+        Action: "iam:PassRole",
+        Resource: [
+          "*"
+        ]
+      }
+    ]
+  })
 }
