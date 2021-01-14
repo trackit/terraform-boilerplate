@@ -186,7 +186,7 @@ resource "aws_iam_role" "task_role" {
   tags = local.tags
 }
 
-resource "aws_iam_policy" "policy" {
+resource "aws_iam_policy" "task_role_policy" {
   policy = jsonencode({
     "Version" = "2012-10-17",
     "Statement" = [
@@ -246,7 +246,7 @@ resource "aws_iam_policy" "policy" {
 
 resource "aws_iam_role_policy_attachment" "attached_policy" {
   role       = aws_iam_role.task_role.name
-  policy_arn = aws_iam_policy.policy.arn
+  policy_arn = aws_iam_policy.task_role_policy.arn
 }
 
 resource "aws_iam_role_policy_attachment" "task_role_attached_policy" {
