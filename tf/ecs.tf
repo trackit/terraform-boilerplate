@@ -210,7 +210,7 @@ resource "aws_iam_policy" "task_role_policy" {
         Sid      = "VisualEditor1",
         Effect   = "Allow",
         Action   = "sts:AssumeRole",
-        Resource = "arn:aws:iam::${var.account_id}:role/${var.ecs_role_name}"
+        Resource = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/${var.ecs_role_name}"
       },
       {
         Sid    = "VisualEditor2",
