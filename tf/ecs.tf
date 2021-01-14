@@ -68,7 +68,7 @@ resource "aws_ecs_service" "service" {
 }
 
 resource "aws_cloudwatch_event_rule" "scheduled_task" {
-  count = var.enable_ecs_scheduling ? 1 : 0
+  count = var.ecs_enable_scheduling ? 1 : 0
   name  = "ecs-service-rule"
 
   ## See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions
@@ -78,7 +78,7 @@ resource "aws_cloudwatch_event_rule" "scheduled_task" {
 }
 
 resource "aws_cloudwatch_event_target" "scheduled_task" {
-  count     = var.enable_ecs_scheduling ? 1 : 0
+  count     = var.ecs_enable_scheduling ? 1 : 0
   target_id = "ecs-service-target"
   rule      = aws_cloudwatch_event_rule.scheduled_task[0].name
   arn       = aws_ecs_cluster.cluster.arn
@@ -274,15 +274,15 @@ resource "aws_iam_role_policy_attachment" "execution_role_attached_policy" {
 resource "aws_iam_role" "scheduled_task_cloudwatch" {
   name = "ecs-cloudwatch-role"
   assume_role_policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
+    Version = "2012-10-17",
+    Statement = [
       {
-        Action : "sts:AssumeRole",
-        Principal : {
-          Service : "events.amazonaws.com"
+        Action = "sts:AssumeRole",
+        Principal = {
+          Service = "events.amazonaws.com"
         },
-        Effect : "Allow",
-        Sid : ""
+        Effect = "Allow",
+        Sid    = ""
       }
     ]
   })
@@ -294,21 +294,21 @@ resource "aws_iam_role_policy" "scheduled_task_cloudwatch_policy" {
   name = "ecs-cloudwatch-policy"
   role = aws_iam_role.scheduled_task_cloudwatch.id
   policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
+    Version = "2012-10-17",
+    Statement = [
       {
-        Effect : "Allow",
-        Action : [
+        Effect = "Allow",
+        Action = [
           "ecs:RunTask"
         ],
-        Resource : [
+        Resource = [
           replace(aws_ecs_task_definition.task.arn, "/:\\d+$/", ":*")
         ]
       },
       {
-        Effect : "Allow",
-        Action : "iam:PassRole",
-        Resource : [
+        Effect = "Allow",
+        Action = "iam:PassRole",
+        Resource = [
           "*"
         ]
       }

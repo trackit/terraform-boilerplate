@@ -306,7 +306,7 @@ variable "ecs_schedule_expression" {
   default     = "rate(7 days)"
 }
 
-variable "enable_ecs_scheduling" {
+variable "ecs_enable_scheduling" {
   type        = bool
   description = "Enable ECS scheduling with cloudwatch"
   default     = true
