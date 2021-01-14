@@ -318,6 +318,18 @@ variable "enable_ecs_scheduling" {
   default     = true
 }
 
+variable "ecs_task_role_policies" {
+  type        = list(string)
+  description = "List of policy ARNs to attached to the task role"
+  default     = null
+}
+
+variable "ecs_execution_role_policies" {
+  type        = list(string)
+  description = "List of policy ARNs to attached to the execution role"
+  default     = null
+}
+
 /*
 // EKS variables
 */

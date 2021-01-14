@@ -249,6 +249,18 @@ resource "aws_iam_role_policy_attachment" "attached_policy" {
   policy_arn = aws_iam_policy.policy.arn
 }
 
+resource "aws_iam_role_policy_attachment" "task_role_attached_policy" {
+  count      = length(var.ecs_task_role_policies)
+  policy_arn = var.ecs_task_role_policies[count.index]
+  role       = aws_iam_role.task_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "execution_role_attached_policy" {
+  count      = length(var.ecs_execution_role_policies)
+  policy_arn = var.ecs_execution_role_policies[count.index]
+  role       = aws_iam_role.ecs_execution_role.name
+}
+
 # AWS IAM Role and Policy for cloudwatch
 resource "aws_iam_role" "scheduled_task_cloudwatch" {
   name               = "ecs-cloudwatch-role"
