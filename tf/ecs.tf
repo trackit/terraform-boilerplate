@@ -73,7 +73,7 @@ resource "aws_cloudwatch_event_rule" "scheduled_task" {
 resource "aws_cloudwatch_event_target" "scheduled_task" {
   count     = var.enable_ecs_scheduling ? 1 : 0
   target_id = "ecs-service-target"
-  rule      = aws_cloudwatch_event_rule.scheduled_task.name
+  rule      = aws_cloudwatch_event_rule.scheduled_task[1].name
   arn       = aws_ecs_cluster.cluster.arn
   role_arn  = aws_iam_role.scheduled_task_cloudwatch.arn
 
