@@ -34,10 +34,10 @@ module "cdn" {
     }
   }
 
-  # The map of cache behaviors for this distribution.
-  # Key default will be used as the default cache behavior, all other keys will be used as ordered list of cache behaviors.
-  # List from top to bottom in order of precedence.
-  # The topmost cache behavior will have precedence 0.
+  ## The map of cache behaviors for this distribution.
+  ## Key default will be used as the default cache behavior, all other keys will be used as ordered list of cache behaviors.
+  ## List from top to bottom in order of precedence.
+  ## The topmost cache behavior will have precedence 0.
   cache_behavior = {
     target_origin_id       = "something"
     viewer_protocol_policy = "allow-all"
