@@ -14,15 +14,9 @@ module "cdn" {
   wait_for_deployment = var.cdn_wait_for_deployment
 
   create_origin_access_identity = var.cdn_create_origin_access_identity
+  origin_access_identities      = {}
 
-  origin_access_identities = {
-    s3_bucket_one = module.s3.this_s3_bucket_arn
-  }
-
-  ## The logging configuration that controls how logs are written to your distribution (maximum one).
-  logging_config = {
-    bucket = module.s3.this_s3_bucket_bucket_domain_name
-  }
+  logging_config = {}
 
   ## One or more origins for this distribution (multiples allowed).
   origin = {
@@ -44,7 +38,7 @@ module "cdn" {
   ## List from top to bottom in order of precedence.
   ## The topmost cache behavior will have precedence 0.
   cache_behavior = {
-    target_origin_id       = module.s3.this_s3_bucket_id
+    target_origin_id       = "something"
     viewer_protocol_policy = "allow-all"
 
     allowed_methods = [
@@ -72,9 +66,9 @@ resource "aws_acm_certificate" "cert" {
   domain_name       = var.cdn_acm_domain_name
   validation_method = var.cdn_acm_method
 
+  tags = local.tags
+
   lifecycle {
     create_before_destroy = true
   }
-
-  tags = local.tags
 }
