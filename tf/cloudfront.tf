@@ -16,9 +16,10 @@ module "cdn" {
   create_origin_access_identity = var.cdn_create_origin_access_identity
   origin_access_identities      = var.cdn_origin_access_identities
 
-  logging_config = var.cdn_logging_config
+  ## The logging configuration that controls how logs are written to your distribution (maximum one).
+  logging_config = {}
 
-  # One or more origins for this distribution (multiples allowed).
+  ## One or more origins for this distribution (multiples allowed).
   origin = {
     something = {
       domain_name = "something.example.com"
@@ -66,9 +67,9 @@ resource "aws_acm_certificate" "cert" {
   domain_name       = var.cdn_acm_domain_name
   validation_method = var.cdn_acm_method
 
-  tags = local.tags
-
   lifecycle {
     create_before_destroy = true
   }
+
+  tags = local.tags
 }

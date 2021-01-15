@@ -112,12 +112,6 @@ variable "cdn_origin_access_identities" {
   default     = {}
 }
 
-variable "cdn_logging_config" {
-  type        = any
-  description = "The logging configuration that controls how logs are written to your distribution (maximum one)."
-  default     = {}
-}
-
 variable "cdn_acm_domain_name" {
   type        = string
   description = "Domain name of the acm certificate."
