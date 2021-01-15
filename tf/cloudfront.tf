@@ -14,7 +14,9 @@ module "cdn" {
   wait_for_deployment = var.cdn_wait_for_deployment
 
   create_origin_access_identity = var.cdn_create_origin_access_identity
-  origin_access_identities      = {}
+  origin_access_identities = {
+    s3_bucket_one = "My awesome CloudFront can access"
+  }
 
   logging_config = {}
 
@@ -38,20 +40,33 @@ module "cdn" {
   ## List from top to bottom in order of precedence.
   ## The topmost cache behavior will have precedence 0.
   cache_behavior = {
-    target_origin_id       = "S3OriginConfig"
-    viewer_protocol_policy = "allow-all"
+    default = {
+      target_origin_id       = "something"
+      viewer_protocol_policy = "allow-all"
 
-    allowed_methods = [
-      "GET",
-      "HEAD",
-      "OPTIONS"
-    ]
-    cached_methods = [
-      "GET",
-      "HEAD"
-    ]
-    compress     = true
-    query_string = true
+      allowed_methods = ["GET", "HEAD", "OPTIONS"]
+      cached_methods  = ["GET", "HEAD"]
+      compress        = true
+      query_string    = true
+    }
+
+    s3 = {
+      path_pattern           = "/static/*"
+      target_origin_id       = "s3_one"
+      viewer_protocol_policy = "redirect-to-https"
+
+      allowed_methods = ["GET", "HEAD", "OPTIONS"]
+      cached_methods  = ["GET", "HEAD"]
+      compress        = true
+      query_string    = true
+    }
+  }
+
+  s3_one = {
+    domain_name = module.s3_one.this_s3_bucket_bucket_regional_domain_name
+    s3_origin_config = {
+      origin_access_identity = "s3_bucket_one" # key in `origin_access_identities`
+    }
   }
 
   viewer_certificate = {
@@ -71,4 +86,11 @@ resource "aws_acm_certificate" "cert" {
   lifecycle {
     create_before_destroy = true
   }
+}
+
+module "s3_one" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+
+  bucket        = "cdn-terraform-boilerplate"
+  force_destroy = true
 }
