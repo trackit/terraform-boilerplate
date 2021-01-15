@@ -14,10 +14,15 @@ module "cdn" {
   wait_for_deployment = var.cdn_wait_for_deployment
 
   create_origin_access_identity = var.cdn_create_origin_access_identity
-  origin_access_identities      = var.cdn_origin_access_identities
+
+  origin_access_identities = {
+    s3_bucket_one = module.s3.this_s3_bucket_arn
+  }
 
   ## The logging configuration that controls how logs are written to your distribution (maximum one).
-  logging_config = {}
+  logging_config = {
+    bucket = module.s3.this_s3_bucket_bucket_domain_name
+  }
 
   ## One or more origins for this distribution (multiples allowed).
   origin = {
@@ -39,7 +44,7 @@ module "cdn" {
   ## List from top to bottom in order of precedence.
   ## The topmost cache behavior will have precedence 0.
   cache_behavior = {
-    target_origin_id       = "something"
+    target_origin_id       = module.s3.this_s3_bucket_id
     viewer_protocol_policy = "allow-all"
 
     allowed_methods = [

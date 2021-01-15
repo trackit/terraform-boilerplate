@@ -106,12 +106,6 @@ variable "cdn_create_origin_access_identity" {
   default     = false
 }
 
-variable "cdn_origin_access_identities" {
-  type        = map(string)
-  description = "Map of CloudFront origin access identities (value as a comment)"
-  default     = {}
-}
-
 variable "cdn_acm_domain_name" {
   type        = string
   description = "Domain name of the acm certificate."
