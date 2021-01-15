@@ -21,7 +21,7 @@ module "cdn" {
   ## One or more origins for this distribution (multiples allowed).
   origin = {
     something = {
-      domain_name = "something.example.com"
+      domain_name = module.s3.this_s3_bucket_bucket_regional_domain_name
       custom_origin_config = {
         http_port              = 80
         https_port             = 443
@@ -38,7 +38,7 @@ module "cdn" {
   ## List from top to bottom in order of precedence.
   ## The topmost cache behavior will have precedence 0.
   cache_behavior = {
-    target_origin_id       = "something"
+    target_origin_id       = "S3OriginConfig"
     viewer_protocol_policy = "allow-all"
 
     allowed_methods = [
