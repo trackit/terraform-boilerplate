@@ -57,6 +57,12 @@ resource "aws_ecs_service" "service" {
   cluster         = aws_ecs_cluster.cluster.id
   task_definition = aws_ecs_task_definition.task.arn
 
+  #load_balancer {
+  #  target_group_arn = aws_lb_target_group.this.0.arn
+  #  container_name   = var.container_name
+  #  container_port   = var.container_port
+  #}
+
   network_configuration {
     subnets          = module.vpc.private_subnets
     assign_public_ip = true

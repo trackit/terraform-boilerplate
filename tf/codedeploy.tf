@@ -1,3 +1,151 @@
+resource "aws_security_group" "http" {
+  name   = "${var.codedeploy_ecs_app_name}-alb-allow-http"
+  vpc_id = module.vpc.vpc_id
+
+  ingress {
+    from_port   = 80
+    protocol    = "tcp"
+    to_port     = 80
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    protocol    = "-1"
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = local.tags
+}
+
+resource "aws_security_group" "https" {
+  name   = "${var.codedeploy_ecs_app_name}-alb-allow-https"
+  vpc_id = module.vpc.vpc_id
+
+  ingress {
+    from_port   = 443
+    protocol    = "tcp"
+    to_port     = 443
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    protocol    = "-1"
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = local.tags
+}
+
+resource "aws_lb" "alb" {
+  name               = "${var.codedeploy_ecs_app_name}-alb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.http.id, aws_security_group.https.id]
+  subnets            = module.vpc.public_subnets
+
+  tags = local.tags
+}
+
+locals {
+  target_groups = [
+    "green",
+    "blue",
+  ]
+}
+
+resource "aws_lb_target_group" "alb_target_groups" {
+  count = length(local.target_groups)
+
+  name = "${var.codedeploy_ecs_app_name}-alb-${element(local.target_groups, count.index)}"
+
+  port        = var.codedeploy_ecs_container_port
+  protocol    = "HTTP"
+  vpc_id      = module.vpc.vpc_id
+  target_type = "ip"
+
+  health_check {
+    path    = var.codedeploy_ecs_alb_healthcheck_route
+    port    = var.codedeploy_ecs_container_port
+    matcher = var.codedeploy_ecs_alb_healthcheck_matcher
+  }
+
+  tags = local.tags
+}
+
+resource "aws_lb_listener" "http" {
+  load_balancer_arn = aws_lb.alb.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb_target_groups.*.arn[0]
+  }
+
+  lifecycle {
+    ignore_changes = [default_action]
+  }
+}
+
+resource "aws_lb_listener_rule" "http" {
+  listener_arn = aws_lb_listener.http.arn
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb_target_groups.*.arn[0]
+  }
+
+  lifecycle {
+    ignore_changes = [action]
+  }
+
+  condition {
+    path_pattern {
+      values = ["/*"]
+    }
+  }
+}
+
+resource "aws_lb_listener" "https" {
+  load_balancer_arn = aws_lb.alb.arn
+  port              = "443"
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = var.codedeploy_ecs_alb_https_acm_cert_arn
+
+  lifecycle {
+    ignore_changes = [default_action]
+  }
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb_target_groups.*.arn[0]
+  }
+}
+
+resource "aws_lb_listener_rule" "https" {
+  listener_arn = aws_lb_listener.https.arn
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb_target_groups.*.arn[0]
+  }
+
+  lifecycle {
+    ignore_changes = [action]
+  }
+
+  condition {
+    path_pattern {
+      values = ["/*"]
+    }
+  }
+}
+
 resource "aws_codedeploy_app" "codedeploy-ecs" {
   compute_platform = "ECS"
   name             = var.codedeploy_ecs_app_name
@@ -32,19 +180,19 @@ resource "aws_codedeploy_deployment_group" "codedeploy-ecs" {
   load_balancer_info {
     target_group_pair_info {
       prod_traffic_route {
-        listener_arns = [var.codedeploy_ecs_lb_listener_arn]
+        listener_arns = [aws_lb_listener.http.arn, aws_lb_listener.https, arn]
       }
 
       ## Blue
 
       target_group {
-        name = var.codedeploy_ecs_lb_target_group_names[0]
+        name = aws_lb_target_group.alb_target_groups.*.name[0]
       }
 
       ## Green
 
       target_group {
-        name = var.codedeploy_ecs_lb_target_group_names[1]
+        name = aws_lb_target_group.alb_target_groups.*.name[1]
       }
     }
   }
