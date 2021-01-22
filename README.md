@@ -2,7 +2,6 @@
   <img width="600" height="136" src="https://i.imgur.com/7miBcAA.png">
 </p>
 
-<h1 style="text-align: center">👋 Welcome to terraform-boilerplate!</h1>
 <p align="center">
     <a href="https://github.com/trackit/terraform-boilerplate/actions">
         <img src="https://github.com/trackit/terraform-boilerplate/workflows/Terraform/badge.svg">
@@ -10,6 +9,8 @@
     <img src="https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github">
     <img src="https://www.repostatus.org/badges/latest/active.svg">
 </p>
+
+<h1 align="center">👋 Welcome to terraform-boilerplate!</h1>
 
 > Terraform boilerplate is a repository aiming to help DevOps to deploy infrastructure on AWS
 
