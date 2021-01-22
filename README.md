@@ -8,6 +8,7 @@
         <img src="https://github.com/trackit/terraform-boilerplate/workflows/Terraform/badge.svg">
     </a>
     <img src="https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github">
+    <img src="https://www.repostatus.org/badges/latest/active.svg">
 </p>
 
 > Terraform boilerplate is a repository aiming to help DevOps to deploy infrastructure on AWS
