@@ -58,7 +58,7 @@ resource "aws_ecs_service" "service" {
   task_definition = aws_ecs_task_definition.task.arn
 
   #load_balancer {
-  #  target_group_arn = aws_lb_target_group.this.0.arn
+  #  target_group_arn = aws_lb_target_group.alb_target_groups.*.arn[0]
   #  container_name   = var.container_name
   #  container_port   = var.container_port
   #}
