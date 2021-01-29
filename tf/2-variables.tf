@@ -445,20 +445,6 @@ variable "gitlab_runners_url" {
   default     = ""
 }
 
-variable "gitlab_runner_registration_config" {
-  type        = map(string)
-  description = "Configuration used to register the runner. See the README for an example, or reference the examples in the examples directory of this repo."
-  default = {
-    "access_level" : "",
-    "description" : "",
-    "locked_to_project" : "",
-    "maximum_timeout" : "",
-    "registration_token" : "",
-    "run_untagged" : "",
-    "tag_list" : ""
-  }
-}
-
 variable "gitlab_agent_tags" {
   type        = map(string)
   description = "Map of tags that will be added to agent EC2 instances."
@@ -641,6 +627,18 @@ variable "gitlab_arn_format" {
   type        = string
   description = "ARN format to be used. May be changed to support deployment in GovCloud/China regions."
   default     = ""
+}
+
+variable "gitlab_runner_token" {
+  type        = string
+  description = "The registration token given by gitlab for runner"
+  default     = ""
+}
+
+variable "gitlab_runner_description" {
+  type        = string
+  description = "Description of the runner"
+  default     = "Basic description"
 }
 
 /*

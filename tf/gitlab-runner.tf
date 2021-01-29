@@ -1,4 +1,4 @@
-# https://registry.terraform.io/modules/npalm/gitlab-runner/aws/4.19.0
+# https://registry.terraform.io/modules/npalm/gitlab-runner/aws/4.21.0
 
 resource "local_file" "public_ssh_key" {
   filename = var.gitlab_public_ssh_key_file
@@ -6,7 +6,7 @@ resource "local_file" "public_ssh_key" {
 
 module "runner" {
   source  = "npalm/gitlab-runner/aws"
-  version = "~> 4.19.0"
+  version = "~> 4.21.0"
 
   aws_region  = var.region
   aws_zone    = var.gitlab_aws_zone
@@ -19,8 +19,16 @@ module "runner" {
   runners_name       = var.gitlab_runners_name
   runners_gitlab_url = var.gitlab_runners_url
 
-  gitlab_runner_registration_config = var.gitlab_runner_registration_config
-  agent_tags                        = var.gitlab_agent_tags
+  gitlab_runner_registration_config = {
+    registration_token = var.gitlab_runner_token
+    description        = var.gitlab_runner_description
+    tag_list           = ""
+    locked_to_project  = "true"
+    run_untagged       = "false"
+    maximum_timeout    = "3600"
+    access_level       = "not_protected"
+  }
+  agent_tags = var.gitlab_agent_tags
 
   #cache_bucket = var.gitlab_cache_bucket
   #cache_bucket_name_include_account_id = var.gitlab_cache_bucket_name_include_account_id
