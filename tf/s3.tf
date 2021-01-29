@@ -9,13 +9,13 @@ module "s3" {
   ## https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/dev/acl-overview.html#canned-acl
   acl = var.s3_acl
   ## Indicates if all objects will be deleted from the bucket so that the bucket can be destroyed without error
-  force_destroy = false
+  force_destroy = true
 
   block_public_acls   = true
   block_public_policy = true
 
-  attach_policy = true
-  policy        = data.aws_iam_policy_document.s3.json
+  #attach_policy = true
+  #policy        = data.aws_iam_policy_document.s3.json
 
   versioning = {
     enabled = var.s3_versioning
@@ -55,8 +55,8 @@ module "s3" {
   tags = local.tags
 }
 
-data "aws_iam_policy_document" "s3" {
-}
+#data "aws_iam_policy_document" "s3" {
+#}
 
 ##### S3 Objects
 ## https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object
@@ -84,13 +84,13 @@ resource "aws_s3_bucket_object" "file" {
 ## https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_notification
 
 ## Lambda on file upload
-resource "aws_s3_bucket_notification" "s3_lambda_on_upload" {
-  bucket = module.s3.this_s3_bucket_id
-
-  lambda_function {
-    lambda_function_arn = module.lambda_function.this_lambda_function_arn
-    events              = ["s3:ObjectCreated:*"]
-    filter_prefix       = "input/"
-    filter_suffix       = ".zip"
-  }
-}
+#resource "aws_s3_bucket_notification" "s3_lambda_on_upload" {
+#  bucket = module.s3.this_s3_bucket_id
+#
+#  lambda_function {
+#    lambda_function_arn = module.lambda_function.this_lambda_function_arn
+#    events              = ["s3:ObjectCreated:*"]
+#    filter_prefix       = "input/"
+#    filter_suffix       = ".zip"
+#  }
+#}
