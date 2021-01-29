@@ -16,7 +16,7 @@ module "cdn" {
 
   name = "app"
   #aliases          = ["assets.cloudposse.com"]
-  parent_zone_id       = aws_s3_bucket.b.hosted_zone_id
+  #parent_zone_id       = aws_s3_bucket.b.hosted_zone_id
   origin_bucket        = aws_s3_bucket.b.bucket
   origin_force_destroy = true
 
