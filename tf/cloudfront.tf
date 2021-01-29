@@ -15,14 +15,12 @@ module "cdn" {
   version = "0.44.0"
 
   name = "app"
+
   #aliases          = ["assets.cloudposse.com"]
   #parent_zone_id       = aws_s3_bucket.b.hosted_zone_id
+
   origin_bucket        = aws_s3_bucket.b.bucket
   origin_force_destroy = true
 
   tags = local.tags
-}
-
-locals {
-  s3_origin_id = "myS3Origin"
 }

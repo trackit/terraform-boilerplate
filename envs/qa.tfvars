@@ -42,5 +42,7 @@ lambda_runtime = "python3.8"
 // -- RDS
 rds_name = "boilerplate"
 // -- Route53
+// -- S3
+s3_name = "tf-boilerplate-trackit"
 // -- VPC
 vpc_name = "boilerplate"
