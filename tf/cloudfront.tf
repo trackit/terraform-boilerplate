@@ -33,12 +33,6 @@ module "cdn" {
         ]
       }
     }
-    s3_one = {
-      domain_name = module.s3_one.this_s3_bucket_bucket_regional_domain_name
-      s3_origin_config = {
-        origin_access_identity = "s3_bucket_one" # key in `origin_access_identities`
-      }
-    }
   }
 
   ## The map of cache behaviors for this distribution.
