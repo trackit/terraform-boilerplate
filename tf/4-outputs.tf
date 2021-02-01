@@ -54,7 +54,12 @@ output "cloudtrail" {
 // CodeBuild outputs
 */
 
-
+output "codebuild" {
+  value = {
+    arn = module.codebuild.project_arn
+    id  = module.codebuild.project_id
+  }
+}
 
 /*
 // CodeCommit outputs
