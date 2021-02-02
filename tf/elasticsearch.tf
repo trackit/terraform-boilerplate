@@ -28,5 +28,7 @@ module "elasticsearch" {
   kibana_subdomain_name   = var.es_kibana_subdomain
   kibana_hostname_enabled = var.es_kibana_hostname_enabled
 
+  create_iam_service_linked_role = false
+
   tags = local.tags
 }
