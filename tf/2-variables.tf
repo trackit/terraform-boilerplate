@@ -449,6 +449,7 @@ variable "redis_auth_token" {
 variable "redis_dns_subdomain" {
   type        = string
   description = "The subdomain to use for the CNAME record. If not provided then the CNAME record will use var.name."
+  default     = "d"
 }
 
 variable "elasticache_subnet_group_name" {
