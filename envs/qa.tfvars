@@ -7,7 +7,7 @@ backup_name = "tf-boilerplate-qa"
 // -- CloudTrail
 cloudtrail_name = "boilerplate"
 cloudtrail_s3_name = "boilerplate-cloudtrail"
-cloudtrail_account_id = ""
+cloudtrail_account_id = "394125495069"
 // -- CodeBuild
 codebuild_name = "tf-boilerplate-qa"
 github_token = ""
@@ -38,7 +38,7 @@ redis_name = "boilerplate"
 // -- Gitlab Runner
 gitlab_public_ssh_key_file = "./gitlab_runner/public_ssh_key"
 gitlab_runners_url = "https://gitlab.com/"
-gitlab_runner_token = "6HpZYhi_6gtyy61TaTfx"
+gitlab_runner_token = ""
 // -- GuardDuty
 // -- Lambda
 lambda_source = "./lambda_handlers/lambda.py"

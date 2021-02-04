@@ -57,7 +57,6 @@ module "runner" {
   #enable_runner_ssm_access          = var.gitlab_enable_runner_ssm_access
   enable_runner_user_data_trace_log = var.gitlab_enable_runner_user_data_log
   enable_schedule                   = var.gitlab_enable_schedule
-  */
 
   enable_asg_recreation = var.gitlab_enable_asg_recreation
 
@@ -66,6 +65,7 @@ module "runner" {
   ami_owners                             = var.gitlab_ami_owners
 
   arn_format = var.gitlab_arn_format
+  */
 
   tags = local.tags
 }
