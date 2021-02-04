@@ -103,7 +103,52 @@ variable "cloudtrail_account_id" {
 // CodeBuild variables
 */
 
+variable "codebuild_name" {
+  type        = string
+  description = "Name of codebuild module"
+  default     = ""
+}
 
+variable "codebuild_image" {
+  type        = string
+  description = "Build container_image"
+  default     = "aws/codebuild/standard:2.0"
+}
+
+variable "codebuild_compute_type" {
+  type        = string
+  description = "Instance type for build"
+  default     = "BUILD_GENERAL1_SMALL"
+}
+
+variable "codebuild_timeout" {
+  type        = number
+  description = "Timeout build time in minutes"
+  default     = 60
+}
+
+variable "codebuild_privileged_mode" {
+  type        = bool
+  description = "Enables docker daemon inside docker container of the instance"
+  default     = true
+}
+
+variable "codebuild_artifact_type" {
+  type        = string
+  description = "Build output artifact type: CODEPIPELINE, NO_ARTIFACTS or S3"
+  default     = "CODEPIPELINE"
+}
+
+variable "github_token" {
+  type        = string
+  description = "Github token to use for retrieving repository"
+}
+
+variable "codebuild_build_type" {
+  type        = string
+  description = "Build environment type, either LINUX_CONTAINER or WINDOWS_CONTAINER"
+  default     = "LINUX_CONTAINER"
+}
 
 /*
 // CodeCommit variables
@@ -246,6 +291,82 @@ variable "ecr_scan_images_on_push" {
   type        = bool
   description = "Indicates whether images are scanned after being pushed to the repository (true) or not (false)"
   default     = false
+}
+
+/*
+// ECS variables
+*/
+
+variable "ecs_role_name" {
+  type        = string
+  description = "The name of the task assume role"
+  default     = "ecs-task-role-boilerplate"
+}
+
+variable "ecs_container_memory" {
+  type        = number
+  description = "The amount of memory (in MiB) to allow the container to use. This is a hard limit, if the container attempts to exceed the container_memory, the container is killed. This field is optional for Fargate launch type and the total amount of container_memory of all containers in a task will need to be lower than the task memory value"
+  default     = null
+}
+
+variable "ecs_task_cpu" {
+  type        = number
+  description = "The CPU of the task definition"
+  default     = 512
+}
+
+variable "ecs_task_family" {
+  type        = string
+  description = "Name of the family"
+  default     = "ecs-task-boilerplate"
+}
+
+variable "ecs_container_name" {
+  type        = string
+  description = "Name of the ECS container"
+  default     = "app"
+}
+
+variable "ecs_execution_role_name" {
+  type        = string
+  description = "Name of the execution role"
+  default     = "EcsExecutionRole"
+}
+
+variable "ecs_cluster_name" {
+  type        = string
+  description = "Name of the ECS Cluster"
+  default     = "ecs-cluster-boilerplate"
+}
+
+variable "ecs_service_name" {
+  type        = string
+  description = "Name of the ECS Service"
+  default     = "ecs-service-boilerplate"
+}
+
+variable "ecs_schedule_expression" {
+  type        = string
+  description = "The schedule expression for automatic triggered. See https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions"
+  default     = "rate(7 days)"
+}
+
+variable "ecs_enable_scheduling" {
+  type        = bool
+  description = "Enable ECS scheduling with cloudwatch"
+  default     = true
+}
+
+variable "ecs_task_role_policies" {
+  type        = list(string)
+  description = "List of policy ARNs to attached to the task role"
+  default     = []
+}
+
+variable "ecs_execution_role_policies" {
+  type        = list(string)
+  description = "List of policy ARNs to attached to the execution role"
+  default     = []
 }
 
 /*
@@ -948,7 +1069,15 @@ variable "final_snapshot_identifier" {
 // Route53 variables
 */
 
+/*
+// SNS variables
+*/
 
+variable "sns_name" {
+  type        = string
+  description = "Name of the SNS Topic"
+  default     = "sns-boilerplate"
+}
 
 /*
 // S3 variables
