@@ -3,14 +3,14 @@
 resource "aws_security_group" "alb_security_group" {
   name        = "alb-security-group"
   description = "Allow TLS inbound traffic"
-  vpc_id      = module.vpc.default_vpc_id
+  vpc_id      = module.vpc.vpc_id
 
   ingress {
     description = "TLS from VPC"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = [module.vpc.default_vpc_cidr_block]
+    cidr_blocks = [module.vpc.vpc_cidr_block]
   }
 
   ingress {
@@ -18,7 +18,7 @@ resource "aws_security_group" "alb_security_group" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [module.vpc.default_vpc_cidr_block]
+    cidr_blocks = [module.vpc.vpc_cidr_block]
   }
 
   egress {
