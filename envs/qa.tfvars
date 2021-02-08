@@ -33,7 +33,7 @@ eks_cluster_name = "boilerplate"
 // -- ElastiCache
 redis_name = "boilerplate"
 // -- ElasticSearch
-es_name = "boilerplate"
+es_name = "boilerplate-es"
 // -- GuardDuty
 // -- Lambda
 lambda_source = "./lambda_handlers/lambda.py"
