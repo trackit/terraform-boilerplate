@@ -4,7 +4,7 @@ module "elasticsearch" {
   source = "git::https://github.com/cloudposse/terraform-aws-elasticsearch.git?ref=0.24.1"
   name   = var.es_name
 
-  dns_zone_id     = var.es_dns_zone_id
+  dns_zone_id w= var.es_dns_zone_id
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
