@@ -8,7 +8,7 @@ module "elasticsearch" {
   security_groups = [module.vpc.default_security_group_id]
 
   vpc_id     = module.vpc.vpc_id
-  subnet_ids = module.vpc.private_subnets
+  subnet_ids = [module.vpc.private_subnets[0]]
 
   zone_awareness_enabled = var.es_zone_awareness
 

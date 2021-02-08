@@ -501,7 +501,7 @@ variable "es_dns_zone_id" {
 variable "es_zone_awareness" {
   type        = bool
   description = "Enabled zone awareness or not."
-  default     = true
+  default     = false
 }
 
 variable "es_version" {
