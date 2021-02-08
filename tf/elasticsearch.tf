@@ -5,7 +5,6 @@ module "elasticsearch" {
   name   = var.es_name
 
   dns_zone_id     = var.es_dns_zone_id
-  security_groups = [module.vpc.default_security_group_id]
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
