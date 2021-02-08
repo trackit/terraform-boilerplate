@@ -549,7 +549,7 @@ variable "es_iam_allowed_actions" {
 variable "es_encrypt_at_rest" {
   type        = bool
   description = "Whether to activate encryption at rest."
-  default     = true
+  default     = false
 }
 
 variable "es_kibana_subdomain" {
