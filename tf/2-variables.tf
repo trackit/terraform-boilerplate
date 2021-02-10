@@ -157,10 +157,41 @@ variable "codebuild_build_type" {
 
 
 /*
-// CodeDeploy variables
+// CodeDeploy ECS variables
 */
 
+variable "codedeploy_ecs_app_name" {
+  type        = string
+  description = "Name of Cdedeploy ressource"
+  default     = "codedeploy"
+}
 
+variable "codedeploy_ecs_s3_bucket_arn" {
+  type        = string
+  description = "The S3 bucket arn, the CodePipeline one."
+}
+
+variable "codedeploy_ecs_alb_https_acm_cert_arn" {
+  type        = string
+  description = "Certificate ARN for HTTPS."
+}
+
+variable "codedeploy_ecs_container_port" {
+  type        = number
+  description = "The container port that will be used by the ALB."
+}
+
+variable "codedeploy_ecs_alb_healthcheck_matcher" {
+  type        = string
+  description = "The status to get to consider that the container is running."
+  default     = "200"
+}
+
+variable "codedeploy_ecs_alb_healthcheck_route" {
+  type        = string
+  description = "The route to send request for healthcheck."
+  default     = "/"
+}
 
 /*
 // Cognito variables
