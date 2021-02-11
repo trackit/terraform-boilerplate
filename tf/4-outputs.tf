@@ -179,7 +179,13 @@ output "redis" {
 // ElasticSearch outputs
 */
 
-
+output "elasticsearch" {
+  value = {
+    id   = module.elasticsearch.domain_id
+    name = module.elasticsearch.domain_name
+    arn  = module.elasticsearch.domain_arn
+  }
+}
 
 /*
 // GitlabRunner outputs

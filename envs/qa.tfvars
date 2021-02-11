@@ -35,6 +35,7 @@ eks_cluster_name = "boilerplate"
 // -- ElastiCache
 redis_name = "boilerplate"
 // -- ElasticSearch
+es_name = "boilerplate-es"
 // -- Gitlab Runner
 gitlab_public_ssh_key_file = "./gitlab_runner/public_ssh_key"
 gitlab_runners_url = "https://gitlab.com/"
