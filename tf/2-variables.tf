@@ -27,19 +27,7 @@ variable "tags" {
 variable "acm_domain_name" {
   type        = string
   description = "A domain name for which the certificate should be issued"
-  default     = ""
-}
-
-variable "acm_subject_alternative_names" {
-  type        = list(string)
-  description = "A list of domains that should be SANs in the issued certificate"
-  default     = []
-}
-
-variable "acm_create_cert" {
-  type        = bool
-  description = "Whether to create ACM certificate"
-  default     = true
+  default     = "acm.trackit.boilerplate.internal"
 }
 
 /*

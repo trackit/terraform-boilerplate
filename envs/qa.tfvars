@@ -1,5 +1,5 @@
 // -- ACM
-acm_domain_name = "boilerplate-example.com"
+acm_domain_name = "acm.trackit.boilerplate.internal"
 // -- ALB
 // -- AutoScalling
 // -- Backup
