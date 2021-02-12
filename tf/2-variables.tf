@@ -54,6 +54,16 @@ variable "backup_name" {
 
 
 /*
+// CloudFront variables
+*/
+
+variable "cdn_bucket_name" {
+  type        = string
+  description = "The bucket name for CDN"
+  default     = "tf-boilerplate-cloudfront-bucket"
+}
+
+/*
 // CloudTrail variables
 */
 

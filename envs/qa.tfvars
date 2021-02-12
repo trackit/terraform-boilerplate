@@ -4,6 +4,8 @@
 // -- Backup
 backup_name = "tf-boilerplate-qa"
 // -- Client VPN
+// -- CloudFront
+cdn_bucket_name = "tf-boilerplate-cloudfront-bucket"
 // -- CloudTrail
 cloudtrail_name = "boilerplate"
 cloudtrail_s3_name = "boilerplate-cloudtrail"
@@ -45,5 +47,7 @@ lambda_runtime = "python3.8"
 // -- RDS
 rds_name = "boilerplate"
 // -- Route53
+// -- S3
+s3_name = "tf-boilerplate-trackit"
 // -- VPC
 vpc_name = "boilerplate"
