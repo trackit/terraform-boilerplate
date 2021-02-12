@@ -9,6 +9,8 @@ cloudtrail_name = "boilerplate"
 cloudtrail_s3_name = "boilerplate-cloudtrail"
 cloudtrail_account_id = "394125495069"
 // -- CodeBuild
+codebuild_name = "tf-boilerplate-qa"
+github_token = ""
 // -- CodeCommit
 // -- CodePipeline
 // -- Cognito
@@ -33,6 +35,7 @@ eks_cluster_name = "boilerplate"
 // -- ElastiCache
 redis_name = "boilerplate"
 // -- ElasticSearch
+es_name = "boilerplate-es"
 // -- GuardDuty
 // -- Lambda
 lambda_source = "./lambda_handlers/lambda.py"

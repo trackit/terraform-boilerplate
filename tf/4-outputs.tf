@@ -60,7 +60,12 @@ output "cloudtrail" {
 // CodeBuild outputs
 */
 
-
+output "codebuild" {
+  value = {
+    arn = module.codebuild.project_arn
+    id  = module.codebuild.project_id
+  }
+}
 
 /*
 // CodeCommit outputs
@@ -180,7 +185,13 @@ output "redis" {
 // ElasticSearch outputs
 */
 
-
+output "elasticsearch" {
+  value = {
+    id   = module.elasticsearch.domain_id
+    name = module.elasticsearch.domain_name
+    arn  = module.elasticsearch.domain_arn
+  }
+}
 
 /*
 // GuardDuty outputs
