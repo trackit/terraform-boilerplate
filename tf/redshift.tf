@@ -12,6 +12,8 @@ module "redshift" {
 
   final_snapshot_identifier = "1"
 
-  subnets = module.vpc.private_subnets
+  subnets                = module.vpc.private_subnets
   vpc_security_group_ids = [module.vpc.default_security_group_id]
+
+  tags = local.tags
 }

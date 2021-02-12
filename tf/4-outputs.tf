@@ -229,7 +229,7 @@ output "route53" {
 
 output "reshift" {
   value = {
-    id = module.redshift.this_redshift_cluster_id
+    id  = module.redshift.this_redshift_cluster_id
     arn = module.redshift.this_redshift_cluster_arn
   }
 }
