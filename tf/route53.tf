@@ -17,3 +17,11 @@ resource "aws_route53_record" "record" {
   records = null
 }
 */
+
+resource "aws_route53_zone" "private" {
+  name = "trackit.boilerplate.internal"
+
+  vpc {
+    vpc_id = module.vpc.vpc_id
+  }
+}
