@@ -4,6 +4,8 @@
 // -- Backup
 backup_name = "tf-boilerplate-qa"
 // -- Client VPN
+// -- CloudFront
+cdn_bucket_name = "tf-boilerplate-cloudfront-bucket"
 // -- CloudTrail
 cloudtrail_name = "boilerplate"
 cloudtrail_s3_name = "boilerplate-cloudtrail"

@@ -3,7 +3,7 @@ module "cdn" {
   source  = "cloudposse/cloudfront-s3-cdn/aws"
   version = "0.44.0"
 
-  name = "tf-boilerplate-cloudfront-bucket"
+  name = var.cdn_bucket_name
 
   aliases        = ["assets.trackit.boilerplate.internal"]
   parent_zone_id = aws_route53_zone.private.zone_id

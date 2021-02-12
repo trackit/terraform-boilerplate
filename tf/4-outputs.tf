@@ -34,10 +34,22 @@ output "backup" {
 
 
 /*
-// Cloudfront outputs
+// CloudFront outputs
 */
 
-
+output "cloudfront" {
+  value = {
+    cloudfront = {
+      id             = module.cdn.cf_id
+      arn            = module.cdn.cf_arn
+      hosted_zone_id = module.cdn.cf_hosted_zone_id
+    },
+    s3 = {
+      id  = module.cdn.s3_bucket
+      arn = module.cdn.s3_bucket_arn
+    }
+  }
+}
 
 /*
 // CloudTrail outputs
