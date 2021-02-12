@@ -1,11 +1,3 @@
-resource "aws_route53_zone" "private" {
-  name = "trackit.boilerplate.internal"
-
-  vpc {
-    vpc_id = module.vpc.vpc_id
-  }
-}
-
 # https://github.com/cloudposse/terraform-aws-cloudfront-s3-cdn/tree/0.44.0
 module "cdn" {
   source  = "cloudposse/cloudfront-s3-cdn/aws"
