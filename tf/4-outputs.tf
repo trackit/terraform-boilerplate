@@ -224,6 +224,17 @@ output "route53" {
 */
 
 /*
+// Redshift outputs
+*/
+
+output "reshift" {
+  value = {
+    id = module.redshift.this_redshift_cluster_id
+    arn = module.redshift.this_redshift_cluster_arn
+  }
+}
+
+/*
 // SNS outputs
 */
 

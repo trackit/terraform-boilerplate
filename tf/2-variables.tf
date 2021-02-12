@@ -792,6 +792,46 @@ variable "final_snapshot_identifier" {
 }
 
 /*
+// Redshift variables
+*/
+
+variable "redshift_cluster_name" {
+  type        = string
+  description = "Name for redshift cluster."
+  default     = "redshift-boilerplate"
+}
+
+variable "redshift_node_type" {
+  type        = string
+  description = "Node type for redshift cluster."
+  default     = "dc1.large"
+}
+
+variable "redshift_node_amount" {
+  type        = number
+  description = "Node amount for redshift cluster."
+  default     = 1
+}
+
+variable "redshift_db_name" {
+  type        = string
+  description = "Database name for redshift cluster."
+  default     = "db_name"
+}
+
+variable "redshift_db_user" {
+  type        = string
+  description = "Database user for redshift cluster."
+  default     = "db_user"
+}
+
+variable "redshift_db_master_password" {
+  type        = string
+  description = "Database master password for redshift cluster."
+  default     = "D8_m4st3r_p4ssword"
+}
+
+/*
 // Route53 variables
 */
 
