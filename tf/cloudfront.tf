@@ -2,7 +2,7 @@
 
 
 resource "aws_s3_bucket" "b" {
-  bucket = "tf-boilerplate-cloudfront-trackit-oss"
+  bucket = "tf-boilerplate-cloudfront-bucket"
 
   acl           = "private"
   force_destroy = true
