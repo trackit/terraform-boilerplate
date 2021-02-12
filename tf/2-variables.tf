@@ -541,7 +541,83 @@ variable "redis_use_existing_security_groups" {
 // ElasticSearch variables
 */
 
+variable "es_name" {
+  type        = string
+  description = "Elasticsearch resource name."
+  default     = "elasticsearch"
+}
 
+variable "es_dns_zone_id" {
+  type        = string
+  description = "DNS zone ID to add hostname records."
+  default     = ""
+}
+
+variable "es_zone_awareness" {
+  type        = bool
+  description = "Enabled zone awareness or not."
+  default     = false
+}
+
+variable "es_version" {
+  type        = string
+  description = "Version of the elasticsearch to use."
+  default     = "7.4"
+}
+
+variable "es_instance_type" {
+  type        = string
+  description = "Instance type for elasticsearch."
+  default     = "t2.small.elasticsearch"
+}
+
+variable "es_volume_size" {
+  type        = number
+  description = "Volume size in GB."
+  default     = 10
+}
+
+variable "es_subdomain" {
+  type        = string
+  description = "ES subdomain name."
+  default     = ""
+}
+
+variable "es_hostname_enabled" {
+  type        = bool
+  description = "Whether to enable creating a DNS hostname from DNS Zone ID for ES."
+  default     = false
+}
+
+variable "es_iam_allowed_role_arns" {
+  type        = list(string)
+  description = "Authorized role arns to access elasticsearch."
+  default     = []
+}
+
+variable "es_iam_allowed_actions" {
+  type        = list(string)
+  description = "Authorized actions for iam roles."
+  default     = []
+}
+
+variable "es_encrypt_at_rest" {
+  type        = bool
+  description = "Whether to activate encryption at rest."
+  default     = false
+}
+
+variable "es_kibana_subdomain" {
+  type        = string
+  description = "Kibana subdomain name."
+  default     = ""
+}
+
+variable "es_kibana_hostname_enabled" {
+  type        = bool
+  description = "Whether to enable creating a DNS hostname from DNS Zone ID for Kibana."
+  default     = false
+}
 
 /*
 // GuardDuty variables
