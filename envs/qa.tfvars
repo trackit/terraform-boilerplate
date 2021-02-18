@@ -38,6 +38,10 @@ eks_cluster_name = "boilerplate"
 redis_name = "boilerplate"
 // -- ElasticSearch
 es_name = "boilerplate-es"
+// -- Gitlab Runner
+gitlab_public_ssh_key_file = "./gitlab_runner/public_ssh_key"
+gitlab_runners_url = "https://gitlab.com/"
+gitlab_runner_token = ""
 // -- GuardDuty
 // -- Lambda
 lambda_source = "./lambda_handlers/lambda.py"

@@ -206,6 +206,22 @@ output "elasticsearch" {
 }
 
 /*
+// GitlabRunner outputs
+*/
+
+output "runner" {
+  value = {
+    id  = module.runner.runner_sg_id
+    arn = module.runner.runner_role_arn
+    agent = {
+      name = module.runner.runner_agent_role_name
+      id   = module.runner.runner_agent_sg_id
+      arn  = module.runner.runner_agent_role_arn
+    }
+  }
+}
+
+/*
 // GuardDuty outputs
 */
 
