@@ -5,7 +5,7 @@ module "acm" {
   version = "~> v2.12.0"
 
   domain_name        = var.acm_domain_name
-  create_certificate = false
+  create_certificate = true
 
   # The ID of the hosted zone to contain this record.
   zone_id = aws_route53_zone.private.zone_id
