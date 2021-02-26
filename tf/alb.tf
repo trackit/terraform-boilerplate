@@ -86,6 +86,23 @@ module "alb" {
   tags = local.tags
 }
 
+resource "aws_route53_record" "acm_record" {
+
+  for_each = aws_acm_certificate.cert.domain_validation_options
+
+  allow_overwrite = true
+  name            = each.value.resource_record_name
+  records         = [each.value.resource_record_value]
+  ttl             = 60
+  type            = each.value.resource_record_type
+  zone_id         = aws_route53_zone.private.zone_id
+}
+
+resource "aws_acm_certificate_validation" "acm_validation" {
+  certificate_arn         = aws_acm_certificate.cert.arn
+  validation_record_fqdns = [for record in aws_route53_record.acm_record : record.fqdn]
+}
+
 resource "aws_acm_certificate" "cert" {
   private_key      = tls_private_key.example_key.private_key_pem
   certificate_body = tls_self_signed_cert.example_cert.cert_pem
@@ -101,7 +118,7 @@ resource "tls_self_signed_cert" "example_cert" {
   private_key_pem = tls_private_key.example_key.private_key_pem
 
   subject {
-    common_name  = "example.com"
+    common_name  = "trackit.boilerplate.internal"
     organization = "ACME Examples, Inc"
   }
 
