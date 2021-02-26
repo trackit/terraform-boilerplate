@@ -67,7 +67,7 @@ module "alb" {
     {
       port               = 443
       protocol           = "HTTPS"
-      certificate_arn    = aws_acm_certificate.cert.arn
+      certificate_arn    = aws_acm_certificate_validation.acm_validation.certificate_arn
       target_group_index = 0
     }
   ]
@@ -84,4 +84,20 @@ module "alb" {
   ]
 
   tags = local.tags
+}
+
+resource "aws_route53_record" "acm_record" {
+  for_each = aws_acm_certificate.cert.domain_validation_options
+
+  allow_overwrite = true
+  name            = each.value.resource_record_name
+  records         = [each.value.resource_record_value]
+  ttl             = 60
+  type            = each.value.resource_record_type
+  zone_id         = aws_route53_zone.private.zone_id
+}
+
+resource "aws_acm_certificate_validation" "acm_validation" {
+  certificate_arn         = aws_acm_certificate.cert.arn
+  validation_record_fqdns = [for record in aws_route53_record.acm_record : record.fqdn]
 }
