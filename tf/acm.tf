@@ -1,21 +1,21 @@
 # https://github.com/terraform-aws-modules/terraform-aws-acm/tree/v2.12.0
 
-module "acm" {
-  source  = "terraform-aws-modules/acm/aws"
-  version = "~> v2.12.0"
+resource "aws_acmpca_certificate_authority" "ca_authority" {
+  certificate_authority_configuration {
+    key_algorithm     = "RSA_4096"
+    signing_algorithm = "SHA512WITHRSA"
 
-  domain_name        = var.acm_domain_name
-  create_certificate = false
+    subject {
+      common_name = "example.com"
+    }
+  }
 
-  # The ID of the hosted zone to contain this record.
-  zone_id = aws_route53_zone.private.zone_id
+  permanent_deletion_time_in_days = 7
+}
 
-  subject_alternative_names = [
-    "*.acm.trackit.boilerplate.internal",
-    "app.sub.acm.trackit.boilerplate.internal"
-  ]
-
-  wait_for_validation = false
+resource "aws_acm_certificate" "cert" {
+  certificate_authority_arn = aws_acmpca_certificate_authority.ca_authority
+  domain_name               = "trackit.boilerplate.internal"
 
   tags = local.tags
 }
