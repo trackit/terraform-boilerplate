@@ -14,7 +14,7 @@ resource "aws_acmpca_certificate_authority" "ca_authority" {
 }
 
 resource "aws_acm_certificate" "cert" {
-  certificate_authority_arn = aws_acmpca_certificate_authority.ca_authority
+  certificate_authority_arn = aws_acmpca_certificate_authority.ca_authority.arn
   domain_name               = "trackit.boilerplate.internal"
 
   tags = local.tags
