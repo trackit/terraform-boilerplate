@@ -2,7 +2,18 @@
 // ACM outputs
 */
 
+output "acm" {
+  value = {
+    arn         = aws_acm_certificate.cert.arn
+    domain_name = aws_acm_certificate.cert.domain_name
+  }
+}
 
+output "acmpa_ca_authority" {
+  value = {
+    arn = aws_acmpca_certificate_authority.ca_authority.arn
+  }
+}
 
 /*
 // ALB outputs
@@ -44,6 +55,24 @@ output "backup" {
 */
 
 
+
+/*
+// CloudFront outputs
+*/
+
+output "cloudfront" {
+  value = {
+    cloudfront = {
+      id             = module.cdn.cf_id
+      arn            = module.cdn.cf_arn
+      hosted_zone_id = module.cdn.cf_hosted_zone_id
+    },
+    s3 = {
+      id  = module.cdn.s3_bucket
+      arn = module.cdn.s3_bucket_arn
+    }
+  }
+}
 
 /*
 // CloudTrail outputs
@@ -196,6 +225,22 @@ output "elasticsearch" {
     id   = module.elasticsearch.domain_id
     name = module.elasticsearch.domain_name
     arn  = module.elasticsearch.domain_arn
+  }
+}
+
+/*
+// GitlabRunner outputs
+*/
+
+output "runner" {
+  value = {
+    id  = module.runner.runner_sg_id
+    arn = module.runner.runner_role_arn
+    agent = {
+      name = module.runner.runner_agent_role_name
+      id   = module.runner.runner_agent_sg_id
+      arn  = module.runner.runner_agent_role_arn
+    }
   }
 }
 

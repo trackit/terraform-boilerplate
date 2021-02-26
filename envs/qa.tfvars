@@ -1,10 +1,13 @@
 // -- ACM
+acm_domain_name = "acm.trackit.boilerplate.internal"
 // -- ALB
 alb_name = "tf-boilerplate-alb"
 // -- AutoScalling
 // -- Backup
 backup_name = "tf-boilerplate-qa"
 // -- Client VPN
+// -- CloudFront
+cdn_bucket_name = "tf-boilerplate-cloudfront-bucket"
 // -- CloudTrail
 cloudtrail_name = "boilerplate"
 cloudtrail_s3_name = "boilerplate-cloudtrail"
@@ -37,6 +40,10 @@ eks_cluster_name = "boilerplate"
 redis_name = "boilerplate"
 // -- ElasticSearch
 es_name = "boilerplate-es"
+// -- Gitlab Runner
+gitlab_public_ssh_key_file = "./gitlab_runner/public_ssh_key"
+gitlab_runners_url = "https://gitlab.com/"
+gitlab_runner_token = ""
 // -- GuardDuty
 // -- Lambda
 lambda_source = "./lambda_handlers/lambda.py"
@@ -46,5 +53,7 @@ lambda_runtime = "python3.8"
 // -- RDS
 rds_name = "boilerplate"
 // -- Route53
+// -- S3
+s3_name = "tf-boilerplate-trackit"
 // -- VPC
 vpc_name = "boilerplate"
