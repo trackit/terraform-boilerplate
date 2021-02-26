@@ -1,5 +1,3 @@
-# https://github.com/terraform-aws-modules/terraform-aws-acm/tree/v2.12.0
-
 resource "aws_acmpca_certificate_authority" "ca_authority" {
   certificate_authority_configuration {
     key_algorithm     = "RSA_4096"
