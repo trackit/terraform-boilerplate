@@ -4,8 +4,8 @@
 
 output "acm" {
   value = {
-    arn          = module.acm.this_acm_certificate_arn
-    domain_names = module.acm.distinct_domain_names
+    arn         = aws_acm_certificate.cert.arn
+    domain_name = aws_acm_certificate.cert.domain_name
   }
 }
 
