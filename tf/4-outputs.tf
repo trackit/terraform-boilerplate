@@ -9,6 +9,12 @@ output "acm" {
   }
 }
 
+output "acmpa_ca_authority" {
+  value = {
+    arn = aws_acmpca_certificate_authority.ca_authority.arn
+  }
+}
+
 /*
 // ALB outputs
 */
