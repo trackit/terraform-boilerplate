@@ -2,7 +2,18 @@
 // ACM outputs
 */
 
+output "acm" {
+  value = {
+    arn         = aws_acm_certificate.cert.arn
+    domain_name = aws_acm_certificate.cert.domain_name
+  }
+}
 
+output "acmpa_ca_authority" {
+  value = {
+    arn = aws_acmpca_certificate_authority.ca_authority.arn
+  }
+}
 
 /*
 // ALB outputs
