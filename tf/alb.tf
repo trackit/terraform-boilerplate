@@ -87,13 +87,14 @@ module "alb" {
 }
 
 resource "aws_route53_record" "acm_record" {
-  for_each = aws_acm_certificate.cert.domain_validation_options
+  count = length(aws_acm_certificate.cert.domain_validation_options)
+
 
   allow_overwrite = true
-  name            = each.value.resource_record_name
-  records         = [each.value.resource_record_value]
+  name            = aws_acm_certificate.cert.domain_validation_options[count.index].resource_record_name
+  records         = [aws_acm_certificate.cert.domain_validation_options[count.index].resource_record_value]
   ttl             = 60
-  type            = each.value.resource_record_type
+  type            = aws_acm_certificate.cert.domain_validation_options[count.index].resource_record_type
   zone_id         = aws_route53_zone.private.zone_id
 }
 
