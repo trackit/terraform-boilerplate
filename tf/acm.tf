@@ -25,3 +25,15 @@ resource "aws_acm_certificate" "cert" {
 
   tags = local.tags
 }
+
+
+resource "aws_acm_certificate" "public_cert" {
+
+
+  # Only used for ACM cert with route53 public hosted zone
+  validation_method = "DNS"
+
+  domain_name = "terraform-boilerplate-qa.trackit.io"
+
+  tags = local.tags
+}
