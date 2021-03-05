@@ -1,7 +1,8 @@
 // -- ACM
-acm_domain_name = "acm.trackit.boilerplate.internal"
+acm_domain_name = "terraform-boilerplate-qa.trackit.io"
 // -- ALB
 alb_name = "tf-boilerplate-alb"
+hosted_zone_name = "trackit.io"
 // -- AutoScalling
 // -- Backup
 backup_name = "tf-boilerplate-qa"
