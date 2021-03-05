@@ -21,17 +21,17 @@ output "acmpa_ca_authority" {
 
 output "alb" {
   value = {
-    arn = module.alb.this_lb_arn
-    id  = module.alb.this_lb_id
+    alb = {
+      arn = module.alb.this_lb_arn
+      id  = module.alb.this_lb_id
+    },
+    acm_cert = {
+      arn                       = aws_acm_certificate.public_cert.arn
+      domain_validation_options = aws_acm_certificate.public_cert.domain_validation_options
+      record_fqdns              = aws_acm_certificate_validation.acm_validation.validation_record_fqdns
+    }
   }
 }
-
-output "acm_cert" {
-  value = {
-    domain_validation_options = aws_acm_certificate.cert.domain_validation_options
-  }
-}
-
 
 /*
 // AutoScalling outputs

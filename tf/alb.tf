@@ -87,7 +87,7 @@ module "alb" {
 }
 
 data "aws_route53_zone" "selected" {
-  name         = "trackit.io"
+  name         = var.hosted_zone_name
   private_zone = false
 }
 
