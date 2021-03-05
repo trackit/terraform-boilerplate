@@ -27,14 +27,30 @@ variable "tags" {
 variable "acm_domain_name" {
   type        = string
   description = "A domain name for which the certificate should be issued"
-  default     = "acm.trackit.boilerplate.internal"
+  default     = "terraform-boilerplate-qa.trackit.io"
 }
 
 /*
 // ALB variables
 */
 
+variable "alb_name" {
+  type        = string
+  description = "The resource name and Name tag of the load balancer."
+  default     = "alb"
+}
 
+variable "alb_load_balancer_type" {
+  type        = string
+  description = "The type of load balancer to create. Possible values are application or network."
+  default     = "application"
+}
+
+variable "hosted_zone_name" {
+  type        = string
+  description = "The name of the hosted zone"
+  default     = "trackit.io"
+}
 
 /*
 // AutoScalling variables
