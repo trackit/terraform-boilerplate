@@ -51,6 +51,8 @@ lambda_handler = "lambda.handler_test"
 lambda_runtime = "python3.8"
 // -- RDS
 rds_name = "boilerplate"
+// -- Redshift
+redshift_cluster_name = "boilerplate"
 // -- Route53
 // -- S3
 s3_name = "tf-boilerplate-trackit"
